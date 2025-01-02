@@ -1,12 +1,13 @@
 import database from "infra/database";
+import orchestrator from "../orchestrator.js";
 
-beforeAll(cleanDatabase);
-async function cleanDatabase() {
+beforeAll(async ()=>{
   await database.query("drop schema public cascade; create schema public;");
-}
+  await orchestrator.waitForAllServices();
+});
 
 test("GET /api/v1/migrations deve retornar 200", async () => {
-  const response = await fetch("http://26.137.54.75:3000/api/v1/migrations");
+  const response = await fetch("http://localhost:3000/api/v1/migrations");
   expect(response.status).toBe(200);
 
   const responseBody = await response.json();
