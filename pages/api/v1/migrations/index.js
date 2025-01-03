@@ -13,16 +13,16 @@ export default async function migrations(request, response) {
   let dbClient;
 
   try {
+    dbClient = await database.getNewClient();
     const defaultMigrationOptions = {
       databaseUrl: dbClient,
       dryRun: true,
       dir: resolve("infra", "migration"),
       direction: "up",
-      migrationsTable: "pgmigrations",
       verbose: true,
+      migrationsTable: "pgmigrations",
     };
-    dbClient = await database.getNewClient();
-
+    
     if (request.method === "GET") {
       const pendingMigrations = await migrationRunner(defaultMigrationOptions);
       return response.status(200).json(pendingMigrations);
