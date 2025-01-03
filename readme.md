@@ -1,5 +1,6 @@
 # Site Pessoal
-  Esse é um projeto para guardar e documentar meus outros projetos, e estou usando como base o curso.dev 
+
+Esse é um projeto para guardar e documentar meus outros projetos, e estou usando como base o curso.dev
 
 ## Inicial
 
