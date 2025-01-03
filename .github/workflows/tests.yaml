@@ -11,7 +11,23 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "node"
+          node-version: "20"
+
+      - name: Start services
+        run: docker compose -f infra/compose.yaml up -d
+
+      - name: Wait for PostgreSQL
+        run: |
+          until nc -z postgres-dev 5432; do
+            echo "Waiting for PostgreSQL...";
+            sleep 5;
+          done
+
+      - name: Run migrations
+        run: |
+          for i in {1..5}; do
+            npm run migration:up && break || sleep 5;
+          done
 
       - run: npm ci
 
