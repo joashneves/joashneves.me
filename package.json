@@ -10,7 +10,7 @@
     "services:stop": "docker compose -f infra/compose.yaml stop",
     "lint:prettier:check": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
-    "test:watch": "jest --watchAll --runInBand", 
+    "test:watch": "jest --watchAll --runInBand",
     "migration:create": "node-pg-migrate -m infra/migration create",
     "migration:up": "node-pg-migrate -m infra/migration --envPath .env.development up",
     "wait-for-postgres": "node infra/scripts/wait-for-postgres.js"
