@@ -1,4 +1,3 @@
-import { useState } from "react";
 import useSWR from "swr";
 
 async function fetchApi(key) {
