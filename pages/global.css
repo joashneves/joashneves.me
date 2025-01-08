@@ -3,9 +3,17 @@ body {
 }
 
 h1 {
+  font-size: 64px;
   color: #2CB67D;
 }
 
 div {
   color: #94A1B2;
+}
+button {
+  background-color: #27282C;
+}
+
+button:hover {
+  cursor: pointer;
 }

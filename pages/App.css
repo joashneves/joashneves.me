@@ -1,0 +1,15 @@
+:root {
+  --column-width: 72px;
+}
+
+.hudContent {
+  display: flex;
+  position: relative;
+}
+
+.mainContent {
+  margin-left: var(--column-width);
+  /* Adicionar margem para empurrar o conteúdo para a direita */
+  padding-left: 12px;
+  /* Adicionar algum espaçamento interno */
+}
