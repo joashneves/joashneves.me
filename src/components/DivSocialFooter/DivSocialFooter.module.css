@@ -1,5 +1,5 @@
 .div_social_footer {
-  background-color: #72757E;
+  background-color: #72757e;
 }
 
 .card {
@@ -28,7 +28,7 @@
 
 .socialContainer:active {
   transform: scale(0.9);
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 .bsySvg {

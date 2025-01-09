@@ -1,0 +1,38 @@
+/* Estilo do menu lateral */
+.side_menu {
+  position: fixed;
+  top: 84px;
+  left: -250px; /* Inicialmente escondido */
+  width: 250px;
+  height: 100%;
+  background-color: #27282c;
+  color: #fff;
+  z-index: 999; /* Acima de outros elementos */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: left 0.3s ease-in-out; /* Animação ao abrir/fechar */
+}
+
+.side_menu.visible {
+  left: 0; /* Exibe o menu ao adicionar a classe "visible" */
+}
+/* Links do menu */
+.componente_menu {
+  display: flex;
+  color: #8e7bff; /* Cor roxa */
+  text-decoration: none;
+  padding: 24px;
+  height: 24px;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+.componente_menu h2 {
+  color: #2cb67d;
+  margin-left: 12px;
+  font-size: 24px;
+}
+.componente_menu:hover {
+  cursor: pointer;
+  background-color: #444;
+}
