@@ -1,37 +1,25 @@
-import { useState } from "react";
-import SideMenu from "../SideMenu/SideMenu";
-import styles from "./HudMenu.module.css";
+import { useState, useEffect } from "react";
+import styles from "./SideMenu.module.css";
+import Link from "next/link";
 
-export default function HudMenu() {
-  // Estado para controlar a visibilidade do SideMenu
-  const [isSideMenuVisible, setIsSideMenuVisible] = useState(false);
+export default function SideMenu() {
+  const [isAnimating, setIsAnimating] = useState(false); // Controla a animação
 
-  // Função para alternar o estado do SideMenu
-  const toggleMenu = () => {
-    setIsSideMenuVisible(!isSideMenuVisible);
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsAnimating(true); // Ativa a classe de animação após 1 segundo
+    }, 10); // Delay de 1 segundo
+
+    return () => clearTimeout(timer); // Limpa o timer ao desmontar
+  }, []);
 
   return (
     <>
-      {isSideMenuVisible && <SideMenu />}{" "}
-      {/* Renderiza o SideMenu apenas se o estado for verdadeiro */}
-      <div className={styles.button_div_hud}>
-        <div className={styles.classIcon} onClick={toggleMenu}>
-          <svg
-            width="48"
-            height="48"
-            viewBox="0 0 36 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0 24V20H26V24H0ZM33.2 22L23.2 12L33.2 2L36 4.8L28.8 12L36 19.2L33.2 22ZM0 14V10H20V14H0ZM0 4V0H26V4H0Z"
-              fill="#7F5AF0"
-            />
-          </svg>
-        </div>
-        <br />
-        <div className={styles.classIcon}>
+      {/* Menu Lateral */}
+      <div
+        className={`${styles.side_menu} ${isAnimating ? styles.visible : ""}`}
+      >
+        <Link href="/" className={styles.componente_menu}>
           <svg
             width="24"
             height="24"
@@ -44,8 +32,10 @@ export default function HudMenu() {
               fill="#7F5AF0"
             />
           </svg>
-        </div>
-        <div className={styles.classIcon}>
+          <h2>Inicio</h2>
+        </Link>
+
+        <Link href="/" className={styles.componente_menu}>
           <svg
             width="24"
             height="24"
@@ -58,8 +48,10 @@ export default function HudMenu() {
               fill="#7F5AF0"
             />
           </svg>
-        </div>
-        <div className={styles.classIcon}>
+          <h2>Projetos</h2>
+        </Link>
+
+        <Link href="/" className={styles.componente_menu}>
           <svg
             width="24"
             height="24"
@@ -72,8 +64,10 @@ export default function HudMenu() {
               fill="#7F5AF0"
             />
           </svg>
-        </div>
-        <div className={styles.classIcon}>
+          <h2>NewsLetters</h2>
+        </Link>
+
+        <Link href="/" className={styles.componente_menu}>
           <svg
             width="24"
             height="24"
@@ -86,8 +80,10 @@ export default function HudMenu() {
               fill="#7F5AF0"
             />
           </svg>
-        </div>
-        <div className={styles.classIcon}>
+          <h2>Posts</h2>
+        </Link>
+
+        <Link href="/social" className={styles.componente_menu}>
           <svg
             width="24"
             height="24"
@@ -100,7 +96,8 @@ export default function HudMenu() {
               fill="#7F5AF0"
             />
           </svg>
-        </div>
+          <h2>Social</h2>
+        </Link>
       </div>
     </>
   );
