@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./DivSocialFooter.module.css";
 
 export default function DivSocialFooter(props) {
@@ -9,8 +10,10 @@ export default function DivSocialFooter(props) {
         href={link}
         className={`${styles.socialContainer} ${styles.containerSeven} ${extraClass}`}
       >
-        <img
+        <Image
           src={imgSrc}
+          width={24}
+          height={24}
           alt={altText}
           className={`${styles.socialSvg} ${styles.bsySvg}`}
         />
