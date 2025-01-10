@@ -1,4 +1,7 @@
 .footer_module {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #27282c;
   height: 54px;
 }
