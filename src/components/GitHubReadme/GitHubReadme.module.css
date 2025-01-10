@@ -1,0 +1,41 @@
+.readme {
+  margin: 2px;
+  padding: 24px;
+  background-color: #27282c;
+  font-family: Arial, sans-serif;
+}
+.readme summary {
+  color: #7f5af0;
+  font-weight: bold;
+}
+.readme pre {
+  background-color: #f4f4f4;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+.readme h3 {
+  font-size: 24px;
+}
+.readme li {
+  content: "•";
+  font-weight: bold;
+  font-style: italic;
+}
+.readme li::before {
+  content: "•"; /* Insert content that looks like bullets */
+  padding-right: 8px;
+}
+.readme a {
+  color: #2cb67d;
+  text-decoration: none;
+}
+.readme a:visited {
+  text-decoration: none;
+}
+.readme blockquote {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 40px;
+  margin-right: 40px;
+}
