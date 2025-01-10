@@ -1,6 +1,8 @@
 import database from "infra/database.js";
+import { InternalServerError } from "infra/errors.js";
 
 async function status(request, response) {
+  try{
   const databaseName = process.env.POSTGRES_DB;
   const openedConnectionDatabase = await database.query({
     text: "SELECT count(*)::int FROM pg_stat_activity WHERE datname = $1;",
@@ -26,6 +28,14 @@ async function status(request, response) {
       },
     },
   });
+} catch(error){
+  console.log("\n Erro no /api/v1/status");
+  const publicErrorObject = new InternalServerError({
+    cause: error
+  });
+  console.error(publicErrorObject)
+  response.status(500).json({publicErrorObject})
+}
 }
 
 export default status;
