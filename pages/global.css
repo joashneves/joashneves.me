@@ -1,3 +1,10 @@
+:root {
+  --title-green-color: #2cb67d;
+  --background-grey: #27282c;
+  --efects-purple: #7f5af0;
+  --component-background-grey: #94a1b2;
+  --font-in-component: #010101;
+}
 body {
   background-color: #16161a;
 }
@@ -16,4 +23,7 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+p {
+  font-size: large;
 }

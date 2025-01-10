@@ -1,0 +1,12 @@
+.componentText {
+  color: var(--font-in-component);
+  background-color: var(--component-background-grey);
+  padding: 16px;
+  border: 1px solid var(--efects-purple);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px #7f5af01a;
+}
+.componentText h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}

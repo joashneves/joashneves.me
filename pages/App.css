@@ -1,10 +1,9 @@
 :root {
-  --column-width: 72px;
+  --column-width: 24px;
 }
 
 .hudContent {
   display: flex;
-  position: relative;
 }
 
 .mainContent {
