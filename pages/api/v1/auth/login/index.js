@@ -4,7 +4,7 @@ export default async function handler(request, response) {
   const { email, password } = request.body;
 
   try {
-    
+    console.log( `login: ${ email } ${password}`)
     const user = await authenticateUser({ email, password });
     response.status(200).json({ success: true, user });
   } catch (error) {

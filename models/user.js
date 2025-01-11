@@ -4,13 +4,11 @@ import bcrypt from "bcrypt"; // Usando bcrypt para comparar senhas
 
 // Função para criar um novo usuário
 export async function createUser({ email, password, name }) {
-  const client = await database.getNewClient();
 
   try {
-    // Verificar se o e-mail já existe
-    const checkEmailQuery = "SELECT * FROM users WHERE email = $1";
-    const checkEmailValues = [email];
-    const emailExists = await client.query(checkEmailQuery, checkEmailValues);
+
+    const checkEmailQuery = `SELECT * FROM "users" WHERE email = ${checkEmailQuery}`;
+    const emailExists = await database.query({text: checkEmailQuery });
 
     if (emailExists.rows.length > 0) {
       throw new Error("Email já está em uso.");
@@ -21,30 +19,27 @@ export async function createUser({ email, password, name }) {
 
     // Inserir novo usuário no banco de dados
     const insertQuery = `
-      INSERT INTO users (email, password, name) 
+      INSERT INTO "users" (email, password, name) 
       VALUES ($1, $2, $3) 
       RETURNING id, email, name
     `;
     const insertValues = [email, hashedPassword, name];
-    const result = await client.query(insertQuery, insertValues);
+    const result = await  database.query(insertQuery, insertValues);
 
     return result.rows[0]; // Retorna o usuário criado
   } catch (error) {
+    console.error(error)
     throw error;
-  } finally {
-    await client?.end();
-  }
+  } 
 }
 
 // Função para autenticar o usuário (login)
 export async function authenticateUser({ email, password }) {
-  const client = await database.getNewClient();
-
   try {
     // Buscar o usuário no banco
-    const query = "SELECT * FROM users WHERE email = $1";
+    const query = `SELECT * FROM "users" WHERE email = $1`;
     const values = [email];
-    const result = await client.query(query, values);
+    const result = await database.query(query, values);
 
     if (result.rows.length === 0) {
       throw new UnauthorizedError("Invalid Credentials.");
@@ -66,19 +61,15 @@ export async function authenticateUser({ email, password }) {
     };
   } catch (error) {
     throw error;
-  } finally {
-    await client.end();
-  }
+  } 
 }
 
 // Função para recuperar um usuário pelo ID
 export async function getUserById(userId) {
-  const client = await database.getNewClient();
-
   try {
-    const query = "SELECT * FROM users WHERE id = $1";
+    const query = `SELECT * FROM "users" WHERE id = $1`;
     const values = [userId];
-    const result = await client.query(query, values);
+    const result = await database.query(query, values);
 
     if (result.rows.length === 0) {
       throw new Error("User not found.");
@@ -87,15 +78,11 @@ export async function getUserById(userId) {
     return result.rows[0];
   } catch (error) {
     throw error;
-  } finally {
-    await client.end();
-  }
+  } 
 }
 
 // Função para atualizar os dados do usuário
 export async function updateUser(userId, { email, password, name }) {
-  const client = await database.getNewClient();
-
   try {
     // Hash a senha, se fornecida
     let hashedPassword = null;
@@ -104,13 +91,13 @@ export async function updateUser(userId, { email, password, name }) {
     }
 
     const updateQuery = `
-      UPDATE users 
+      UPDATE "users" 
       SET email = COALESCE($1, email), password = COALESCE($2, password), name = COALESCE($3, name) 
       WHERE id = $4 
       RETURNING id, email, name
     `;
     const updateValues = [email, hashedPassword, name, userId];
-    const result = await client.query(updateQuery, updateValues);
+    const result = await database.query(updateQuery, updateValues);
 
     if (result.rows.length === 0) {
       throw new Error("User not found or failed to update.");
@@ -119,7 +106,5 @@ export async function updateUser(userId, { email, password, name }) {
     return result.rows[0]; // Retorna os dados atualizados
   } catch (error) {
     throw error;
-  } finally {
-    await client?.end();
-  }
+  } 
 }

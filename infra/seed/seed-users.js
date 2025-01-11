@@ -10,7 +10,7 @@ const seedUsers = async (pgClient) => {
 
   // Inserir o usuário na tabela users com a transação
   await pgClient.query(`
-    INSERT INTO users (email, password, name)
+    INSERT INTO "users" (email, password, name)
     VALUES ($1, $2, $3)
     ON CONFLICT (email) DO NOTHING;
   `, [email, hashedPassword, 'User Example']);
