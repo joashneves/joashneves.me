@@ -16,3 +16,22 @@ export class InternalServerError extends Error {
     };
   }
 }
+
+export class UnauthorizedError extends Error {
+  constructor(message = "Unauthorized access.") {
+    super(message);
+    this.name = "UnauthorizedError";
+    this.action = "Verify your credentials and try again.";
+    this.statusCode = "401";
+  }
+
+  toJSON() {
+    return {
+      name: this.name,
+      message: this.message,
+      action: this.action,
+      status_code: this.statusCode,
+    };
+  }
+}
+
