@@ -1,27 +1,12 @@
 import { createRouter } from "next-connect";
 import database from "infra/database.js";
-import { InternalServerError, MethodNotAllowedError } from "infra/errors.js";
-
+import controller from "infra/controller";
 const router = createRouter();
 
 router.get(getHandler);
 
-export default router.handler({
-  onNoMatch: onNoMatchHandler,
-  onError: onErrorHandler,
-});
-async function onNoMatchHandler(request, response) {
-  const publicErrorObject = new MethodNotAllowedError();
-  response.status(publicErrorObject.statusCode).json(publicErrorObject);
-}
-function onErrorHandler(error, request, response) {
-  console.log("\n Erro no /api/v1/status");
-  const publicErrorObject = new InternalServerError({
-    cause: error,
-  });
-  console.error(publicErrorObject);
-  response.status(500).json({ publicErrorObject });
-}
+export default router.handler(controller.errorHandles);
+
 async function getHandler(request, response) {
   const databaseName = process.env.POSTGRES_DB;
   const openedConnectionDatabase = await database.query({
