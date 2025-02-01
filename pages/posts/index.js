@@ -17,10 +17,10 @@ export default function PostsPage({ posts }) {
   return (
     <>
       <h1>Posts</h1>
-      {posts.map(({ title }) => {
+      {posts.map((post) => {
         return (
           <>
-            <h1>{title}</h1>
+            <h1>{post.title}</h1>
           </>
         );
       })}
