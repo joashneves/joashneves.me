@@ -1,0 +1,9 @@
+site:
+  title: "Joash Blog"
+  description: "Bem viundos ao meu site!"
+personal:
+  name: "Joas"
+  avatar: https://github.com/joashneves.png
+  socialNetworks:
+    bsky: https://bsky.app/profile/joashneves.me
+    github: https://github.com/joashneves
