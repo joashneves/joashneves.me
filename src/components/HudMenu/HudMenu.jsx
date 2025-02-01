@@ -1,20 +1,9 @@
-import { useState } from "react";
-import SideMenu from "../SideMenu/SideMenu";
 import styles from "./HudMenu.module.css";
 import Link from "next/link";
 
 export default function HudMenu() {
-  // Estado para controlar a visibilidade do SideMenu
-  const [isSideMenuVisible, setIsSideMenuVisible] = useState(false);
-
-  // Função para alternar o estado do SideMenu
-  const toggleMenu = () => {
-    setIsSideMenuVisible(!isSideMenuVisible);
-  };
-
   return (
     <>
-      {isSideMenuVisible && <SideMenu />}{" "}
       {/* Renderiza o SideMenu apenas se o estado for verdadeiro */}
       <div className={styles.button_div_hud}>
         <div className={styles.classIcon}>

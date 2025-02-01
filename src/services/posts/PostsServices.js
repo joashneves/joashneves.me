@@ -1,7 +1,6 @@
 import path from "path";
 import fs from "fs/promises";
 import matter from "gray-matter";
-import { title } from "process";
 
 export default function PostsService() {
   return {
@@ -26,7 +25,7 @@ export default function PostsService() {
         // console.log(post)
         return post;
       });
-      const posts = Promise.all(todosPostsPromise);
+      const posts = todosPostsPromise;
       return posts;
     },
   };
