@@ -7,6 +7,7 @@ export default function DivSocialFooter(props) {
   return (
     <div>
       <a
+        target="_blank"
         href={link}
         className={`${styles.socialContainer} ${styles.containerSeven} ${extraClass}`}
       >

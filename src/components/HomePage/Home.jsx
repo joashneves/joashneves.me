@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import styles from "./Home.module.css";
 import ComponentTextHome from "./ComponentTextHome/Index";
+import templatePageHOC from "src/services/template/tamplatePageHOC";
 
 // Função para buscar dados da API
 async function fetchApi(key) {
@@ -85,6 +86,10 @@ function ShowAPISHome() {
 }
 
 // Componente principal
-export default function HomePage() {
+function HomePage() {
   return <ShowAPISHome />;
 }
+
+export default templatePageHOC(HomePage, {
+  title: "Home",
+})
