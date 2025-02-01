@@ -1,3 +1,4 @@
+import PostTemplate from "src/components/PostTemplate/PostTemplate";
 import PostsService from "src/services/posts/PostsServices";
 import { withTemplateConfig } from "src/services/template/withTamplateConfig";
 
@@ -17,11 +18,11 @@ export default function PostsPage({ posts }) {
   return (
     <>
       <h1>Posts</h1>
-      {posts.map((post) => {
+      {posts.map(({index, title, excerpt}) => {
         return (
-          <>
-            <h1>{post.title}</h1>
-          </>
+            <PostTemplate key={index}
+            title={title}
+            excerpt={excerpt}/>
         );
       })}
     </>

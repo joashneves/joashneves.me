@@ -25,7 +25,7 @@ export default function PostsService() {
         // console.log(post)
         return post;
       });
-      const posts = todosPostsPromise;
+      const posts = Promise.all(todosPostsPromise);
       return posts;
     },
   };
