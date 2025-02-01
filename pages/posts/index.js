@@ -17,7 +17,7 @@ export default function PostsPage({ posts }) {
   return (
     <>
       <h1>Posts</h1>
-      {posts.map(({ title, slug }) => {
+      {posts.map(({ title }) => {
         return (
           <>
             <h1>{title}</h1>
