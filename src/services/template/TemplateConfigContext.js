@@ -1,13 +1,13 @@
-import {createContext, useContext} from "react";
+import { createContext, useContext } from "react";
 
-const TemplateConfigContext = createContext()
+const TemplateConfigContext = createContext();
 
-export function TemplateConfigProvider({value, children}){
+export function TemplateConfigProvider({ value, children }) {
   //console.log(value.tamplateConfig?.personal?.socialNetworks)
   return (
     <TemplateConfigContext.Provider value={value}>
       {children}
     </TemplateConfigContext.Provider>
-  )
+  );
 }
-export const useTemplateConfig = () => useContext(TemplateConfigContext );
+export const useTemplateConfig = () => useContext(TemplateConfigContext);

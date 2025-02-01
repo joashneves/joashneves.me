@@ -92,4 +92,4 @@ function HomePage() {
 
 export default templatePageHOC(HomePage, {
   title: "Home",
-})
+});
