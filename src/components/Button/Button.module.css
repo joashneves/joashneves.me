@@ -1,0 +1,11 @@
+.button_style{
+  width: 126px;
+  height: 24px;
+  color: var(--efects-purple);
+  background: none;
+  border: 1px solid var(--efects-purple);
+  border-radius: 4px;
+}
+.button_style:hover{
+  border: 4px solid var(--efects-purple);
+}

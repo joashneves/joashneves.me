@@ -52,6 +52,7 @@ export default function HudMenu() {
           </svg>
         </div>
         <div className={styles.classIcon}>
+        <Link href="/newsletter">
           <svg
             width="24"
             height="24"
@@ -64,6 +65,7 @@ export default function HudMenu() {
               fill="#7F5AF0"
             />
           </svg>
+          </Link>
         </div>
         <div className={styles.classIcon}>
           <Link href="/posts">

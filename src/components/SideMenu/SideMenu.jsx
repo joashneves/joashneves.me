@@ -51,7 +51,7 @@ export default function SideMenu() {
           <h2>Projetos</h2>
         </Link>
 
-        <Link href="/" className={styles.componente_menu}>
+        <Link href="/newsLetter" className={styles.componente_menu}>
           <svg
             width="24"
             height="24"
