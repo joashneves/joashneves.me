@@ -1,0 +1,10 @@
+.emailComponente{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.componenteParaEscrever{
+  width: 527px;
+  height: 575px ;
+}
