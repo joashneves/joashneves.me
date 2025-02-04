@@ -1,13 +1,21 @@
-.componentEmail{
+.componentEmail {
+  font-size: 24px;
+  color: var(--font-in-component);
+  background: var(--component-background-grey);
+  border-radius: 12px;
+  padding: 4px;
   display: flex;
   justify-content: center;
-    align-items: center;
-    align-content: space-around;
-    flex-direction: column;
-    margin: 15vh 30vw;
+  align-items: center;
+  align-content: space-around;
+  flex-direction: column;
+  margin: 15vh 30vw;
 }
 
-.formEnviarEmail{
+.formEnviarEmail {
+  font-size: 24px;
+  color: var(--font-in-component);
+  font-style: oblique;
   display: flex;
   padding: 2px;
   font-size: larger;
@@ -15,6 +23,6 @@
   align-items: center;
 }
 
-.formEnviarInput{
+.formEnviarInput {
   margin: 6px;
 }

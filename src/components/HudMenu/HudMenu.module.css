@@ -22,3 +22,19 @@
 .classIcon:hover {
   transform: scale(1.2);
 }
+.classIcon:hover .legenda {
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 30px;
+}
+
+.legendaExibe {
+  display: block;
+  position: absolute;
+  left: 40px;
+}
+
+.legenda {
+  display: none;
+}

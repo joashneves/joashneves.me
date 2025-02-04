@@ -1,11 +1,10 @@
 import SendPostarEmail from "src/components/SendPostarEmail";
 
-
-export default function Adm(){
-  return(
+export default function Adm() {
+  return (
     <>
-    <h1>Adm</h1>
-    <SendPostarEmail/>
+      <h1>Adm</h1>
+      <SendPostarEmail />
     </>
-  )
+  );
 }

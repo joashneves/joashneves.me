@@ -18,12 +18,8 @@ export default function PostsPage({ posts }) {
   return (
     <>
       <h1>Posts</h1>
-      {posts.map(({index, title, excerpt}) => {
-        return (
-            <PostTemplate key={index}
-            title={title}
-            excerpt={excerpt}/>
-        );
+      {posts.map(({ index, title, excerpt }) => {
+        return <PostTemplate key={index} title={title} excerpt={excerpt} />;
       })}
     </>
   );

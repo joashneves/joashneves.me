@@ -15,8 +15,7 @@ router.post(postHandler);
 export default router.handler(controller.errorHandles);
 
 async function postHandler(request, response) {
-
-  try{
+  try {
     /*
     const {data, error} = await dbClient.from("newsletter").select("*")
     sendGridMail.setApiKey(process.env.SENDGRID_KEY);
@@ -31,10 +30,10 @@ async function postHandler(request, response) {
     await dbClient.from("newsletter").insert({email: email, optin: true})
     */
     response.status(200).json({
-      "Response": "Email enviado",
+      Response: "Email enviado",
     });
-  }catch(error){
-    console.log(error)
+  } catch (error) {
+    console.log(error);
     throw error;
   }
 }
