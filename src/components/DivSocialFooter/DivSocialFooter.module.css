@@ -9,7 +9,9 @@
   gap: 20px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.055);
 }
-
+.footer_icon {
+  padding-left: 1rem;
+}
 /* Para todos os containers sociais */
 .socialContainer {
   width: 52px;
@@ -24,15 +26,6 @@
 .socialContainer:active {
   transform: scale(0.9);
   transition-duration: 0.3s;
-}
-
-.bsySvg {
-  padding: 12px;
-  width: 24px;
-}
-
-.bsySvg path {
-  fill: rgb(255, 255, 255);
 }
 
 .socialContainer:hover .socialSvg {

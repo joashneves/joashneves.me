@@ -1,9 +1,13 @@
 site:
   title: "Joash Blog"
-  description: "Bem viundos ao meu site!"
+  description: "Bem vindos ao meu site!"
 personal:
   name: "Joas"
   avatar: https://github.com/joashneves.png
   socialNetworks:
     bsky: https://bsky.app/profile/joashneves.me
     github: https://github.com/joashneves
+    linkedin: https://www.linkedin.com/in/joas-neves-b8340a290/
+    instagram: https://www.instagram.com/joashneves/
+    discord: https://discord.gg/h7mP7aZuY4
+    coffee: https://buymeacoffee.com/joashneves
