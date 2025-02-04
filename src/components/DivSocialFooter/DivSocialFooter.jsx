@@ -2,7 +2,7 @@ import styles from "./DivSocialFooter.module.css";
 import Icon from "../icon";
 
 export default function DivSocialFooter(props) {
-  const { link, name, altText, extraClass } = props;
+  const { link, name, extraClass } = props;
 
   return (
     <div className={styles.footer_icon}>
