@@ -1,23 +1,17 @@
-import Image from "next/image";
 import styles from "./DivSocialFooter.module.css";
+import Icon from "../icon";
 
 export default function DivSocialFooter(props) {
-  const { link, imgSrc, altText, extraClass } = props;
+  const { link, name, altText, extraClass } = props;
 
   return (
-    <div>
+    <div className={styles.footer_icon}>
       <a
         target="_blank"
         href={link}
-        className={`${styles.socialContainer} ${styles.containerSeven} ${extraClass}`}
+        className={`${styles.socialContainer} ${styles.socialSvg} ${styles.containerSeven} ${extraClass}`}
       >
-        <Image
-          src={imgSrc}
-          width={24}
-          height={24}
-          alt={altText}
-          className={`${styles.socialSvg} ${styles.bsySvg}`}
-        />
+        <Icon name={name} width="52px" height="52px" />
       </a>
     </div>
   );

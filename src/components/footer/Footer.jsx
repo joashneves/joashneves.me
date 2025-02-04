@@ -11,8 +11,49 @@ export default function Footer() {
         <DivSocialFooter
           target="_blank"
           link={tamplateConfig.tamplateConfig?.personal?.socialNetworks?.bsky}
-          imgSrc="https://raw.githubusercontent.com/joashneves/blog/main/src/assets/Bluesky_Logo.svg"
+          name="bsky"
           altText="Bluesky Icon"
+          extraClass="custom-class" // Classe extra opcional
+        />
+        <DivSocialFooter
+          target="_blank"
+          link={
+            tamplateConfig.tamplateConfig?.personal?.socialNetworks?.instagram
+          }
+          name="instagram"
+          altText="Intagram Icon"
+          extraClass="custom-class" // Classe extra opcional
+        />
+        <DivSocialFooter
+          target="_blank"
+          link={tamplateConfig.tamplateConfig?.personal?.socialNetworks?.github}
+          name="github"
+          altText="github Icon"
+          extraClass="custom-class" // Classe extra opcional
+        />
+        <DivSocialFooter
+          target="_blank"
+          link={tamplateConfig.tamplateConfig?.personal?.socialNetworks?.coffee}
+          name="coffee"
+          altText="buy me a coffee Icon"
+          extraClass="custom-class" // Classe extra opcional
+        />
+        <DivSocialFooter
+          target="_blank"
+          link={
+            tamplateConfig.tamplateConfig?.personal?.socialNetworks?.linkedin
+          }
+          name="linkedin"
+          altText="linkedin Icon"
+          extraClass="custom-class" // Classe extra opcional
+        />
+        <DivSocialFooter
+          target="_blank"
+          link={
+            tamplateConfig.tamplateConfig?.personal?.socialNetworks?.discord
+          }
+          name="discord"
+          altText="discord Icon"
           extraClass="custom-class" // Classe extra opcional
         />
       </footer>
