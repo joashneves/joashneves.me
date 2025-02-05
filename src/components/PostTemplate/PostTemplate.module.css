@@ -1,0 +1,22 @@
+.postTemplate {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+  border-radius: 12px;
+  background-color: var(--component-background-grey);
+  margin: 12px;
+}
+
+.postDesc {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+  color: var(--font-in-component);
+  padding: 12px;
+}
+
+.postDesc p {
+  color: var(--font-in-component);
+}
