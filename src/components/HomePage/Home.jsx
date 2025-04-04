@@ -2,6 +2,8 @@ import useSWR from "swr";
 import styles from "./Home.module.css";
 import ComponentTextHome from "./ComponentTextHome/Index";
 import templatePageHOC from "src/services/template/tamplatePageHOC";
+import { Card } from "primereact/card";
+import { Divider } from "primereact/divider";
 
 // Função para buscar dados da API
 async function fetchApi(key) {
@@ -26,61 +28,41 @@ function ShowAPISHome() {
 
   return (
     <>
-      <h1>{homeData["titulo-home"]}</h1>
-      <div className={styles.renderComponent}>
-        {/* Iterando pelas seções e exibindo o conteúdo */}
+
         {Object.keys(homeData.descricao).map((key) => {
           const section = homeData.descricao[key];
           return (
-            <ComponentTextHome
+            <Card className={styles.card}
               key={key}
               title={section.title}
-              content={section.content}
-            />
+            ><p>{section.content}</p>
+            <Divider type="dotted"/>
+            </Card>
           );
         })}
-
-        {/* Adicionando a imagem entre as seções */}
-        <div className={styles.imageContainer}>
-          <a
-            href="https://github.com/joashneves"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              loading="lazy"
-              src="https://github-readme-stats.vercel.app/api/top-langs/?username=joashneves&layout=donut&langs_count=7&theme=aura"
-              alt="Top Languages"
-            />
-          </a>
-        </div>
-
-        <div className={styles.imageContainer}>
-          <img
-            loading="lazy"
-            src="https://github-readme-stats.vercel.app/api?username=joashneves&show_icons=true&theme=aura&include_all_commits=true&count_private=true"
-            alt="GitHub Stats"
-          />
-        </div>
-
-        <br />
-        <div className={styles.imageContainer}>
-          <a href="https://github.com/joashneves/joashneves.me">
-            <img
-              align="center"
-              src="https://github-readme-stats.vercel.app/api/pin/?username=joashneves&repo=joashneves.me"
-            />
-          </a>
-        </div>
-        <div className={styles.imageContainer}>
-          <a href="https://github.com/joashneves/SkalartBot">
-            <img
-              align="center"
-              src="https://github-readme-stats.vercel.app/api/pin/?username=joashneves&repo=SkalartBot"
-            />
-          </a>
-        </div>
-      </div>
+      
+      <Card className={styles.card} title="Bem vindo e desculpe a bagunça!">
+        <p className="m-0">
+          Esta e algumas das muitas paginas estão em construção, esse blog serve
+          inicialmente para mostrar alguns de meus projetos e explicar seus
+          funcionamentos, juntos com seu modo de uso, caso esteja curioso
+          sintasse livre para explorar o que, que tenha por ai, mas caso voce
+          ache legal, e queria que eu termine logo, me avise, quem sabe eu me
+          animo a terminar mais rápido.
+        </p>
+        <Divider align="left">
+          <div className="inline-flex align-items-center">
+            <i className="pi pi-user mr-2"></i>
+            <b>Social</b>
+          </div>
+        </Divider>
+        <p className="m-0">
+          Esse é um blog para guardar as coisas que eu crio ou comentar as
+          coisas que eu acho interressante compartilhar.
+        </p>
+        <Divider />
+        <p className="m-0">Teste</p>
+      </Card>
     </>
   );
 }
@@ -90,6 +72,4 @@ function HomePage() {
   return <ShowAPISHome />;
 }
 
-export default templatePageHOC(HomePage, {
-  title: "Home",
-});
+export default HomePage;

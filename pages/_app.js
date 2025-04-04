@@ -9,9 +9,14 @@ import { TemplateConfigProvider } from "src/services/template/TemplateConfigCont
 import { PrimeReactProvider } from "primereact/api";
 
 export default function MyApp({ Component, pageProps }) {
+  const value = {
+    appendTo: "self",
+  };
+
   return (
     <>
-      <PrimeReactProvider>
+
+      <PrimeReactProvider value={value}>
         <TemplateConfigProvider value={pageProps}>
           <div className="hudContent">
             <HudMenu />

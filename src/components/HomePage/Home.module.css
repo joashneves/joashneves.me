@@ -27,3 +27,8 @@
     grid-template-columns: 1fr; /* 1 coluna para telas menores que 600px */
   }
 }
+
+.card{
+  background: var(--background-grey);
+  border-radius: 0px;
+}
