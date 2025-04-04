@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "src/components/Button";
 import styles from "./formEnviarEmail.module.css";
+import { InputText } from "primereact/inputtext";
 
 function useForm({ initilValues }) {
   const [values, setValues] = useState(initilValues);
@@ -51,13 +52,21 @@ export default function FormEnviarEmail() {
         <div>
           <label>
             <h2 className={styles.formEnviarEmail}>Email</h2>
-            <input
-              className={styles.formEnviarInput}
-              name="email"
-              type="email"
-              value={form.values.email}
-              onChange={form.handleChange}
-            ></input>
+            <div className={styles.formEnviarInput}>
+            <div className="p-inputgroup flex-1">
+              <span className="p-inputgroup-addon">
+                <i className="pi pi-user"></i>
+              </span>
+              <InputText
+                placeholder="Email"
+                name="email"
+                type="email"
+                value={form.values.email}
+                onChange={form.handleChange}
+              />
+            </div>
+
+            </div>
           </label>
         </div>
         <Button>Cadastrar</Button>
