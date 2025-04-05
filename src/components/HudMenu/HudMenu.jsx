@@ -55,7 +55,7 @@ export default function HudMenu() {
             <div className={styles.legenda}>Projetos</div>
           </Link>
         </div>
-        <div className={styles.classIcon}>
+        {/* <div className={styles.classIcon}>
           <Link href="/newsletter">
             <svg
               width="24"
@@ -86,9 +86,9 @@ export default function HudMenu() {
                 fill="#7F5AF0"
               />
             </svg>
-            <div className={styles.legenda}>Posts</div>
-          </Link>
-        </div>
+            <div className={styles.legenda}>Posts</div> 
+            </Link>
+        </div>*/}
         <div className={styles.classIcon}>
           <Link href="/social">
             <svg
@@ -103,7 +103,7 @@ export default function HudMenu() {
                 fill="#7F5AF0"
               />
             </svg>
-            <div className={styles.legenda}>Social</div>
+            <div className={styles.legenda}>Sobre</div>
           </Link>
         </div>
       </div>
