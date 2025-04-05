@@ -1,113 +1,45 @@
 import { Card } from "primereact/card";
 import styles from "./projetos.module.css";
 import { Button } from "primereact/button";
-
-const header = () => {
-  return (
-    <img
-      alt="Card"
-      src="https://cdn.discordapp.com/attachments/1197340901861756940/1357803566596624434/image.png?ex=67f1889d&is=67f0371d&hm=4bbffacc92eefb19c3f4d0943dd61c8cb24d847684f8dd50e1e0268a79322fb5&"
-      className="card-header-image"
-    />
-  );
-}
-
-const footer = () => {
-  return (
-    <>
-      <Button
-        label="Github"
-        outlined
-        onClick={() =>
-          window.open(
-            "https://github.com/joashneves?tab=repositories",
-            "_blank",
-          )
-        }
-      />
-      <Button
-        label="Projeto"
-        outlined
-        onClick={() =>
-          window.open("https://github.com/joashneves?tab=repositories", "_red")
-        }
-      />
-    </>
-  );
-};
+import CardProj from "./CardProj";
 
 function Projetos() {
   return (
     <>
       <h1>Projetos</h1>
       <div className={styles.projetos}>
-        <Card
-          title="Advanced Card"
-          subTitle="Card subtitle"
-          header={header}
-          footer={footer}
-          className={`md:w-25rem ${styles.card}`}
-        >
-          <p className="m-0">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-            sed consequuntur error repudiandae numquam deserunt quisquam
-            repellat libero asperiores earum nam nobis, culpa ratione quam
-            perferendis esse, cupiditate neque quas!
-            adiosdijfw
-            Um bot dos discord que faz as parada de joguinho
-            e faz tambem um negocio de diverção la 
-            e tambem faz aquela coisa la e
-            o outro negocio tambem que
-            aquilo la que eles faz
-          </p>
-        </Card>
-        <Card
-          title="Advanced Card"
-          subTitle="Card subtitle"
-          header={header}
-          footer={footer}
-          className={`md:w-25rem ${styles.card}`}
-        >
-          <p className="m-0">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          </p>
-        </Card>
-        <Card
-          title="Advanced Card"
-          subTitle="Card subtitle"
-          header={header}
-          footer={footer}
-          className={`md:w-25rem ${styles.card}`}
-        >
-          <p className="m-0">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-            sed consequuntur error repudiandae numquam deserunt quisquam
-            repellat libero asperiores earum nam nobis, culpa ratione quam
-            perferendis esse, cupiditate neque quas!
-            adiosdijfw
-          </p>
-        </Card>
-        <Card
-          title="Advanced Card"
-          subTitle="Card subtitle"
-          header={header}
-          footer={footer}
-          className={`md:w-25rem ${styles.card}`}
-        >
-          <p className="m-0">
-            Um bot dos discord que faz as parada de joguinho
-            e faz tambem um negocio de diverção la 
-            e tambem faz aquela coisa la e
-            o outro negocio tambem que
-            aquilo la que eles faz
-            Um bot dos discord que faz as parada de joguinho
-            e faz tambem um negocio de diverção la 
-            e tambem faz aquela coisa la e
-            o outro negocio tambem que
-            aquilo la que eles faz
-          </p>
-        </Card>
-        
+        <CardProj
+         title="Tytpergator"
+        subTitle="Uma especie de motor de busca" 
+        content="lalalalal" 
+        image="https://cdn.discordapp.com/attachments/1197341728588443688/1356464980932952145/20250331_234158.jpg?ex=67f14735&is=67eff5b5&hm=290657357ca07a735798a3e88afa403aa02f53a851198eb9b3f623824c66e774&" 
+        alt="imagem"
+        linkRepo="https://github.com/joashneves?tab=repositories"
+        linkProj="https://typergator.squareweb.app/"/>
+        <CardProj
+         title="exemplo"
+        subTitle="exemplinho" 
+        content="o Objetivo principal do projeto é testar minhas habilidades tentando criar meu primeiro projeto web 100% funcional em uma semana, o projeto consiste em um motor de busca que busca por palavras chaves em sites, e retorna os resultados, o projeto ainda esta em desenvolvimento" 
+        image="https://cdn.discordapp.com/attachments/1197341728588443688/1356464980932952145/20250331_234158.jpg?ex=67f14735&is=67eff5b5&hm=290657357ca07a735798a3e88afa403aa02f53a851198eb9b3f623824c66e774&" 
+        alt="imagem"/>
+        <CardProj
+         title="exemplo"
+        subTitle="exemplinho" 
+        content="lalalalal" 
+        image="https://cdn.discordapp.com/attachments/1197341728588443688/1356464980932952145/20250331_234158.jpg?ex=67f14735&is=67eff5b5&hm=290657357ca07a735798a3e88afa403aa02f53a851198eb9b3f623824c66e774&" 
+        alt="imagem"/>
+        <CardProj
+         title="exemplo"
+        subTitle="exemplinho" 
+        content="lalalalal" 
+        image="https://cdn.discordapp.com/attachments/1197341728588443688/1356464980932952145/20250331_234158.jpg?ex=67f14735&is=67eff5b5&hm=290657357ca07a735798a3e88afa403aa02f53a851198eb9b3f623824c66e774&" 
+        alt="imagem"/>
+        <CardProj
+         title="exemplo"
+        subTitle="exemplinho" 
+        content="lalalalal" 
+        image="https://cdn.discordapp.com/attachments/1197341728588443688/1356464980932952145/20250331_234158.jpg?ex=67f14735&is=67eff5b5&hm=290657357ca07a735798a3e88afa403aa02f53a851198eb9b3f623824c66e774&" 
+        alt="imagem"/>
       </div>
     </>
   );
