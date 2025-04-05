@@ -38,6 +38,8 @@ function Projetos() {
               content={proj.content}
               image={proj.image}
               alt={proj.alt}
+              linkProj={proj.projeto}
+              linkRepo={proj.repo}
             />
           );
         })}

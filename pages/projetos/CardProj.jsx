@@ -18,14 +18,17 @@ export const footer = (
       <div className={styles.footerDiv}>
         <Button
           label="Github"
+          severity="help"
+          icon="pi pi-github"
           outlined
           onClick={() => window.open(`${linkRepo}`, "_blank")}
         />
         <Divider layout="vertical" />
         <Button
           label="Projeto"
+          severity="help"
           outlined
-          onClick={() => window.open(`${linkProj}`, "_red")}
+          onClick={() => window.open(`${linkProj}`, "_blank")}
         />
       </div>
     </>
