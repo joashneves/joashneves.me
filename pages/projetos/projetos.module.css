@@ -6,7 +6,7 @@
   display: grid;
   vertical-align: middle;
   align-self: center;
-  grid-template-columns: auto auto auto; /* 3 colunas, cada uma com 1fr */
+  grid-template-columns: auto auto; /* 2 colunas, cada uma com 1fr */
   gap: 16px; /* Espaçamento entre os blocos */
   padding: 16px; /* Espaçamento interno */
   justify-self: center;
@@ -24,4 +24,24 @@
   margin: 12px;
   height: 100%;
   width: 480px;
+}
+
+@media screen and (min-width: 1200px ) and (min-width: 1366px ) {
+  .projetos {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+@media screen and (max-width: 390px){
+  .projetos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .card {
+    margin: 12px;
+    height: 100%;
+    width: 380px;
+  }
 }

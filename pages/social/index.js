@@ -1,5 +1,4 @@
 import GitHubReadme from "src/components/GitHubReadme/GitHubReadme";
-import ProjetosPage from "src/components/ProjetosPage";
 import PostsService from "src/services/posts/PostsServices";
 import { withTemplateConfig } from "src/services/template/withTamplateConfig";
 
