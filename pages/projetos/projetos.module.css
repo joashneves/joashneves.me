@@ -9,6 +9,14 @@
   justify-self: center;
   align-items: center;
 }
+.footerDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 2rem;
+  
+}
 .card{
   background: var(--background-grey);
   margin: 12px;

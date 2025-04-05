@@ -28,7 +28,6 @@ function ShowAPISHome() {
 
   return (
     <>
-
         {Object.keys(homeData.descricao).map((key) => {
           const section = homeData.descricao[key];
           return (
@@ -41,28 +40,6 @@ function ShowAPISHome() {
           );
         })}
       
-      <Card className={styles.card} title="Bem vindo e desculpe a bagunça!">
-        <p className="m-0">
-          Esta e algumas das muitas paginas estão em construção, esse blog serve
-          inicialmente para mostrar alguns de meus projetos e explicar seus
-          funcionamentos, juntos com seu modo de uso, caso esteja curioso
-          sintasse livre para explorar o que, que tenha por ai, mas caso voce
-          ache legal, e queria que eu termine logo, me avise, quem sabe eu me
-          animo a terminar mais rápido.
-        </p>
-        <Divider align="left">
-          <div className="inline-flex align-items-center">
-            <i className="pi pi-user mr-2"></i>
-            <b>Social</b>
-          </div>
-        </Divider>
-        <p className="m-0">
-          Esse é um blog para guardar as coisas que eu crio ou comentar as
-          coisas que eu acho interressante compartilhar.
-        </p>
-        <Divider />
-        <p className="m-0">Teste</p>
-      </Card>
     </>
   );
 }

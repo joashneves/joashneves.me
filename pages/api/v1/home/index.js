@@ -15,6 +15,10 @@ export default async function Home(request, response) {
             content:
               "Este é um blog simples (por enquanto) que criei para armazenar meus projetos e compartilhar meus posts. Senti a necessidade de ter um lugar para organizar melhor minhas ideias, então aqui estamos.",
           },
+          construcao: {
+            title: "Desculpe a bagunça!",
+            content: "Esta e algumas das muitas paginas estão em construção, esse blog serve inicialmente para mostrar alguns de meus projetos e explicar seus funcionamentos, juntos com seu modo de uso, caso esteja curioso sintasse livre para explorar o que, que tenha por ai, mas caso voce ache legal, e queria que eu termine logo, me avise, quem sabe eu me animo a terminar mais rápido.",
+          },
           exploracao: {
             title: "Sinta-se à vontade para explorar",
             content:
@@ -33,7 +37,7 @@ export default async function Home(request, response) {
           interesse: {
             title: "Aprender mais sobre tecnologias",
             content:
-              "Comecei a me interessar por IAs e bots. Conversar com algo que não seja humano, mas que entenda até certo ponto, é fascinante e diferente.",
+              "Esse é um blog para guardar as coisas que eu crio ou comentar as coisas que eu acho interressante compartilhar.",
           },
           futuro: {
             title: "O caminho para o futuro",
