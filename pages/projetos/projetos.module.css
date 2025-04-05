@@ -1,4 +1,7 @@
-
+.titleh1{
+  display: flex;
+  justify-content: center;
+}
 .projetos {
   display: grid;
   vertical-align: middle;

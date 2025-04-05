@@ -30,7 +30,7 @@ function Projetos() {
 
   return (
     <>
-      <h1>Projetos</h1>
+      <h1 className={styles.titleh1}>Projetos</h1>
       <div className={styles.projetos}>
       {projetosData.map((proj,key) => {
           return (
