@@ -1,4 +1,4 @@
-.titleh1{
+.titleh1 {
   display: flex;
   justify-content: center;
 }
@@ -7,20 +7,19 @@
   vertical-align: middle;
   align-self: center;
   grid-template-columns: auto auto auto; /* 3 colunas, cada uma com 1fr */
-  gap: 16px; /* Espaçamento entre os blocos */ 
+  gap: 16px; /* Espaçamento entre os blocos */
   padding: 16px; /* Espaçamento interno */
   justify-self: center;
   align-items: center;
 }
-.footerDiv{
+.footerDiv {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
   padding: 2rem;
-  
 }
-.card{
+.card {
   background: var(--background-grey);
   margin: 12px;
   height: 100%;

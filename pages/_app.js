@@ -15,7 +15,6 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     <>
-
       <PrimeReactProvider value={value}>
         <TemplateConfigProvider value={pageProps}>
           <div className="hudContent">

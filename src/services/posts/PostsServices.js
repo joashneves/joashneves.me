@@ -1,6 +1,6 @@
 import path from "path";
 import fs from "fs/promises";
-import matter from "gray-matter"; 
+import matter from "gray-matter";
 
 export default function PostsService() {
   return {

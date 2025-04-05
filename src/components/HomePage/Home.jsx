@@ -28,18 +28,15 @@ function ShowAPISHome() {
 
   return (
     <>
-        {Object.keys(homeData.descricao).map((key) => {
-          const section = homeData.descricao[key];
-          return (
-            <Card className={styles.card}
-              key={key}
-              title={section.title}
-            ><p>{section.content}</p>
-            <Divider type="dotted"/>
-            </Card>
-          );
-        })}
-      
+      {Object.keys(homeData.descricao).map((key) => {
+        const section = homeData.descricao[key];
+        return (
+          <Card className={styles.card} key={key} title={section.title}>
+            <p>{section.content}</p>
+            <Divider type="dotted" />
+          </Card>
+        );
+      })}
     </>
   );
 }

@@ -4,7 +4,6 @@ import HomePage from "src/components/HomePage/Home";
 import PostsService from "src/services/posts/PostsServices";
 import { withTemplateConfig } from "src/services/template/withTamplateConfig";
 
-
 export async function getStaticProps() {
   const posts = await PostsService().getAll();
   console.log("[Posts]", posts);

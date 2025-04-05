@@ -53,19 +53,18 @@ export default function FormEnviarEmail() {
           <label>
             <h2 className={styles.formEnviarEmail}>Email</h2>
             <div className={styles.formEnviarInput}>
-            <div className="p-inputgroup flex-1">
-              <span className="p-inputgroup-addon">
-                <i className="pi pi-user"></i>
-              </span>
-              <InputText
-                placeholder="Email"
-                name="email"
-                type="email"
-                value={form.values.email}
-                onChange={form.handleChange}
-              />
-            </div>
-
+              <div className="p-inputgroup flex-1">
+                <span className="p-inputgroup-addon">
+                  <i className="pi pi-user"></i>
+                </span>
+                <InputText
+                  placeholder="Email"
+                  name="email"
+                  type="email"
+                  value={form.values.email}
+                  onChange={form.handleChange}
+                />
+              </div>
             </div>
           </label>
         </div>

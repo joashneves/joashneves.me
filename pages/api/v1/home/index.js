@@ -17,7 +17,8 @@ export default async function Home(request, response) {
           },
           construcao: {
             title: "Desculpe a bagunça!",
-            content: "Esta e algumas das muitas paginas estão em construção, esse blog serve inicialmente para mostrar alguns de meus projetos e explicar seus funcionamentos, juntos com seu modo de uso, caso esteja curioso sintasse livre para explorar o que, que tenha por ai, mas caso voce ache legal, e queria que eu termine logo, me avise, quem sabe eu me animo a terminar mais rápido.",
+            content:
+              "Esta e algumas das muitas paginas estão em construção, esse blog serve inicialmente para mostrar alguns de meus projetos e explicar seus funcionamentos, juntos com seu modo de uso, caso esteja curioso sintasse livre para explorar o que, que tenha por ai, mas caso voce ache legal, e queria que eu termine logo, me avise, quem sabe eu me animo a terminar mais rápido.",
           },
           exploracao: {
             title: "Sinta-se à vontade para explorar",

@@ -25,11 +25,14 @@ Poderia dizer um pouco mais de mim, como aonde nasci, ou de onde vim, aonde me f
 
 Porem poderia compartilhar certas coisas sim, ate porque isso é sobre mim ne, se querem saber, alem de eu ser uma programador, eu gosto tambem de escrever como forma de hobby, então, no fim das contas, escrevo não só para mostrar aos outros minhas ideias, mas pelo prazer de aprimorar a escrita, seja com a leitura ou com pratica mesmo. Sendo outra paixão tambem jogar, e se voce jogar e gosta de jogos, pensa tambem que deve ser divertido criar seus proprios jogos, coisa que eu curto, mas... enfim
 
-Caso queria entrar em contato estou sempre aberto a uma DM para esclarecer algo, ou ate mesmo desenvolver uma ideia de projeto, estamos ai, minhas redes sociais estão ai embaixo, outra coisa tambem são o que eu sei, sendo ela : 
+Caso queria entrar em contato estou sempre aberto a uma DM para esclarecer algo, ou ate mesmo desenvolver uma ideia de projeto, estamos ai, minhas redes sociais estão ai embaixo, outra coisa tambem são o que eu sei, sendo ela :
 
 # Competências
-  
-###  code: [Javascript, HTML, CSS, C#, Python],
-###  tools: [React, Node, git e github, Figma, GameMaker 2],
-###  architecture: ["API", "Desenvolvimento de jogos"],
+
+### code: [Javascript, HTML, CSS, C#, Python],
+
+### tools: [React, Node, git e github, Figma, GameMaker 2],
+
+### architecture: ["API", "Desenvolvimento de jogos"],
+
 ### challenge: "Constantes desafios a mim mesmo"

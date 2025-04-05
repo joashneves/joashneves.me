@@ -4,9 +4,8 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  
-  box-shadow: 0px 0px 3px 1px #00000088;
 
+  box-shadow: 0px 0px 3px 1px #00000088;
 }
 
 .card .content {
@@ -39,7 +38,7 @@
 .card::before {
   opacity: 0;
   content: " ";
-  
+
   display: block;
   background: linear-gradient(#ff2288, #387ef0);
   transition: opacity 300ms;
@@ -71,10 +70,10 @@
   }
 }
 
-.readmeComponent{
+.readmeComponent {
   margin: 2rem;
   align-self: auto;
-  width: 80%; 
+  width: 80%;
 }
 .readme {
   display: flex;

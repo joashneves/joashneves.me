@@ -13,7 +13,6 @@ export async function getStaticProps() {
   };
 }
 export default function SocialPage({ posts }) {
-  
   return (
     <>
       <GitHubReadme perfil={posts} />

@@ -55,7 +55,7 @@ export default function HudMenu() {
             <div className={styles.legenda}>Projetos</div>
           </Link>
         </div>
-       {/* <div className={styles.classIcon}>
+        {/* <div className={styles.classIcon}>
           <Link href="/newsletter">
             <svg
               width="24"
