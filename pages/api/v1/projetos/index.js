@@ -21,29 +21,34 @@ export default async function Home(request, response) {
       {
         title: "Skalart",
         subTitle: "Um bot do discord de diversão",
-        content: "Um bot do discord que tem como objetivo diversificar a exeperiencia dos servidores, seja com uma administração mais elaborada, ou com entretenimento com um jogo de advinhação utilizando a API que criei de retorna personagens aleatorios, ela tambem possui uma funcionalidade que permite comunicações entre diferentes servidores, alem de sistema de tiket e outras configurações com /ajuda",
+        content:
+          "Um bot do discord que tem como objetivo diversificar a exeperiencia dos servidores, seja com uma administração mais elaborada, ou com entretenimento com um jogo de advinhação utilizando a API que criei de retorna personagens aleatorios, ela tambem possui uma funcionalidade que permite comunicações entre diferentes servidores, alem de sistema de tiket e outras configurações com /ajuda",
         image:
           "https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:ndqf644tuurvemtxlyf6gadp/bafkreidesoznunsy7d4vli4tv5gv5i7a7osiywciqb5rfigbnbyewxgns4@jpeg",
         alt: "Print do bot",
         repo: "https://github.com/joashneves/SkalartBot",
-        projeto: "https://discord.com/oauth2/authorize?client_id=1025176642236203118&scope=bot&permissions=8",
+        projeto:
+          "https://discord.com/oauth2/authorize?client_id=1025176642236203118&scope=bot&permissions=8",
       },
       {
         title: "Email's bot",
         subTitle: "Um bot do discord",
-        content: "Um bot do discord que envia emails, a funcionalidade dele é escrever um post e ele vai enviar esse post para todos os servidores que ele estiver, caso a pessoa siga a outra pessoa, ela vai receber esse post no privado, sempre tendo a opção de deixar se seguir, ou seguir a pessoa, alem de poder mostrar quantas pessoas o perfil esta sendo seguido, é necessario esta em um servidor registrado",
+        content:
+          "Um bot do discord que envia emails, a funcionalidade dele é escrever um post e ele vai enviar esse post para todos os servidores que ele estiver, caso a pessoa siga a outra pessoa, ela vai receber esse post no privado, sempre tendo a opção de deixar se seguir, ou seguir a pessoa, alem de poder mostrar quantas pessoas o perfil esta sendo seguido, é necessario esta em um servidor registrado",
         image:
           "https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:ndqf644tuurvemtxlyf6gadp/bafkreiea4qm5zojtxqdo2rm3laydtdrx6qgm3fxxpg247mwwmf7jp45wxa@jpeg",
         alt: "Print do bot",
         repo: "https://github.com/joashneves/botEmailDiscord",
-        projeto: "https://discord.com/oauth2/authorize?client_id=1337970488877645855&scope=bot&permissions=8",
+        projeto:
+          "https://discord.com/oauth2/authorize?client_id=1337970488877645855&scope=bot&permissions=8",
       },
       {
         title: "Api de personagens",
         subTitle: "Uma API que retorna personagens aleatorios",
-        content: "Uma API que retona varios personagens aleatorios gratuitamente, alem de voce tambem conseguir baixar as imagens desse personagem, e mostrar a franquia que o personagem aparece, essa API atualmente esta sendo usado no meu bot, e ligada a um front end de painel de controle para outras pessoas cadastrarem os personagens.",
+        content:
+          "Uma API que retona varios personagens aleatorios gratuitamente, alem de voce tambem conseguir baixar as imagens desse personagem, e mostrar a franquia que o personagem aparece, essa API atualmente esta sendo usado no meu bot, e ligada a um front end de painel de controle para outras pessoas cadastrarem os personagens.",
         image:
-        "https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:ndqf644tuurvemtxlyf6gadp/bafkreifnxezncratnluvqrhpfbuug3x57oqn6oldsg26cvskwrra3xmcny@jpeg",
+          "https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:ndqf644tuurvemtxlyf6gadp/bafkreifnxezncratnluvqrhpfbuug3x57oqn6oldsg26cvskwrra3xmcny@jpeg",
         alt: "Print da resposta da api",
         repo: "https://github.com/joashneves/ApiPersonagens",
         projeto: "https://personagensaleatorios.squareweb.app/api/Personagems",
@@ -51,9 +56,10 @@ export default async function Home(request, response) {
       {
         title: "Ominigun",
         subTitle: "Um pequeno jogo feito com game maker",
-        content: "Meu jogo feito no game maker studio 2, sendo esse um jogo que a ideia é o personagem ser o mais frenetico possivel, com varias coisas acontecendo na tela, ele possui 3 levels, e 3 bosses varias armas com efeitos diferente, sendo um shooter.  ",
+        content:
+          "Meu jogo feito no game maker studio 2, sendo esse um jogo que a ideia é o personagem ser o mais frenetico possivel, com varias coisas acontecendo na tela, ele possui 3 levels, e 3 bosses varias armas com efeitos diferente, sendo um shooter.  ",
         image:
-        "https://img.itch.zone/aW1hZ2UvMjQ4MzA5MC8xNDc0NzAwNC5wbmc=/original/Qxqswc.png",
+          "https://img.itch.zone/aW1hZ2UvMjQ4MzA5MC8xNDc0NzAwNC5wbmc=/original/Qxqswc.png",
         alt: "Print do menu do meu jogo",
         repo: "https://github.com/joashneves/ominigun",
         projeto: "https://joashneves.itch.io/ominigun",

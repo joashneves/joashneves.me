@@ -1,5 +1,5 @@
 exports.up = (pgm) => {
-  pgm.createTable("home", {
+  pgm.createTable("posts", {
     id: {
       type: "uuid",
       unique: true,
@@ -11,15 +11,15 @@ exports.up = (pgm) => {
       unique: true,
       notNull: true,
     },
-    description:{
-      type: 'text',
+    description: {
+      type: "text",
       notNull: true,
     },
-    links_proj:{
-      type: 'text',
+    links_proj: {
+      type: "text",
     },
-    links_github:{
-      type: 'text',
+    links_github: {
+      type: "text",
     },
     created_at: {
       notNull: true,

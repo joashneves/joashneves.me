@@ -11,8 +11,8 @@ exports.up = (pgm) => {
       unique: true,
       notNull: true,
     },
-    body:{
-      type: 'text',
+    body: {
+      type: "text",
       notNull: true,
     },
     created_at: {

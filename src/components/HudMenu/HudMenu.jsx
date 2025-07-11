@@ -1,7 +1,7 @@
 import styles from "./HudMenu.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import gallifreyan from 'src/assets/gallifreyan.png';
+import gallifreyan from "src/assets/gallifreyan.png";
 import { Divider } from "primereact/divider";
 export default function HudMenu() {
   return (
@@ -9,9 +9,9 @@ export default function HudMenu() {
       {/* Renderiza o SideMenu apenas se o estado for verdadeiro */}
       <div className={styles.button_div_hud}>
         <div className={styles.classIcon}>
-            <Image src={gallifreyan} alt="Gally"/>
+          <Image src={gallifreyan} alt="Gally" />
         </div>
-        <Divider/>
+        <Divider />
         <div className={styles.classIcon}>
           <Link href="/" onMouseEnter={() => console.log("Entrou")}>
             <svg

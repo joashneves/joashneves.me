@@ -1,6 +1,5 @@
-
 exports.up = (pgm) => {
-  pgm.createTable("sessions",{
+  pgm.createTable("sessions", {
     id: {
       type: "uuid",
       unique: true,
@@ -8,29 +7,29 @@ exports.up = (pgm) => {
       default: pgm.func("gen_random_uuid()"),
     },
     token: {
-      trype: "varchar(96)",
+      type: "varchar(96)",
       unique: true,
       notNull: true,
     },
-    user_id:{
+    user_id: {
       type: "uuid",
       notNull: true,
     },
-    expires_at:{
+    expires_at: {
       notNull: true,
       type: "timestamptz",
     },
-    created_at:{
+    created_at: {
       notNull: true,
       type: "timestamptz",
       default: pgm.func("timezone('UTC', now())"),
     },
-    updated_at:{
+    updated_at: {
       notNull: true,
       type: "timestamptz",
       default: pgm.func("timezone('UTC', now())"),
-    }
-  })
+    },
+  });
 };
 
 exports.down = false;
