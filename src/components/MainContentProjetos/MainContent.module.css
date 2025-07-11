@@ -1,0 +1,51 @@
+.imageContainer {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+}
+
+.renderComponent {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  /* 3 colunas, cada uma com 1fr */
+  gap: 16px;
+  /* Espaçamento entre os blocos */
+  padding: 16px;
+  /* Espaçamento interno */
+  background-color: var(--background-grey);
+  /* Cor de fundo */
+  border-radius: 8px;
+  /* Cantos arredondados */
+  margin: 2px;
+  box-sizing: border-box;
+  /* Garante que o padding não afete o layout */
+}
+
+.card {
+  background: var(--background-grey);
+  border-radius: 0px;
+  padding: 0 12rem;
+}
+
+/* Media Queries para ajuste de colunas em telas menores */
+@media (max-width: 1024px) {
+  .card {
+    padding: 0 12rem;
+  }
+
+  .renderComponent {
+    grid-template-columns: auto auto;
+    /* 2 colunas para telas menores que 1024px */
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 0;
+  }
+
+  .renderComponent {
+    grid-template-columns: 1fr;
+    /* 1 coluna para telas menores que 600px */
+  }
+}

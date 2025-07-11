@@ -1,9 +1,9 @@
 import { Card } from "primereact/card";
 import styles from "./projetos.module.css";
 import { Button } from "primereact/button";
-import CardProj from "./CardProj";
 import { useState } from "react";
 import useSWR from "swr";
+import MainContentProjetos from "src/components/MainContentProjetos/Index";
 
 // Função para buscar dados da API
 async function fetchApi(key) {
@@ -27,20 +27,14 @@ function Projetos() {
 
   return (
     <>
-      <h1 className={styles.titleh1}>Projetos</h1>
       <div className={styles.projetos}>
         {projetosData.map((proj, key) => {
           return (
-            <CardProj
+            <MainContentProjetos
               key={key}
               title={proj.title}
-              subTitle={proj.subTitle}
               content={proj.content}
-              image={proj.image}
-              alt={proj.alt}
-              linkProj={proj.projeto}
-              linkRepo={proj.repo}
-            />
+              />
           );
         })}
       </div>
