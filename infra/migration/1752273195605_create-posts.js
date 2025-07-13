@@ -21,6 +21,9 @@ exports.up = (pgm) => {
     links_github: {
       type: "text",
     },
+    links_image: {
+      type: "text",
+    },
     created_at: {
       notNull: true,
       type: "timestamptz",
