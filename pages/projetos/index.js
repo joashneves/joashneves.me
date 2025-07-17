@@ -1,7 +1,4 @@
-import { Card } from "primereact/card";
 import styles from "./projetos.module.css";
-import { Button } from "primereact/button";
-import { useState } from "react";
 import useSWR from "swr";
 import MainContentProjetos from "src/components/MainContentProjetos/Index";
 

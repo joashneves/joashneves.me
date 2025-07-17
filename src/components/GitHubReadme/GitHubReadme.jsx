@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Markdown from "react-markdown";
-import useSWR from "swr";
 import rehypeRaw from "rehype-raw";
 import styles from "./GitHubReadme.module.css";
 
 export default function GitHubReadme({ perfil }) {
-  const { title, content, metadata } = perfil[0];
+  const { content } = perfil[0];
   console.log(perfil[0]);
   return (
     <>
