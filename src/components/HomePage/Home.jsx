@@ -1,7 +1,5 @@
 import useSWR from "swr";
 import styles from "./Home.module.css";
-import ComponentTextHome from "./ComponentTextHome/Index";
-import templatePageHOC from "src/services/template/tamplatePageHOC";
 import { Card } from "primereact/card";
 import { Divider } from "primereact/divider";
 
@@ -28,13 +26,15 @@ function ShowAPISHome() {
 
   return (
     <>
-      {Object.keys(homeData.descricao).map((key) => {
-        const section = homeData.descricao[key];
+      {Object.keys(homeData.descricao).map((title) => {
+        const section = homeData.descricao[title];
         return (
-          <Card className={styles.card} key={key} title={section.title}>
-            <p>{section.content}</p>
-            <Divider type="dotted" />
-          </Card>
+          <div key={title} className={styles.homePageDiv}>
+            <Card className={styles.card}  title={section.title}>
+              <p>{section.content}</p>
+              <Divider type="dotted" />
+            </Card>
+          </div>
         );
       })}
     </>
