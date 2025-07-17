@@ -6,12 +6,12 @@ beforeAll(async () => {
   await orchestrator.runPendingMigrations();
 });
 
-describe("POST to /api/v1/post", () => {
+describe("POST to /api/v1/project", () => {
   describe("Anonymous user", () => {
-    describe("Post new post", () => {
+    describe("project new project", () => {
 
-      test("success post", async () => {
-        const response = await fetch("http://localhost:3000/api/v1/post", {
+      test("success project", async () => {
+        const response = await fetch("http://localhost:3000/api/v1/project", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

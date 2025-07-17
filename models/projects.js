@@ -1,18 +1,18 @@
 import database from "infra/database";
 import { ValidationError } from "infra/errors";
 
-async function createPost(postInputValues) {
+async function createProjects(projectsInputValues) {
     
-  const newPost = await runInsertQuary(postInputValues);
-  return newPost;
+  const newProject = await runInsertQuary(projectsInputValues);
+  return newProject;
   
-  async function runInsertQuary(postInputValues) {
-    await validateBody(postInputValues)
-    await validateUniqueTitle(postInputValues.title);
-    console.log(postInputValues)
+  async function runInsertQuary(ProjectInputValues) {
+    await validateBody(ProjectInputValues)
+    await validateUniqueTitle(ProjectInputValues.title);
+    console.log(ProjectInputValues)
     const result = await database.query({
       text: `INSERT INTO
-      posts (title,
+      projects (title,
        description,
         links_proj,
          links_github,
@@ -23,28 +23,28 @@ async function createPost(postInputValues) {
       *;
       `,
       values:[
-        postInputValues.title,
-        postInputValues.description,
-        postInputValues.links_proj,
-        postInputValues.links_github,
-        postInputValues.links_image,
+        ProjectInputValues.title,
+        ProjectInputValues.description,
+        ProjectInputValues.links_proj,
+        ProjectInputValues.links_github,
+        ProjectInputValues.links_image,
       ],
     });
     return result.rows[0];
   }
 }
 
-async function findOneBypostname(title) {
-  const postFound = await runSelectQuery(title);
+async function findOneByProjectname(title) {
+  const projectsFound = await runSelectQuery(title);
 
-  return postFound;
+  return projectsFound;
 
   async function runSelectQuery(title) {
     const result = await database.query({
       text: `SELECT
        * 
       FROM
-       posts 
+       projects 
       WHERE
         LOWER(title) = LOWER($1)
       LIMIT
@@ -66,7 +66,7 @@ async function validateUniqueTitle(title) {
     text: `SELECT
      title 
     FROM
-     posts 
+     projects 
     WHERE
       LOWER(title) = LOWER($1)
     LIMIT
@@ -82,12 +82,12 @@ async function validateUniqueTitle(title) {
   return result.rows[0];
 }
 
-async function selectAllPost() {
+async function selectAllProject() {
   const result =  await database.query({
     text: `SELECT
      *
     FROM
-     posts 
+     projects 
     LIMIT
       10;`
   });
@@ -115,10 +115,10 @@ async function validateBody(body) {
   }
 }
 
-const posts ={
-  createPost,
-  findOneBypostname,
-  selectAllPost,
+const projects ={
+  createProjects,
+  findOneByProjectname,
+  selectAllProject,
 }
 
-export default posts;
+export default projects;
