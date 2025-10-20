@@ -18,7 +18,6 @@ export default function MyApp({ Component, pageProps }) {
       <PrimeReactProvider value={value}>
         <TemplateConfigProvider value={pageProps}>
           <div className="hudContent">
-            <HudMenu />
             <div className="mainContent">
               <Component {...pageProps} />
             </div>

@@ -1,6 +1,6 @@
 .container {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 296px 1fr;
   gap: 2rem;
   padding: 2rem;
   max-width: 1280px;
@@ -8,22 +8,17 @@
 }
 
 .sidebar {
-  width: 296px; /* Largura da sidebar do GitHub */
-  flex-shrink: 0;
+  /* No specific width needed here as it's defined in the grid */
 }
 
 .mainContent {
-  flex-grow: 1;
   width: 100%;
 }
 
-/* Media Queries para ajuste em telas menores */
-@media (max-width: 1012px) { /* Ponto de quebra do GitHub */
+/* Media Queries for smaller screens */
+@media (max-width: 1012px) { /* GitHub's breakpoint */
   .container {
-    flex-direction: column;
+    grid-template-columns: 1fr; /* Single column */
     padding: 1rem;
-  }
-  .sidebar {
-    width: 100%;
   }
 }
