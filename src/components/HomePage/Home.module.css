@@ -1,24 +1,29 @@
-.imageContainer {
+.container {
   display: flex;
-  align-items: center;
-  justify-self: center;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-.card {
-  background: var(--background-grey);
-  border-radius: 0px;
-  padding: 0 12rem;
+.sidebar {
+  width: 296px; /* Largura da sidebar do GitHub */
+  flex-shrink: 0;
 }
 
-/* Media Queries para ajuste de colunas em telas menores */
-@media (max-width: 1024px) {
-  .card {
-    padding: 0 12rem;
+.mainContent {
+  flex-grow: 1;
+  width: 100%;
+}
+
+/* Media Queries para ajuste em telas menores */
+@media (max-width: 1012px) { /* Ponto de quebra do GitHub */
+  .container {
+    flex-direction: column;
+    padding: 1rem;
   }
-}
-
-@media (max-width: 600px) {
-  .card {
-    padding: 0;
+  .sidebar {
+    width: 100%;
   }
 }

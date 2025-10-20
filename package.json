@@ -39,6 +39,7 @@
     "primereact": "^10.9.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-github-calendar": "^4.5.11",
     "react-markdown": "^9.0.3",
     "read-yaml-file": "^2.1.0",
     "rehype-raw": "^7.0.0",

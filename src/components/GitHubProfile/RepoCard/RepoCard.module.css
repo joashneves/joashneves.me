@@ -1,0 +1,52 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background-color: #161b22;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.card:hover {
+  border-color: #8b949e;
+}
+
+.repoName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #58a6ff;
+  margin-bottom: 0.5rem;
+}
+
+.repoDescription {
+  font-size: 0.9rem;
+  color: #8b949e;
+  flex-grow: 1;
+  margin-bottom: 1rem;
+}
+
+.repoMeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: #8b949e;
+}
+
+.language {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.languageColor {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}

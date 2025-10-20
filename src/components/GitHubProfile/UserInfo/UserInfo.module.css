@@ -1,0 +1,33 @@
+.userInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.avatar {
+  border-radius: 50%;
+  border: 1px solid #30363d;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.login {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #8b949e;
+  margin-bottom: 1rem;
+}
+
+.bio {
+  font-size: 1rem;
+}
