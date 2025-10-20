@@ -25,6 +25,7 @@
       }
     ],
     "react/display-name": [2],
-    "global-require": "off"
+    "global-require": "off",
+    "no-unused-vars": "warn"
   }
 }

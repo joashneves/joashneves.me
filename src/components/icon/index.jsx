@@ -1,7 +1,7 @@
 import * as icons from "./svg/_index.jsx";
 
 export default function Icon({ name, width, height }) {
-  const CurrentIcon = icons[name] || icons["bksy"];
+  const CurrentIcon = icons[name] || icons["links"];
   return (
     <svg
       width={width}

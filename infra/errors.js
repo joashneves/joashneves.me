@@ -71,7 +71,6 @@ export class NotFoundError extends Error {
   }
 }
 
-
 export class ValidationError extends Error {
   constructor({ message, action }) {
     super(message || "Erro de validação ocorreu.");

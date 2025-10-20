@@ -9,7 +9,6 @@ beforeAll(async () => {
 describe("POST to /api/v1/project", () => {
   describe("Anonymous user", () => {
     describe("project new project", () => {
-
       test("success project", async () => {
         const response = await fetch("http://localhost:3000/api/v1/project", {
           method: "POST",
@@ -21,7 +20,7 @@ describe("POST to /api/v1/project", () => {
             description: "Um projeto que muda o mundo.",
             links_proj: "https://meuprojeto.com",
             links_github: "https://github.com/meuuser/projeto",
-            links_image: "https://imgur.com/minhaimagem.png"
+            links_image: "https://imgur.com/minhaimagem.png",
           }),
         });
 
@@ -32,8 +31,6 @@ describe("POST to /api/v1/project", () => {
         expect(responseBody).toHaveProperty("id");
         expect(responseBody).toHaveProperty("title", "Projeto Incrível");
       });
-
-
     });
   });
 });

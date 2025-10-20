@@ -31,7 +31,7 @@ function Projetos() {
               key={key}
               title={proj.title}
               content={proj.content}
-              />
+            />
           );
         })}
       </div>

@@ -1,0 +1,36 @@
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem; /* Reduced gap */
+}
+
+.avatar {
+  border-radius: 50%; /* Keep it round */
+  border: 1px solid #30363d;
+  width: 296px; /* Match sidebar width */
+  height: 296px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 1.5rem; /* Adjusted font size */
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.login {
+  font-size: 1.25rem; /* Adjusted font size */
+  font-weight: 300;
+  color: #8b949e;
+  margin-bottom: 1rem;
+}
+
+.bio {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}

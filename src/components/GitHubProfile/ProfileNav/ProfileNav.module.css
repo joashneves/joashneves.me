@@ -1,0 +1,37 @@
+.underlineNav {
+  background-color: var(--gh-dark-bg-default);
+  border-bottom: 1px solid var(--gh-dark-border-default);
+  padding-top: 12px;
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+}
+
+.underlineNavBody {
+  display: flex;
+  gap: 16px;
+}
+
+.underlineNavItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: var(--gh-dark-fg-muted);
+  border-bottom: 2px solid transparent;
+  border-radius: 1rem;
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+}
+
+.underlineNavItem.selected {
+  color: var(--gh-dark-fg-default);
+  border-bottom-color: var(--title-green-color);
+}
+
+.underlineNavItem:hover {
+  color: var(--gh-dark-fg-default);
+  background-color: #4493f81a; /* transparent blue */
+  border-radius: 1rem;
+}
