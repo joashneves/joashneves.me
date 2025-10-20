@@ -1,5 +1,7 @@
 .underlineNav {
-  border-bottom: 1px solid #d0d7de;
+  background-color: var( --gh-dark-bg-default);
+  border-bottom: 1px solid var(--gh-dark-border-default);
+  padding-top: 12px;
   padding-bottom: 8px;
   margin-bottom: 24px;
 }
@@ -15,12 +17,19 @@
   gap: 8px;
   padding: 8px 16px;
   text-decoration: none;
-  color: #57606a;
+  color: var(--gh-dark-fg-muted);
   border-bottom: 2px solid transparent;
+  border-radius: 1rem;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
-.underlineNavItem.selected,
+.underlineNavItem.selected{
+  color: var(--gh-dark-fg-default);
+  border-bottom-color: var(--title-green-color);
+}
+
 .underlineNavItem:hover {
-  color: #24292f;
-  border-bottom-color: #fd8c73;
+  color: var(--gh-dark-fg-default);
+  background-color: #4493f81A; /* transparent blue */
+  border-radius: 1rem;
 }

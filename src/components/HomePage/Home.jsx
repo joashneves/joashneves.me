@@ -3,6 +3,7 @@ import UserInfo from "../GitHubProfile/UserInfo";
 import PinnedRepos from "../GitHubProfile/PinnedRepos";
 import ContributionGraph from "../GitHubProfile/ContributionGraph";
 import ProfileNav from "../GitHubProfile/ProfileNav";
+import SocialLinks from "../GitHubProfile/SocialLinks";
 
 function HomePage({ user, pinnedRepos }) {
   return (
@@ -11,6 +12,7 @@ function HomePage({ user, pinnedRepos }) {
       <div className={styles.container}>
         <aside className={styles.sidebar}>
           <UserInfo user={user} />
+          <SocialLinks/>
         </aside>
         <main className={styles.mainContent}>
           <PinnedRepos pinnedRepos={pinnedRepos} />

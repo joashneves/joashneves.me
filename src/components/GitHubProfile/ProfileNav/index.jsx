@@ -3,6 +3,7 @@ import HomeIcon from 'src/components/icon/svg/home.svg';
 import ProjectsIcon from 'src/components/icon/svg/projetos.svg';
 import ArticlesIcon from 'src/components/icon/svg/article.svg';
 import LinksIcon from 'src/components/icon/svg/links.svg';
+import PortifolioIcon from 'src/components/icon/svg/portifolio.svg';
 
 function ProfileNav() {{
   return (
@@ -19,6 +20,10 @@ function ProfileNav() {{
         <a href="#" className={styles.underlineNavItem}>
           <ArticlesIcon />
           Artigos
+        </a>
+        <a href="#" className={styles.underlineNavItem}>
+          <PortifolioIcon />
+          Portifolio
         </a>
         <a href="#" className={styles.underlineNavItem}>
           <LinksIcon />

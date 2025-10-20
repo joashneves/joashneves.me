@@ -1,0 +1,29 @@
+.socialLinksContainer {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0 0; /* Add some space above */
+  color: var(--gh-dark-fg-muted);
+}
+
+.socialLinkItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--gh-dark-fg-muted);
+}
+
+.socialLink:hover {
+  color: var(--gh-dark-accent-fg);
+  text-decoration: underline;
+}
+
+.linkLabel {
+  font-size: 14px;
+}
