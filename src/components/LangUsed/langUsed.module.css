@@ -1,0 +1,39 @@
+.card {
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--var-hud-color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 25px;
+  gap: 20px;
+}
+.lang_icon {
+  padding-left: 1rem;
+}
+/* Para todos os containers sociais */
+.langContainer {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: 0.3s;
+}
+
+.langContainer:active {
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
+
+.langContainer:hover .langSvg {
+  animation: slide-in-top 0.3s both;
+}
+.langSvg {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.langSvg:hover {
+  transform: scale(1.2);
+}

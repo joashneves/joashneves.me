@@ -1,21 +1,21 @@
 .graphContainer {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 /* Overriding react-github-calendar styles */
 /* This requires careful inspection of the library's generated classes */
 .graphContainer :global(.react-activity-calendar__scroll-container) {
-    border: 1px solid #30363d;
-    padding: 1rem;
-    border-radius: 6px;
+  border: 1px solid #30363d;
+  padding: 1rem;
+  border-radius: 6px;
 }
 
 .graphContainer :global(.react-activity-calendar__count) {
-    font-size: 0.9rem !important;
+  font-size: 0.9rem !important;
 }

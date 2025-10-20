@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import styles from './UserInfo.module.css';
+import Image from "next/image";
+import styles from "./UserInfo.module.css";
 
 function UserInfo({ user }) {
   if (!user) return null;

@@ -16,7 +16,8 @@
 }
 
 /* Media Queries for smaller screens */
-@media (max-width: 1012px) { /* GitHub's breakpoint */
+@media (max-width: 1012px) {
+  /* GitHub's breakpoint */
   .container {
     grid-template-columns: 1fr; /* Single column */
     padding: 1rem;

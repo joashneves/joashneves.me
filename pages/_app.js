@@ -21,7 +21,6 @@ export default function MyApp({ Component, pageProps }) {
               <Component {...pageProps} />
             </div>
           </div>
-        
         </TemplateConfigProvider>
       </PrimeReactProvider>
     </>

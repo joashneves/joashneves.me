@@ -2,14 +2,13 @@ import database from "infra/database";
 import { ValidationError, NotFoundError } from "infra/errors";
 
 async function createProjects(projectsInputValues) {
-    
   const newProject = await runInsertQuary(projectsInputValues);
   return newProject;
-  
+
   async function runInsertQuary(ProjectInputValues) {
-    await validateBody(ProjectInputValues)
+    await validateBody(ProjectInputValues);
     await validateUniqueTitle(ProjectInputValues.title);
-    console.log(ProjectInputValues)
+    console.log(ProjectInputValues);
     const result = await database.query({
       text: `INSERT INTO
       projects (title,
@@ -22,7 +21,7 @@ async function createProjects(projectsInputValues) {
     RETURNING 
       *;
       `,
-      values:[
+      values: [
         ProjectInputValues.title,
         ProjectInputValues.description,
         ProjectInputValues.links_proj,
@@ -83,17 +82,16 @@ async function validateUniqueTitle(title) {
 }
 
 async function selectAllProject() {
-  const result =  await database.query({
+  const result = await database.query({
     text: `SELECT
      *
     FROM
      projects 
     LIMIT
-      10;`
+      10;`,
   });
   return result.rows;
 }
-
 
 async function validateBody(body) {
   console.log("teste de validate Body : ", body);
@@ -115,10 +113,10 @@ async function validateBody(body) {
   }
 }
 
-const projects ={
+const projects = {
   createProjects,
   findOneByProjectname,
   selectAllProject,
-}
+};
 
 export default projects;

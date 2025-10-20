@@ -1,7 +1,7 @@
-import UserInfo from './UserInfo';
-import PinnedRepos from './PinnedRepos';
-import ContributionGraph from './ContributionGraph';
-import styles from './GitHubProfile.module.css';
+import UserInfo from "./UserInfo";
+import PinnedRepos from "./PinnedRepos";
+import ContributionGraph from "./ContributionGraph";
+import styles from "./GitHubProfile.module.css";
 
 function GitHubProfile({ user, pinnedRepos }) {
   return (
