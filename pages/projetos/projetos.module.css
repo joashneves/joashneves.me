@@ -9,6 +9,58 @@
   padding: 2rem;
 }
 
+.markdownContent {
+  padding: 20px;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.markdownContent h1, .markdownContent h2, .markdownContent h3, .markdownContent h4, .markdownContent h5, .markdownContent h6 {
+  color: var(--heading-color);
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.markdownContent p {
+  margin-bottom: 1em;
+}
+
+.markdownContent a {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.markdownContent ul, .markdownContent ol {
+  margin-left: 20px;
+  margin-bottom: 1em;
+}
+
+.markdownContent li {
+  margin-bottom: 0.5em;
+}
+
+.markdownContent code {
+  background-color: var(--code-bg);
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'monospace';
+}
+
+.markdownContent pre {
+  background-color: var(--code-bg);
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+.markdownContent blockquote {
+  border-left: 4px solid var(--quote-border);
+  padding-left: 10px;
+  color: var(--quote-color);
+  margin-bottom: 1em;
+}
+
 @media screen and (min-width: 1200px) and (min-width: 1366px) {
   .projetos {
     grid-template-columns: auto auto auto;

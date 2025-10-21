@@ -2,14 +2,12 @@ import styles from "./Home.module.css";
 import UserInfo from "../GitHubProfile/UserInfo";
 import PinnedRepos from "../GitHubProfile/PinnedRepos";
 import ContributionGraph from "../GitHubProfile/ContributionGraph";
-import ProfileNav from "../GitHubProfile/ProfileNav";
 import SocialLinks from "../GitHubProfile/SocialLinks";
 import LangUsed from "../LangUsed";
 
 function HomePage({ user, pinnedRepos }) {
   return (
     <div>
-      <ProfileNav />
       <div className={styles.container}>
         <aside className={styles.sidebar}>
           <UserInfo user={user} />

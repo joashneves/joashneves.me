@@ -11,7 +11,7 @@ function ProfileNav() {
       <div className={styles.underlineNav}>
         <nav className={styles.underlineNavBody}>
           <a
-            href="#"
+            href="/"
             className={`${styles.underlineNavItem} ${styles.selected}`}
           >
             <HomeIcon />
@@ -25,7 +25,7 @@ function ProfileNav() {
             <ArticlesIcon />
             Artigos
           </a>
-          <a href="#" className={styles.underlineNavItem}>
+          <a href="/portifolio" className={styles.underlineNavItem}>
             <PortifolioIcon />
             Portifolio
           </a>
