@@ -19,3 +19,5 @@ export { default as python } from "./python.jsx";
 export { default as react } from "./react.jsx";
 export { default as vscode } from "./vscode.jsx";
 export { default as gml } from "./gml.jsx";
+export { default as itchio } from "./itchio.jsx";
+export { default as steam } from "./steam.jsx";

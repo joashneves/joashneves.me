@@ -1,38 +1,65 @@
 ---
-date: 2025-03-11
+date: 2025-10-29
 title: "Perfil Pessoal"
 slug: 1
 url: https://www.linkedin.com/in/joasneves/
-excerpt: "Meu site fullstack"
+excerpt: "Descrição das minhas habilidades"
 tags:
-  - Site
-  - fullstack
+  - Portifolio
+  - Habilidades
+  - Projetos
 ---
 
-# A jornada do eterno aprendiz
+---
 
-# Sobre mim
+- **Email: joashneves**@gmail.com
+- **Linkedin:** [Joas Neves | LinkedIn](https://www.linkedin.com/in/joas-neves-b8340a290/)
+- **Website/Portfolio:** [joashneves.me](https://www.joashneves.me/)
 
-Se voce esta no meu pequeno blog e não me conhece, prazer eu sou o Joás, tambem conhecido como joashneves no github, e outras redes sociais, a ideia dessa parte existir é caso voce esteja
-curioso sobre quem sou eu, ou quem é foi que criou esse site para mostrar os proprios projetos.
+---
 
-Bem como todo mundo sou uma pessoa, e caso voce assim como eu tenha um interresse na area de tecnologia deve achar interressante o conceito de aprendizado, eu gosto de aprender, e por isso que
-esse site existe, ele é meio que um aglomerado de coisas que me deu vontade de testar, então caso ele venha explodir, desculpe.
+Sou apaixonado pela área de sistemas e adoro estudar e praticar. Com uma futura formação em Analise e desenvolvimento de sistema, tenho experiência em variadas linguagens de programação. Estou constantemente em busca de novos desafios que me permitam aplicar e expandir meus conhecimentos, contribuindo para o sucesso das organizações com as quais colaboro.
 
-Mas e eu? o que eu sei? bem, sei algumas coisas e outras, e sempre que sinto que estou confortavel sobre determinado assunto, eu gosto de dividulo com os demais, ate por que conhecimento para mim é algo que deveria ser compartilhado e discutido, então eu sempre estou gerando conteudos, tantos didaticos, tanto que motivam criar um senso critido sobre determinado assunto.
+---
 
-Poderia dizer um pouco mais de mim, como aonde nasci, ou de onde vim, aonde me formei, onde eu ja trabalhei, mas amenos que voce seja alguem do RG ou alguem interrassado em frelancee acho que no fim o resultado sera meio inutil, então por que não, deixar isso pro curriculo do linkedin ou coisa assim do tipo hein?
+# Experiência Profissional
 
-Porem poderia compartilhar certas coisas sim, ate porque isso é sobre mim ne, se querem saber, alem de eu ser uma programador, eu gosto tambem de escrever como forma de hobby, então, no fim das contas, escrevo não só para mostrar aos outros minhas ideias, mas pelo prazer de aprimorar a escrita, seja com a leitura ou com pratica mesmo. Sendo outra paixão tambem jogar, e se voce jogar e gosta de jogos, pensa tambem que deve ser divertido criar seus proprios jogos, coisa que eu curto, mas... enfim
+### **Appa Servicos Temporarios E Efetivos (2023 - 2025)**
 
-Caso queria entrar em contato estou sempre aberto a uma DM para esclarecer algo, ou ate mesmo desenvolver uma ideia de projeto, estamos ai, minhas redes sociais estão ai embaixo, outra coisa tambem são o que eu sei, sendo ela :
+> - Suporte técnico
 
-# Competências
+---
 
-### code: [Javascript, HTML, CSS, C#, Python],
+# Formação
 
-### tools: [React, Node, git e github, Figma, GameMaker 2],
+### **Multivix (2022 - 2025)**
 
-### architecture: ["API", "Desenvolvimento de jogos"],
+Análise e Desenvolvimento de Sistemas
 
-### challenge: "Constantes desafios a mim mesmo"
+---
+
+## Cursos
+
+### [Docker: criando e gerenciando containers](https://cursos.alura.com.br/certificate/d69fc4da-895f-4ddc-bc3b-6500bd379ff4?lang)
+
+### [**APIs com Node.js e Express**](https://cursos.alura.com.br/degree/certificate/fe2b85f4-ccf8-4736-a52d-a25aca7599f5?lang)
+
+### [Git e GitHub: compartilhando e colaborando em projetos](https://cursos.alura.com.br/certificate/e4e3563e-796d-4870-998e-45636b3d4b25?lang)
+
+### [Formação Explore React com JavaScript](https://cursos.alura.com.br/degree/certificate/1bc1e7aa-de08-4f0c-b383-62887bc76ebe?lang)
+
+### [Formação Desenvolva aplicações Web com JavaScript](https://cursos.alura.com.br/degree/certificate/83963c46-fdc0-4fc3-a865-a8f7902b4523?lang)
+
+### [Formação Aprenda a programar em Python com Orientação a Objetos](https://cursos.alura.com.br/degree/certificate/c61d0487-1ccb-4007-a643-86f580015608?lang)
+
+### [Formação C# e Orientação a Objetos](https://cursos.alura.com.br/degree/certificate/bd6df420-6794-4241-95b5-6f4acf2a4374?lang)
+
+---
+
+## Habilidades
+
+Figma (Software) | Suporte de hardware de TI | Contabilidade | Arquitetura e organização de computadores | ci/cd
+| Banco de dados | Python | Design de Sites | Front-end | Back-end | Javascript | Jest
+| C# | C/C++ | React | Next.js | Node.js | Asp.net | .net | React native
+
+---
