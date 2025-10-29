@@ -1,4 +1,9 @@
 .underlineNav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
   background-color: var(--gh-dark-bg-default);
   border-bottom: 1px solid var(--gh-dark-border-default);
   padding-top: 12px;

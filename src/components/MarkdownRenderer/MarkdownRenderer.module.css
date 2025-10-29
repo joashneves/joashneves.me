@@ -1,0 +1,189 @@
+.markdownContainer {
+  font-family: sans-serif;
+  margin: 0 10%;
+}
+
+.columnsContainer {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.mainContent {
+  flex: 4;
+}
+
+.sidebar {
+  flex: 1;
+  padding-left: 40px;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  font-size: 1.1em;
+}
+
+.urlStyle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.urlStyle:visited{
+  font-style:oblique;
+}
+
+.metaData {
+  font-size: 0.85em;
+  color: #555;
+}
+
+.metaData p {
+  margin: 8px 0;
+}
+
+.metaData a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+.metaData a:hover {
+  text-decoration: underline;
+}
+
+.tags {
+  margin-top: 12px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #f1f1f1;
+  padding: 3px 9px;
+  border-radius: 6px;
+  margin-right: 6px;
+  margin-top: 6px;
+  font-size: 0.8em;
+}
+
+.excerpt {
+  font-style: italic;
+  color: #666;
+  margin-top: 15px;
+  border-top: 1px solid #21262d;
+  padding-top: 15px;
+}
+
+.content {
+  line-height: 1.6;
+}
+
+.titleGitHub{
+  font-size: 1.5em; 
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #21262d;
+}
+
+.githubReadme {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.6;
+  color: #c9d1d9; /* Light gray for text */
+  background-color: #0d1117; /* Dark background */
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #30363d;
+}
+
+.githubReadme h1,
+.githubReadme h2,
+.githubReadme h3,
+.githubReadme h4,
+.githubReadme h5,
+.githubReadme h6,
+.titleGitHub {
+  color: #e6edf3; /* Lighter color for headings */
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.githubReadme h1 {
+  font-size: 2em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #21262d;
+}
+
+.githubReadme h2 {
+  font-size: 1.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #21262d;
+}
+
+.githubReadme h3 {
+  font-size: 1.25em;
+}
+
+.githubReadme p {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.githubReadme a {
+  color: #58a6ff; /* GitHub link color */
+  text-decoration: none;
+}
+
+.githubReadme a:hover {
+  text-decoration: underline;
+}
+
+.githubReadme code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  background-color: rgba(110, 118, 129, 0.4);
+  border-radius: 6px;
+  padding: 0.2em 0.4em;
+  font-size: 85%;
+}
+
+.githubReadme pre {
+  background-color: #161b22;
+  border-radius: 6px;
+  padding: 16px;
+  overflow: auto;
+  line-height: 1.45;
+}
+
+.githubReadme pre code {
+  background-color: transparent;
+  padding: 0;
+  font-size: 100%;
+}
+
+.githubReadme ul,
+.githubReadme ol {
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding-left: 2em;
+}
+
+.githubReadme blockquote {
+  padding: 0 1em;
+  color: #8b949e;
+  border-left: 0.25em solid #30363d;
+}
+
+.githubReadme table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+
+.githubReadme th,
+.githubReadme td {
+  border: 1px solid #30363d;
+  padding: 6px 13px;
+}
+
+.githubReadme th {
+  font-weight: 600;
+}
