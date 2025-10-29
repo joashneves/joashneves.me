@@ -1,7 +1,7 @@
-import Head from 'next/head';
-import fs from 'fs';
-import path from 'path';
-import MarkdownRenderer from '../../src/components/MarkdownRenderer';
+import Head from "next/head";
+import fs from "fs";
+import path from "path";
+import MarkdownRenderer from "../../src/components/MarkdownRenderer";
 
 export default function Portifolio({ content }) {
   return (
@@ -19,8 +19,8 @@ export default function Portifolio({ content }) {
 }
 
 export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), '_data', 'posts', 'perfil.md');
-  const fileContent = fs.readFileSync(filePath, 'utf8');
+  const filePath = path.join(process.cwd(), "_data", "posts", "perfil.md");
+  const fileContent = fs.readFileSync(filePath, "utf8");
 
   return {
     props: {

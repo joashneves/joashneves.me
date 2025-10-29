@@ -18,7 +18,7 @@ export default function MyApp({ Component, pageProps }) {
         <TemplateConfigProvider value={pageProps}>
           <div className="hudContent">
             <div className="mainContent">
-              <ProfileNav/>
+              <ProfileNav />
               <Component {...pageProps} />
             </div>
           </div>

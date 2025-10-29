@@ -9,6 +9,7 @@ tags:
   - Habilidades
   - Projetos
 ---
+
 ---
 
 - **Email: joashneves**@gmail.com
@@ -20,6 +21,7 @@ tags:
 Sou apaixonado pela área de sistemas e adoro estudar e praticar. Com uma futura formação em Analise e desenvolvimento de sistema, tenho experiência em variadas linguagens de programação. Estou constantemente em busca de novos desafios que me permitam aplicar e expandir meus conhecimentos, contribuindo para o sucesso das organizações com as quais colaboro.
 
 ---
+
 # Experiência Profissional
 
 ### **Appa Servicos Temporarios E Efetivos (2023 - 2025)**
@@ -27,6 +29,7 @@ Sou apaixonado pela área de sistemas e adoro estudar e praticar. Com uma futura
 > - Suporte técnico
 
 ---
+
 # Formação
 
 ### **Multivix (2022 - 2025)**
@@ -34,6 +37,7 @@ Sou apaixonado pela área de sistemas e adoro estudar e praticar. Com uma futura
 Análise e Desenvolvimento de Sistemas
 
 ---
+
 ## Cursos
 
 ### [Docker: criando e gerenciando containers](https://cursos.alura.com.br/certificate/d69fc4da-895f-4ddc-bc3b-6500bd379ff4?lang)
@@ -55,7 +59,7 @@ Análise e Desenvolvimento de Sistemas
 ## Habilidades
 
 Figma (Software) | Suporte de hardware de TI | Contabilidade | Arquitetura e organização de computadores | ci/cd
-|  Banco de dados | Python | Design de Sites | Front-end | Back-end | Javascript | Jest
-|  C# | C/C++ | React | Next.js | Node.js | Asp.net | .net | React native
+| Banco de dados | Python | Design de Sites | Front-end | Back-end | Javascript | Jest
+| C# | C/C++ | React | Next.js | Node.js | Asp.net | .net | React native
 
 ---

@@ -11,10 +11,7 @@ function ProfileNav() {
     return (
       <div className={styles.underlineNav}>
         <nav className={styles.underlineNavBody}>
-          <Link
-            href="/"
-            className={`${styles.underlineNavItem}`}
-          >
+          <Link href="/" className={`${styles.underlineNavItem}`}>
             <HomeIcon />
             Home
           </Link>

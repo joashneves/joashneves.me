@@ -15,7 +15,12 @@
   color: var(--text-color);
 }
 
-.markdownContent h1, .markdownContent h2, .markdownContent h3, .markdownContent h4, .markdownContent h5, .markdownContent h6 {
+.markdownContent h1,
+.markdownContent h2,
+.markdownContent h3,
+.markdownContent h4,
+.markdownContent h5,
+.markdownContent h6 {
   color: var(--heading-color);
   margin-top: 1em;
   margin-bottom: 0.5em;
@@ -30,7 +35,8 @@
   text-decoration: underline;
 }
 
-.markdownContent ul, .markdownContent ol {
+.markdownContent ul,
+.markdownContent ol {
   margin-left: 20px;
   margin-bottom: 1em;
 }
@@ -43,7 +49,7 @@
   background-color: var(--code-bg);
   padding: 2px 4px;
   border-radius: 3px;
-  font-family: 'monospace';
+  font-family: "monospace";
 }
 
 .markdownContent pre {
