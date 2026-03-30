@@ -1,14 +1,18 @@
-from ..models.tag import Tag
-
-tags_db = []
+from app.models.tag import Tag, db  # Importamos o Tag e o db (SQLAlchemy)
 
 def get_all_tags():
-    return [tag.to_dict() for tag in tags_db]
+    # Busca todas as tags diretamente no banco de dados
+    tags = Tag.query.all()
+    return [tag.to_dict() for tag in tags]
 
 def create_tag(data):
+    # Criamos a instância apenas com o nome
     new_tag = Tag(
-        id=len(tags_db) + 1,
         name=data.get("name")
     )
-    tags_db.append(new_tag)
+    
+    # Adicionamos ao banco e confirmamos (commit)
+    db.session.add(new_tag)
+    db.session.commit()
+    
     return new_tag.to_dict()

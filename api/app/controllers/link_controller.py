@@ -1,37 +1,52 @@
 from flask import request
-from ..models.link import Link
-
-links_db = []
+from app.models.link import Link, db
+from sqlalchemy import or_
 
 def get_all_links():
-    query = request.args.get('q', '').lower()
+    # Pegando os parâmetros da URL
+    query_text = request.args.get('q', '').lower()
     tag_id = request.args.get('tag', type=int)
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 10, type=int)
 
-    filtered = links_db
-    if query:
-        filtered = [l for l in filtered if query in l.title.lower() or query in l.description.lower()]
-    if tag_id:
-        filtered = [l for l in filtered if tag_id in l.tag_ids]
+    # Iniciando a Query
+    stmt = Link.query
 
-    start = (page - 1) * per_page
-    end = start + per_page
-    
+    # Filtragem por texto (Busca no Título ou Descrição)
+    if query_text:
+        stmt = stmt.filter(
+            or_(
+                Link.title.ilike(f"%{query_text}%"),
+                Link.description.ilike(f"%{query_text}%")
+            )
+        )
+
+    # Filtragem por Tag (Considerando que tag_ids é um campo JSON)
+    if tag_id:
+        # No SQLAlchemy, para buscar dentro de um JSON:
+        stmt = stmt.filter(Link.tag_ids.contains([tag_id]))
+
+    # Paginação nativa do Flask-SQLAlchemy
+    pagination = stmt.paginate(page=page, per_page=per_page, error_out=False)
+
     return {
-        "items": [l.to_dict() for l in filtered[start:end]],
-        "total": len(filtered),
-        "page": page,
-        "per_page": per_page
+        "items": [l.to_dict() for l in pagination.items],
+        "total": pagination.total,
+        "page": pagination.page,
+        "per_page": pagination.per_page,
+        "pages": pagination.pages
     }
 
 def create_link(data):
+    # Criando a instância sem passar o ID manualmente
     new_link = Link(
-        id=len(links_db) + 1,
         title=data.get("title"),
         description=data.get("description", ""),
         url=data.get("url"),
         tag_ids=data.get("tag_ids", [])
     )
-    links_db.append(new_link)
+    
+    db.session.add(new_link)
+    db.session.commit()
+    
     return new_link.to_dict()
