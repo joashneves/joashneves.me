@@ -12,21 +12,14 @@ export default function Projetos() {
   const projects = projectsData?.items || []
 
   return (
-    <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '6rem 2rem' }}>
+    <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 2rem' }}>
       <header style={{ marginBottom: '4rem' }}>
-        <h1 style={{ fontSize: '3rem', marginBottom: '1rem' }}>Meus Projetos</h1>
-        <p style={{ color: 'var(--gh-dark-fg-muted)', fontSize: '1.2rem' }}>
-          Explore os projetos que desenvolvi e as tecnologias que utilizei.
-        </p>
+        <h1 style={{ fontSize: '4.5rem', color: 'var(--title-green-color)', fontStyle: 'italic', fontWeight: 'bold' }}>
+          {'{ Projetos }'}
+        </h1>
       </header>
 
-      <SearchBar 
-        value={search} 
-        onChange={(val) => { setSearch(val); setPage(1); }} 
-        placeholder="Pesquisar por título ou descrição longa..." 
-      />
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2.5rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '3rem' }}>
         {projects.length > 0 ? projects.map(project => (
           <ProjectCard key={project.id} project={project} />
         )) : (

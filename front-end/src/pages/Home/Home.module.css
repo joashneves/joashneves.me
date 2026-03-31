@@ -1,0 +1,88 @@
+.container {
+  padding: 4rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 5rem;
+}
+
+.title {
+  font-size: 4.5rem;
+  color: var(--title-green-color);
+  font-style: italic;
+  font-weight: 800;
+  margin: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  margin-bottom: 6rem;
+  align-items: center;
+}
+
+.rowReverse {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  margin-bottom: 6rem;
+  align-items: center;
+}
+
+.textBlock {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--gh-dark-fg-default);
+}
+
+.textBlock p {
+  margin-bottom: 1.5rem;
+}
+
+/* Espaços para as imagens/ícones do PDF */
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.placeholderJS {
+  width: 200px;
+  height: 200px;
+  border: 2px solid var(--gh-dark-border-default);
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--gh-dark-fg-muted);
+  background: var(--gh-dark-bg-muted);
+}
+
+.placeholderLarge {
+  width: 100%;
+  height: 350px;
+  background: var(--gh-dark-bg-muted);
+  border: 1px solid var(--gh-dark-border-default);
+  border-radius: 24px;
+}
+
+.placeholderDiamond {
+  width: 150px;
+  height: 150px;
+  background: var(--gh-dark-bg-muted);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  opacity: 0.5;
+}
+
+.bottomText {
+  max-width: 850px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--gh-dark-fg-default);
+  margin-top: 4rem;
+}
