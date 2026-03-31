@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export default function PostCard({ post, tags }) {
   return (
-    <Link to={`/post/${post.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Link to={`/post/${post.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <div style={postCardStyle}>
         <div style={{ flex: 1 }}>
           <h3 style={{ fontSize: '1.8rem', color: 'var(--title-green-color)', marginBottom: '0.8rem' }}>{post.title}</h3>

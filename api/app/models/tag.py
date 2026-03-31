@@ -1,3 +1,4 @@
+import uuid
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -5,17 +6,15 @@ db = SQLAlchemy()
 class Tag(db.Model):
     __tablename__ = 'tags'
 
-    # Definição das Colunas
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Uuid, primary_key=True, default=uuid.uuid4)
     name = db.Column(db.String(50), nullable=False, unique=True)
 
     def __init__(self, name):
-        # O id é autoincremento pelo banco de dados
         self.name = name
 
     def to_dict(self):
         return {
-            "id": self.id,
+            "id": str(self.id),
             "name": self.name
         }
 

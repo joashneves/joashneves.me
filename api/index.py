@@ -4,7 +4,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from app import create_app
 from app.models.tag import db
-from app.models import link, post, project, tag 
+from app.models import link, post, project, tag, user, session
 
 load_dotenv()
 

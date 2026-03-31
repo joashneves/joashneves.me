@@ -47,14 +47,25 @@ def get_all_projects():
         "pages": pagination.pages
     }
 
+def get_project_by_slug_or_id(identifier):
+    project = None
+    try:
+        val = uuid.UUID(identifier)
+        project = Project.query.get(val)
+    except (ValueError, TypeError):
+        project = Project.query.filter_by(slug=identifier).first()
+    
+    return project.to_dict() if project else None
+
 def create_project():
     try:
-        # Usando request.form pois projects costumam enviar arquivos + texto (multipart/form-data)
         title = request.form.get("title")
         long_description = request.form.get("long_description")
         repo_link = request.form.get("repo_link")
         alternative_link = request.form.get("alternative_link", "")
-        
+        slug = request.form.get("slug")
+        link_ids = request.form.getlist("link_ids") # Se enviado como múltiplos campos
+
         if not title or not repo_link:
             return jsonify({"error": "Título e Link do Repositório são obrigatórios"}), 400
 
@@ -73,17 +84,17 @@ def create_project():
                     img = img.convert("RGB")
                 img.save(filepath, "WEBP", quality=80, optimize=True)
                 
-                # URL Dinâmica em vez de 127.0.0.1 fixa
                 host = request.host_url.rstrip('/')
                 image_url = f"{host}/static/uploads/{unique_filename}"
 
-        # Criando no banco de dados
         new_project = Project(
             title=title,
             long_description=long_description,
             repo_link=repo_link,
             alternative_link=alternative_link,
-            image_url=image_url
+            image_url=image_url,
+            slug=slug,
+            link_ids=link_ids
         )
         
         db.session.add(new_project)
@@ -92,6 +103,60 @@ def create_project():
         return jsonify(new_project.to_dict()), 201
 
     except Exception as e:
-        db.session.rollback() # Cancela a operação no banco se o upload falhar
+        db.session.rollback()
         print(f"Erro no Project Controller: {e}")
         return jsonify({"error": "Erro interno ao criar projeto"}), 500
+
+def update_project(identifier):
+    try:
+        project_data = get_project_by_slug_or_id(identifier)
+        if not project_data:
+            return jsonify({"error": "Projeto não encontrado"}), 404
+        
+        project = Project.query.get(project_data['id'])
+        
+        project.title = request.form.get("title", project.title)
+        project.long_description = request.form.get("long_description", project.long_description)
+        project.repo_link = request.form.get("repo_link", project.repo_link)
+        project.alternative_link = request.form.get("alternative_link", project.alternative_link)
+        project.slug = request.form.get("slug", project.slug)
+        
+        if "link_ids" in request.form:
+            project.link_ids = request.form.getlist("link_ids")
+
+        if 'file' in request.files:
+            file = request.files['file']
+            if file.filename != '':
+                unique_filename = f"{uuid.uuid4().hex}.webp"
+                filepath = os.path.join(UPLOAD_FOLDER, unique_filename)
+                
+                img = Image.open(file)
+                if img.mode in ("RGBA", "P"):
+                    img = img.convert("RGB")
+                img.save(filepath, "WEBP", quality=80, optimize=True)
+                
+                host = request.host_url.rstrip('/')
+                project.image_url = f"{host}/static/uploads/{unique_filename}"
+
+        db.session.commit()
+        return jsonify(project.to_dict()), 200
+
+    except Exception as e:
+        db.session.rollback()
+        print(f"Erro ao atualizar projeto: {e}")
+        return jsonify({"error": "Erro interno ao atualizar projeto"}), 500
+
+def delete_project(identifier):
+    try:
+        project_data = get_project_by_slug_or_id(identifier)
+        if not project_data:
+            return False
+        
+        project = Project.query.get(project_data['id'])
+        db.session.delete(project)
+        db.session.commit()
+        return True
+    except Exception as e:
+        db.session.rollback()
+        print(f"Erro ao deletar projeto: {e}")
+        return False

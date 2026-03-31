@@ -2,30 +2,34 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import { useParams } from 'react-router-dom'
+import useSWR from 'swr'
+
+const fetcher = (url) => fetch(url).then((res) => res.json())
 
 export default function Post() {
-  const { id } = useParams()
-  
-  // Conteúdo de exemplo em Markdown
-  const markdownContent = `
-# Post ${id}
+  const { slug } = useParams()
+  const { data: post, error, isLoading } = useSWR(`http://localhost:5000/api/posts/${slug}`, fetcher)
 
-Este é um exemplo de post em **Markdown** que será renderizado pelo \`react-markdown\`.
-
-## O que temos aqui:
-- Suporte a GFM (GitHub Flavored Markdown)
-- Renderização de tabelas e listas
-- Suporte a tags HTML brutas através do rehype-raw
-  `
+  if (isLoading) return <div style={{ color: 'white', textAlign: 'center', padding: '5rem' }}>Carregando post...</div>
+  if (error || !post || post.error) return <div style={{ color: 'white', textAlign: 'center', padding: '5rem' }}>Post não encontrado.</div>
 
   return (
-    <article style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-      <ReactMarkdown 
-        remarkPlugins={[remarkGfm]} 
-        rehypePlugins={[rehypeRaw]}
-      >
-        {markdownContent}
-      </ReactMarkdown>
+    <article style={{ padding: '2rem', maxWidth: '800px', margin: '4rem auto', background: 'var(--gh-dark-bg-default)', borderRadius: '12px', border: '1px solid var(--gh-dark-border-default)' }}>
+      <header style={{ marginBottom: '2rem' }}>
+        <h1 style={{ fontSize: '2.5rem', color: 'var(--title-green-color)', marginBottom: '1rem' }}>{post.title}</h1>
+        <div style={{ display: 'flex', gap: '1rem', color: 'var(--gh-dark-fg-muted)' }}>
+          <span>{new Date(post.date).toLocaleDateString('pt-BR')}</span>
+        </div>
+      </header>
+      
+      <div className="markdown-body" style={{ color: 'var(--gh-dark-fg-default)', lineHeight: '1.8' }}>
+        <ReactMarkdown 
+          remarkPlugins={[remarkGfm]} 
+          rehypePlugins={[rehypeRaw]}
+        >
+          {post.content}
+        </ReactMarkdown>
+      </div>
     </article>
   )
 }

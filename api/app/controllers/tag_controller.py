@@ -1,18 +1,48 @@
-from app.models.tag import Tag, db  # Importamos o Tag e o db (SQLAlchemy)
+import uuid
+from app.models.tag import Tag, db
 
 def get_all_tags():
-    # Busca todas as tags diretamente no banco de dados
     tags = Tag.query.all()
     return [tag.to_dict() for tag in tags]
 
+def get_tag_by_id(identifier):
+    try:
+        val = uuid.UUID(identifier)
+        tag = Tag.query.get(val)
+        return tag.to_dict() if tag else None
+    except (ValueError, TypeError):
+        return None
+
 def create_tag(data):
-    # Criamos a instância apenas com o nome
     new_tag = Tag(
         name=data.get("name")
     )
-    
-    # Adicionamos ao banco e confirmamos (commit)
     db.session.add(new_tag)
     db.session.commit()
-    
     return new_tag.to_dict()
+
+def update_tag(identifier, data):
+    try:
+        val = uuid.UUID(identifier)
+        tag = Tag.query.get(val)
+        if not tag:
+            return None
+        
+        tag.name = data.get("name", tag.name)
+        db.session.commit()
+        return tag.to_dict()
+    except (ValueError, TypeError):
+        return None
+
+def delete_tag(identifier):
+    try:
+        val = uuid.UUID(identifier)
+        tag = Tag.query.get(val)
+        if not tag:
+            return False
+        
+        db.session.delete(tag)
+        db.session.commit()
+        return True
+    except (ValueError, TypeError):
+        return False

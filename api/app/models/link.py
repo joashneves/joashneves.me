@@ -1,22 +1,18 @@
+import uuid
 from datetime import datetime
-from .tag import db;
+from .tag import db
 
 class Link(db.Model):
     __tablename__ = 'links'
 
-    # Definindo as colunas no banco de dados
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Uuid, primary_key=True, default=uuid.uuid4)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(400))
     url = db.Column(db.String(500), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
-    
-    # Se tags for uma relação muitos-para-muitos, a lógica muda, 
-    # mas mantendo a estrutura que você iniciou:
-    tag_ids = db.Column(db.JSON, nullable=True) 
+    tag_ids = db.Column(db.JSON) # List of UUID strings
 
     def __init__(self, title, description, url, tag_ids=None, date=None):
-        # O 'id' geralmente é autoincremento, então não precisamos passar no init
         self.title = title
         self.description = description[:400] if description else ""
         self.url = url
@@ -25,7 +21,7 @@ class Link(db.Model):
 
     def to_dict(self):
         return {
-            "id": self.id,
+            "id": str(self.id),
             "title": self.title,
             "description": self.description,
             "url": self.url,
