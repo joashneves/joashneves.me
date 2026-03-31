@@ -17,6 +17,7 @@ def create_app():
     from .routes.link_routes import link_bp
     from .routes.project_routes import project_bp
     from .routes.upload_routes import upload_bp
+    from .routes.auth_routes import auth_bp
 
     # Register Blueprints
     app.register_blueprint(post_bp, url_prefix='/api/posts')
@@ -24,6 +25,7 @@ def create_app():
     app.register_blueprint(link_bp, url_prefix='/api/links')
     app.register_blueprint(project_bp, url_prefix='/api/projects')
     app.register_blueprint(upload_bp, url_prefix='/api/upload')
+    app.register_blueprint(auth_bp, url_prefix='/api/auth')
 
     # Rota para servir os arquivos da pasta static/uploads
     @app.route('/static/uploads/<path:filename>')

@@ -9,8 +9,12 @@ export default function Navbar() {
         <div className={styles.classIcon}>
           <img src={gallifreyan} alt="Gally" style={{ width: '32px', height: '32px' }} />
         </div>
+
+      
         
         <div className={styles.nav_links}>
+
+
           <div className={styles.classIcon}>
             <Link to="/">
               <svg width="24" height="24" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,6 +24,15 @@ export default function Navbar() {
             </Link>
           </div>
 
+          <div className={styles.classIcon}>
+            <Link to="/post">
+              <svg width="24" height="24" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 16H5V10H11V16H14V7L8 2.5L2 7V16ZM0 18V6L8 0L16 6V18H9V12H7V18H0Z" fill="#7F5AF0" />
+              </svg>
+              <div className={styles.legenda}>Posts</div>
+            </Link>
+          </div>
+          
           <div className={styles.classIcon}>
             <Link to="/projetos">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

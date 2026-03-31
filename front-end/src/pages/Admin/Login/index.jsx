@@ -1,14 +1,45 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { mutate } from 'swr'
 import Button from '../../../components/Button'
 
 export default function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [user, setUser] = useState('')
+  const [senha, setSenha] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
-    console.log('Tentativa de login:', { email, password })
-    // Aqui virá a lógica de autenticação futura
+    setError('')
+    setLoading(true)
+
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user, senha }),
+        credentials: 'include'
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        // Injeta os dados do usuário diretamente no cache do SWR sem esperar o fetch
+        // Isso faz o ProtectedRoute liberar o acesso instantaneamente
+        mutate('http://localhost:5000/api/auth/me', { user: data.user }, false)
+        
+        // Redireciona logo em seguida
+        navigate('/adm/painel')
+      } else {
+        setError(data.error || 'Erro ao fazer login')
+      }
+    } catch (err) {
+      setError('Erro de conexão com o servidor')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -27,41 +58,49 @@ export default function Login() {
         width: '100%',
         maxWidth: '400px'
       }}>
-        <h2>Acesso Admin</h2>
+        <h2 style={{ color: 'var(--title-green-color)', marginBottom: '1.5rem' }}>Acesso Admin</h2>
+        
+        {error && <p style={{ color: '#f85149', marginBottom: '1rem', fontSize: '0.9rem' }}>{error}</p>}
+
         <div style={{ marginBottom: '1rem' }}>
-          <label style={{ display: 'block', marginBottom: '0.5rem' }}>E-mail:</label>
+          <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--gh-dark-fg-muted)' }}>Usuário ou E-mail:</label>
           <input 
-            type="email" 
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            style={{ 
-              width: '100%', 
-              padding: '0.5rem', 
-              borderRadius: '4px',
-              border: '1px solid var(--gh-dark-border-default)',
-              background: 'var(--gh-dark-bg-default)',
-              color: 'white'
-            }} 
+            type="text" 
+            name="username" // Sugestão para o navegador
+            autoComplete="username"
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
+            required
+            style={inputStyle} 
           />
         </div>
         <div style={{ marginBottom: '2rem' }}>
-          <label style={{ display: 'block', marginBottom: '0.5rem' }}>Senha:</label>
+          <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--gh-dark-fg-muted)' }}>Senha:</label>
           <input 
             type="password" 
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{ 
-              width: '100%', 
-              padding: '0.5rem', 
-              borderRadius: '4px',
-              border: '1px solid var(--gh-dark-border-default)',
-              background: 'var(--gh-dark-bg-default)',
-              color: 'white'
-            }} 
+            name="password" // Sugestão para o navegador
+            autoComplete="current-password"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            required
+            style={inputStyle} 
           />
         </div>
-        <Button type="submit">Entrar</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? 'Entrando...' : 'Entrar'}
+        </Button>
       </form>
     </section>
   )
+}
+
+const inputStyle = {
+  width: '100%', 
+  padding: '0.6rem', 
+  borderRadius: '6px',
+  border: '1px solid var(--gh-dark-border-default)',
+  background: 'var(--gh-dark-bg-default)',
+  color: 'white',
+  outline: 'none',
+  fontSize: '1rem'
 }

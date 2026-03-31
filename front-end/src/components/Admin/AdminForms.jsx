@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Button from '../Button'
-import { postData } from '../../services/api'
 
 export default function AdminForms({ activeTab, tags, mutate }) {
   const [formData, setFormData] = useState({
@@ -12,12 +11,13 @@ export default function AdminForms({ activeTab, tags, mutate }) {
 
   const handleTagChange = (tagId) => {
     setFormData(prev => {
-      const isSelected = prev.tag_ids.includes(tagId)
+      const currentTags = Array.isArray(prev.tag_ids) ? prev.tag_ids : []
+      const isSelected = currentTags.includes(tagId)
       return {
         ...prev,
         tag_ids: isSelected 
-          ? prev.tag_ids.filter(id => id !== tagId)
-          : [...prev.tag_ids, tagId]
+          ? currentTags.filter(id => id !== tagId)
+          : [...currentTags, tagId]
       }
     })
   }
@@ -33,40 +33,40 @@ export default function AdminForms({ activeTab, tags, mutate }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    if (activeTab === 'projects') {
-      const fd = new FormData()
-      fd.append('title', formData.title)
-      fd.append('long_description', formData.long_description)
-      fd.append('repo_link', formData.repo_link)
-      fd.append('alternative_link', formData.alternative_link)
-      if (selectedFile) fd.append('file', selectedFile)
+    let response;
+    try {
+      if (activeTab === 'projects') {
+        const fd = new FormData()
+        fd.append('title', formData.title)
+        fd.append('long_description', formData.long_description)
+        fd.append('repo_link', formData.repo_link)
+        fd.append('alternative_link', formData.alternative_link)
+        if (selectedFile) fd.append('file', selectedFile)
 
-      try {
-        const response = await fetch('http://127.0.0.1:5000/api/projects/', {
+        response = await fetch('http://localhost:5000/api/projects/', {
           method: 'POST',
-          body: fd
+          body: fd,
+          credentials: 'include' // IMPORTANTE: Envia o cookie de sessão
         })
-        const result = await response.json()
-        if (response.ok) {
-          alert('Projeto criado com sucesso!')
-          resetForm()
-          mutate()
-        } else {
-          alert('Erro: ' + (result.error || 'Falha ao salvar'))
-        }
-      } catch (err) {
-        alert('Erro ao conectar com a API')
+      } else {
+        response = await fetch(`http://localhost:5000/api/${activeTab}/`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+          credentials: 'include' // IMPORTANTE: Envia o cookie de sessão
+        })
       }
-    } else {
-      const endpoint = `/${activeTab}/`
-      try {
-        await postData(endpoint, formData)
+
+      const result = await response.json()
+      if (response.ok) {
         alert('Salvo com sucesso!')
         resetForm()
         mutate()
-      } catch (err) {
-        alert('Erro ao salvar')
+      } else {
+        alert('Erro: ' + (result.error || 'Falha ao salvar'))
       }
+    } catch (err) {
+      alert('Erro ao conectar com a API')
     }
   }
 
@@ -83,19 +83,22 @@ export default function AdminForms({ activeTab, tags, mutate }) {
     <div style={{ marginBottom: '1rem' }}>
       <label style={{ display: 'block', marginBottom: '0.5rem' }}>Tags:</label>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-        {tags?.map(tag => (
-          <label key={tag.id} style={{ 
-            padding: '0.3rem 0.6rem', 
-            borderRadius: '20px', 
-            border: `1px solid ${formData.tag_ids.includes(tag.id) ? 'var(--efects-purple)' : 'var(--gh-dark-border-default)'}`,
-            background: formData.tag_ids.includes(tag.id) ? 'var(--efects-purple)' : 'transparent',
-            cursor: 'pointer',
-            fontSize: '0.8rem'
-          }}>
-            <input type="checkbox" checked={formData.tag_ids.includes(tag.id)} onChange={() => handleTagChange(tag.id)} style={{ display: 'none' }} />
-            # {tag.name}
-          </label>
-        ))}
+        {tags?.map(tag => {
+          const isSelected = Array.isArray(formData.tag_ids) && formData.tag_ids.includes(tag.id)
+          return (
+            <label key={tag.id} style={{ 
+              padding: '0.3rem 0.6rem', 
+              borderRadius: '20px', 
+              border: `1px solid ${isSelected ? 'var(--efects-purple)' : 'var(--gh-dark-border-default)'}`,
+              background: isSelected ? 'var(--efects-purple)' : 'transparent',
+              cursor: 'pointer',
+              fontSize: '0.8rem'
+            }}>
+              <input type="checkbox" checked={isSelected} onChange={() => handleTagChange(tag.id)} style={{ display: 'none' }} />
+              # {tag.name}
+            </label>
+          )
+        })}
       </div>
     </div>
   )

@@ -1,35 +1,61 @@
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
-import { useParams } from 'react-router-dom'
-import useSWR from 'swr'
+import React from "react";
+import SearchBar from '../../components/Public/SearchBar'
+import TagFilter from '../../components/Public/TagFilter'
+import Pagination from '../../components/Public/Pagination'
+import PostCard from '../../components/Public/PostCard'
+import { useState } from 'react'
+import Button from '../../components/Button'
+import { useApi } from '../../services/api'
+import { Link } from 'react-router-dom'
 
-const fetcher = (url) => fetch(url).then((res) => res.json())
+export default function Post(){
 
-export default function Post() {
-  const { slug } = useParams()
-  const { data: post, error, isLoading } = useSWR(`http://localhost:5000/api/posts/${slug}`, fetcher)
+      const [search, setSearch] = useState('')
+    const [tagFilter, setTagFilter] = useState('')
+  const [page, setPage] = useState(1)
 
-  if (isLoading) return <div style={{ color: 'white', textAlign: 'center', padding: '5rem' }}>Carregando post...</div>
-  if (error || !post || post.error) return <div style={{ color: 'white', textAlign: 'center', padding: '5rem' }}>Post não encontrado.</div>
+  const { data: tags } = useApi('/tags/')
+  const { data: postsData } = useApi(`/posts/?q=${search}&tag=${tagFilter}&page=${page}`)
 
-  return (
-    <article style={{ padding: '2rem', maxWidth: '800px', margin: '4rem auto', background: 'var(--gh-dark-bg-default)', borderRadius: '12px', border: '1px solid var(--gh-dark-border-default)' }}>
-      <header style={{ marginBottom: '2rem' }}>
-        <h1 style={{ fontSize: '2.5rem', color: 'var(--title-green-color)', marginBottom: '1rem' }}>{post.title}</h1>
-        <div style={{ display: 'flex', gap: '1rem', color: 'var(--gh-dark-fg-muted)' }}>
-          <span>{new Date(post.date).toLocaleDateString('pt-BR')}</span>
+  const posts = postsData?.items || []
+
+
+
+    return(
+    <>
+    <section id="conteudo" style={{ marginTop: '4rem' }}>
+        <h2 style={{ fontSize: '2rem', marginBottom: '2.5rem', borderBottom: '2px solid var(--gh-dark-border-default)', paddingBottom: '0.8rem' }}>
+          Blog & Artigos
+        </h2>
+
+        <SearchBar 
+          value={search} 
+          onChange={(val) => { setSearch(val); setPage(1); }} 
+          placeholder="O que você quer ler hoje?" 
+        />
+
+        <TagFilter 
+          tags={tags} 
+          selectedTag={tagFilter} 
+          onSelect={(id) => { setTagFilter(id); setPage(1); }} 
+        />
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          {posts.length > 0 ? posts.map(post => (
+            <PostCard key={post.id} post={post} tags={tags} />
+          )) : (
+            <div style={{ textAlign: 'center', padding: '6rem' }}>
+              <p style={{ fontSize: '1.2rem', color: 'var(--gh-dark-fg-muted)' }}>Nenhum artigo encontrado para esta pesquisa.</p>
+            </div>
+          )}
         </div>
-      </header>
-      
-      <div className="markdown-body" style={{ color: 'var(--gh-dark-fg-default)', lineHeight: '1.8' }}>
-        <ReactMarkdown 
-          remarkPlugins={[remarkGfm]} 
-          rehypePlugins={[rehypeRaw]}
-        >
-          {post.content}
-        </ReactMarkdown>
-      </div>
-    </article>
-  )
+
+        <Pagination 
+          total={postsData?.total} 
+          perPage={postsData?.per_page} 
+          currentPage={page} 
+          onPageChange={setPage} 
+        />
+      </section>
+      </>)
 }
