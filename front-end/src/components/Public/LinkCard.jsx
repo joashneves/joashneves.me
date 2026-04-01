@@ -10,7 +10,7 @@ export default function LinkCard({ link, tags }) {
         </p>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
           {link.tag_ids?.map(tagId => {
-            const tag = tags?.find(t => t.id === tagId)
+            const tag = tags?.items?.find(t => t.id === tagId)
             return tag && <span key={tagId} style={tagBadgeStyle}># {tag.name}</span>
           })}
         </div>

@@ -3,7 +3,11 @@ from app.models.tag import Tag, db
 
 def get_all_tags():
     tags = Tag.query.all()
-    return [tag.to_dict() for tag in tags]
+    items = [tag.to_dict() for tag in tags]
+    return {
+        "items": items,
+        "total": len(items)
+    }
 
 def get_tag_by_id(identifier):
     try:

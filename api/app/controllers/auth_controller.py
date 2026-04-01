@@ -35,15 +35,18 @@ def login(data):
         "message": "Login realizado com sucesso",
         "user": user.to_dict()
     }))
-    
+
+    # Configuração de Cookie para Desenvolvimento/Produção
+    # samesite='None' com secure=True é a forma mais compatível com navegadores modernos
+    # mesmo que em HTTP local, o Chrome trata 'localhost' como contexto seguro.
     response.set_cookie(
         "session_token",
         token,
         httponly=True,
-        secure=False, # Mudar para True em produção (HTTPS)
-        samesite='Lax', # Mudar para None em produção se API e Front forem subdomínios diferentes
+        secure=True,     # Tentar True mesmo em HTTP local para permitir SameSite=None
+        samesite='None', # Permite envio entre portas diferentes (localhost:5173 -> localhost:5000)
         expires=expires_at,
-        path='/' # Garante que o cookie esteja disponível em todas as rotas da API
+        path='/'
     )
     
     return response

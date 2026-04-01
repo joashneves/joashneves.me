@@ -7,7 +7,7 @@ export default function TagFilter({ tags, selectedTag, onSelect }) {
       >
         Tudo
       </button>
-      {tags?.map(tag => (
+      {tags?.items?.map(tag => (
         <button 
           key={tag.id}
           onClick={() => onSelect(tag.id)}

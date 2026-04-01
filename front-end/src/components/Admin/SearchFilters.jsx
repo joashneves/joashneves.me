@@ -28,7 +28,7 @@ export default function SearchFilters({ search, setSearch, tagFilter, setTagFilt
         }}
       >
         <option value="">Todas as Tags</option>
-        {tags?.map(tag => (
+        {tags?.items?.map(tag => (
           <option key={tag.id} value={tag.id}># {tag.name}</option>
         ))}
       </select>

@@ -2,13 +2,11 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import { useParams } from 'react-router-dom'
-import useSWR from 'swr'
-
-const fetcher = (url) => fetch(url).then((res) => res.json())
+import { useApi } from '../../services/api'
 
 export default function PostContent() {
   const { slug } = useParams()
-  const { data: post, error, isLoading } = useSWR(`http://localhost:5000/api/posts/${slug}`, fetcher)
+  const { data: post, isError: error, isLoading } = useApi(`/posts/${slug}`)
 
   if (isLoading) return <div style={{ color: 'white', textAlign: 'center', padding: '5rem' }}>Carregando post...</div>
   if (error || !post || post.error) return <div style={{ color: 'white', textAlign: 'center', padding: '5rem' }}>Post não encontrado.</div>

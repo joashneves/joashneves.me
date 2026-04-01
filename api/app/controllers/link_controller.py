@@ -21,20 +21,26 @@ def get_all_links():
 
     if tag_id:
         try:
-            # Garante que estamos buscando o UUID no JSON
+            # PostgreSQL: .contains([item]) funciona com JSONB e as vezes JSON 
+            # Mas vamos garantir que o filtro seja robusto
             stmt = stmt.filter(Link.tag_ids.contains([tag_id]))
-        except Exception:
+        except Exception as e:
+            print(f"Erro ao filtrar links por tag: {e}")
+            # Fallback se .contains falhar (pode acontecer em alguns drivers)
             pass
 
-    pagination = stmt.paginate(page=page, per_page=per_page, error_out=False)
-
-    return {
-        "items": [l.to_dict() for l in pagination.items],
-        "total": pagination.total,
-        "page": pagination.page,
-        "per_page": pagination.per_page,
-        "pages": pagination.pages
-    }
+    try:
+        pagination = stmt.paginate(page=page, per_page=per_page, error_out=False)
+        return {
+            "items": [l.to_dict() for l in pagination.items],
+            "total": pagination.total,
+            "page": pagination.page,
+            "per_page": pagination.per_page,
+            "pages": pagination.pages
+        }
+    except Exception as e:
+        print(f"Erro na paginação de links: {e}")
+        return {"items": [], "total": 0, "error": str(e)}
 
 def get_link_by_id(identifier):
     link = None

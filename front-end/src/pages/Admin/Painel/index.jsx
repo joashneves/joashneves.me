@@ -1,17 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../../../hooks/useAuth'
-import useSWR from 'swr'
+import { useApi } from '../../../services/api'
 import AdminForms from '../../../components/Admin/AdminForms'
 import ItemList from '../../../components/Admin/ItemList'
 import SearchFilters from '../../../components/Admin/SearchFilters'
-
-const fetcher = (url) => fetch(url, { credentials: 'include' }).then(async (res) => {
-  if (!res.ok) {
-    const errorData = await res.json();
-    throw new Error(errorData.error || `HTTP error! status: ${res.status}`);
-  }
-  return res.json();
-});
 
 export default function Painel() {
   const { user, logout } = useAuth()
@@ -19,44 +11,46 @@ export default function Painel() {
   const [search, setSearch] = useState('')
   const [tagFilter, setTagFilter] = useState('')
   const [page, setPage] = useState(1)
-  const [editingItem, setEditingItem] = useState(null) // Estado para gerenciar o item em edição
+  const [editingItem, setEditingItem] = useState(null)
 
-  // Fetching tags separately as they are needed for multiple tabs
-  const { data: tags } = useSWR('/api/tags/', fetcher)
+  // O data aqui já é a lista de tags
+  const { data: tags, isError: tagsError } = useApi('/tags/')
+  console.log("TAGS DATA:", tags, "ERROR:", tagsError);
   
-  // Fetching items for the active tab
-  const apiUrl = `/api/${activeTab}/?q=${search}&tag=${tagFilter}&page=${page}`;
-  const { data: itemsData, mutate } = useSWR(apiUrl, fetcher);
+  // O data aqui é { items, total, ... }
+  const { data: allLinksData } = useApi('/links/?per_page=100')
+  const allLinks = allLinksData?.items || []
+  
+  const apiUrl = `/${activeTab}/?q=${search}&tag=${tagFilter}&page=${page}`;
+  const { data: itemsData, mutate, isError: itemsError } = useApi(apiUrl);
+  
   const items = itemsData?.items || []
-  const paginationData = {
-    total: itemsData?.total,
-    per_page: itemsData?.per_page,
-    page: itemsData?.page,
-    pages: itemsData?.pages
-  }
 
-  // Reset pagination and search when tab changes
+  // Feedback de erro para depuração
+  useEffect(() => {
+    if (tagsError) console.error("Erro ao carregar tags:", tagsError);
+    if (itemsError) console.error("Erro ao carregar itens:", itemsError);
+  }, [tagsError, itemsError]);
+
   useEffect(() => {
     setPage(1);
     setSearch('');
     setTagFilter('');
-    setEditingItem(null); // Clear editing state when tab changes
+    setEditingItem(null);
   }, [activeTab]);
 
-  // Handler to set item for editing
   const handleEdit = (item) => {
     setEditingItem(item);
   };
 
-  // Handler to cancel editing
   const handleCancelEdit = () => {
     setEditingItem(null);
   };
 
   const handleTabChange = (tab) => {
     setActiveTab(tab)
-    setEditingItem(null) // Clear editing state when tab changes
-    setPage(1) // Reset page
+    setEditingItem(null)
+    setPage(1)
   }
 
   return (
@@ -68,12 +62,25 @@ export default function Painel() {
         </div>
         <button 
           onClick={logout}
-          style={{ /* ... button styles ... */ }}
+          style={{ 
+            background: 'var(--gh-dark-danger)', 
+            color: 'white', 
+            border: 'none', 
+            padding: '0.5rem 1rem', 
+            borderRadius: '6px', 
+            cursor: 'pointer' 
+          }}
         >
           Sair
         </button>
       </header>
       
+      { (tagsError || itemsError) && (
+        <div style={{ background: '#3b1d1d', color: '#ff7b72', padding: '1rem', borderRadius: '6px', marginBottom: '2rem', border: '1px solid #ff7b72' }}>
+          <strong>Aviso:</strong> {tagsError?.message || itemsError?.message}
+        </div>
+      )}
+
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
         {['posts', 'links', 'tags', 'projects'].map(tab => (
           <button 
@@ -111,19 +118,21 @@ export default function Painel() {
           <AdminForms 
             activeTab={activeTab} 
             tags={tags} 
+            links={allLinks}
             mutate={mutate} 
-            editingItem={editingItem} // Passando o item para edição
-            onCancelEdit={handleCancelEdit} // Passando a função para cancelar
+            editingItem={editingItem} 
+            onCancelEdit={handleCancelEdit} 
           />
         </div>
 
         <div style={{ padding: '1.5rem', border: '1px solid var(--gh-dark-border-default)', borderRadius: '12px', background: 'var(--gh-dark-bg-muted)' }}>
           <ItemList 
             activeTab={activeTab} 
-            data={{ items, total: itemsData?.total, per_page: itemsData?.per_page, page: itemsData?.page, pages: itemsData?.pages }} 
+            data={itemsData} 
             page={page} 
             setPage={setPage} 
-            onEditItem={handleEdit} // Passando a função para editar
+            onEditItem={handleEdit} 
+            mutate={mutate} 
           />
         </div>
       </div>

@@ -22,6 +22,7 @@ def get_link(identifier):
 @requires_role(Role.MASTER)
 def add_link():
     data = request.get_json()
+    print(data)
     new_link = create_link(data)
     return jsonify(new_link), 201
 

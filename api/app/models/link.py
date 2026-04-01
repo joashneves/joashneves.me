@@ -2,6 +2,8 @@ import uuid
 from datetime import datetime
 from .tag import db
 
+from sqlalchemy.dialects.postgresql import JSONB
+
 class Link(db.Model):
     __tablename__ = 'links'
 
@@ -10,7 +12,7 @@ class Link(db.Model):
     description = db.Column(db.String(400))
     url = db.Column(db.String(500), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
-    tag_ids = db.Column(db.JSON) # List of UUID strings
+    tag_ids = db.Column(JSONB) # List of UUID strings
 
     def __init__(self, title, description, url, tag_ids=None, date=None):
         self.title = title

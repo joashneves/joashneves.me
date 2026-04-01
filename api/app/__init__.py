@@ -3,13 +3,17 @@ from flask_cors import CORS
 import os
 
 def create_app():
-    # Caminho correto: api/static
-    # __file__ está em api/app/__init__.py, subimos um nível para api/
     BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     STATIC_DIR = os.path.join(BASE_DIR, "static")
 
     app = Flask(__name__, static_folder=STATIC_DIR)
-    CORS(app)
+    
+    # Configuração de CORS centralizada e robusta
+    CORS(app, 
+         supports_credentials=True, 
+         origins=["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:3000"],
+         allow_headers=["Content-Type", "Authorization", "Accept"],
+         methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
 
     # Import Blueprints
     from .routes.post_routes import post_bp
@@ -27,7 +31,6 @@ def create_app():
     app.register_blueprint(upload_bp, url_prefix='/api/upload')
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
 
-    # Rota para servir os arquivos da pasta static/uploads
     @app.route('/static/uploads/<path:filename>')
     def serve_upload(filename):
         uploads_path = os.path.join(STATIC_DIR, "uploads")

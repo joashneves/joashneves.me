@@ -13,7 +13,7 @@ export default function PostCard({ post, tags }) {
             <span style={{ fontSize: '0.9rem', color: 'var(--gh-dark-fg-muted)' }}>{new Date(post.date).toLocaleDateString('pt-BR')}</span>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
               {post.tag_ids?.map(tagId => {
-                const tag = tags?.find(t => t.id === tagId)
+                const tag = tags?.items?.find(t => t.id === tagId)
                 return tag && <span key={tagId} style={tagStyle}>#{tag.name}</span>
               })}
             </div>

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { mutate } from 'swr'
 import Button from '../../../components/Button'
+import { API_BASE_URL } from '../../../services/api'
 
 export default function Login() {
   const [user, setUser] = useState('')
@@ -16,7 +17,7 @@ export default function Login() {
     setLoading(true)
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user, senha }),
@@ -28,7 +29,7 @@ export default function Login() {
       if (response.ok) {
         // Injeta os dados do usuário diretamente no cache do SWR sem esperar o fetch
         // Isso faz o ProtectedRoute liberar o acesso instantaneamente
-        mutate('http://localhost:5000/api/auth/me', { user: data.user }, false)
+        mutate(`${API_BASE_URL}/auth/me`, { user: data.user }, false)
         
         // Redireciona logo em seguida
         navigate('/adm/painel')

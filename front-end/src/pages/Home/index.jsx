@@ -1,19 +1,8 @@
-import React, { useState } from 'react'
-import useSWR from 'swr'
+import React from 'react'
 import Button from '../../components/Button'
 import ProjectCard from '../../components/Public/ProjectCard'
 import PostCard from '../../components/Public/PostCard'
 import { useApi } from '../../services/api'
-
-
-// Fetcher para SWR
-const fetcher = (url) => fetch(url, { credentials: 'include' }).then(async (res) => {
-  if (!res.ok) {
-    const errorData = await res.json();
-    throw new Error(errorData.error || `HTTP error! status: ${res.status}`);
-  }
-  return res.json();
-});
 
 export default function Home() {
 

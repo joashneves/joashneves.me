@@ -10,6 +10,8 @@ def slugify(text):
     text = text.strip('-')
     return text
 
+from sqlalchemy.dialects.postgresql import JSONB
+
 class Post(db.Model):
     __tablename__ = 'posts'
 
@@ -18,7 +20,7 @@ class Post(db.Model):
     title = db.Column(db.String(200), nullable=False)
     description = db.Column(db.String(500))
     content = db.Column(db.Text, nullable=False)
-    tag_ids = db.Column(db.JSON) # List of UUID strings
+    tag_ids = db.Column(JSONB) # List of UUID strings
     date = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __init__(self, title, description, content, tag_ids=None, date=None, slug=None):

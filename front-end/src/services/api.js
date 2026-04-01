@@ -1,11 +1,27 @@
 import useSWR from 'swr'
 
-const API_BASE_URL = 'http://127.0.0.1:5000/api'
+// No desenvolvimento com Proxy do Vite, usamos o caminho relativo.
+// Isso evita problemas de CORS e Cookies SameSite.
+export const API_BASE_URL = '/api'
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+export const fetcher = (url) => fetch(url, { 
+  method: 'GET',
+  credentials: 'include'
+}).then(async (res) => {
+  if (!res.ok) {
+    let errorMessage = `Erro ${res.status}`
+    try {
+      const errorData = await res.json()
+      errorMessage = errorData.error || errorMessage
+    } catch (e) { }
+    throw new Error(errorMessage)
+  }
+  return res.json()
+})
 
 export const useApi = (endpoint) => {
-  const { data, error, mutate } = useSWR(`${API_BASE_URL}${endpoint}`, fetcher)
+  const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
+  const { data, error, mutate } = useSWR(`${API_BASE_URL}${path}`, fetcher)
   
   return {
     data,
@@ -16,23 +32,42 @@ export const useApi = (endpoint) => {
 }
 
 export const postData = async (endpoint, payload) => {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+  const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
+  const response = await fetch(`${API_BASE_URL}${path}`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
+    credentials: 'include',
   })
   return response.json()
 }
 
-export const uploadImage = async (file) => {
-  const formData = new FormData()
-  formData.append('file', file)
-  
-  const response = await fetch(`${API_BASE_URL}/upload/`, {
-    method: 'POST',
+export const putData = async (endpoint, payload) => {
+  const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
+  const response = await fetch(`${API_BASE_URL}${path}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    credentials: 'include',
+  })
+  return response.json()
+}
+
+export const deleteData = async (endpoint) => {
+  const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
+  const response = await fetch(`${API_BASE_URL}${path}`, {
+    method: 'DELETE',
+    credentials: 'include',
+  })
+  return response.json()
+}
+
+export const postFormData = async (endpoint, formData, method = 'POST') => {
+  const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
+  const response = await fetch(`${API_BASE_URL}${path}`, {
+    method: method,
     body: formData,
+    credentials: 'include',
   })
   return response.json()
 }

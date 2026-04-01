@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
-CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "http://localhost:5173"}})
+# O CORS agora é configurado centralmente dentro do create_app()
 
 if __name__ == "__main__":
     with app.app_context():

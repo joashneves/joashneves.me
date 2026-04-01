@@ -40,7 +40,8 @@ def upload_image():
             
             # Retorna a URL relativa para o front-end
             # Ajustado para bater com a rota de servir estáticos
-            image_url = f"http://127.0.0.1:5000/static/uploads/{unique_filename}"
+            host = request.host_url.rstrip('/')
+            image_url = f"{host}/static/uploads/{unique_filename}"
             
             return jsonify({
                 "message": "Upload realizado com sucesso!",
