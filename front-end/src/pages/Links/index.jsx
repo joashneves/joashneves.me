@@ -22,18 +22,20 @@ export default function LinksPage() {
         <p style={{ fontSize: '1.1rem', color: 'var(--gh-dark-fg-muted)' }}>
           Recursos, ferramentas e sites úteis salvos por mim.
         </p>
+        <div style={{ width: '100%', height: '1px', background: 'var(--gh-dark-border-default)', marginTop: '2rem' }}></div>
+
       </header>
 
-      <SearchBar 
-        value={search} 
-        onChange={(val) => { setSearch(val); setPage(1); }} 
-        placeholder="Pesquisar por título ou descrição..." 
+      <SearchBar
+        value={search}
+        onChange={(val) => { setSearch(val); setPage(1); }}
+        placeholder="Pesquisar por título ou descrição..."
       />
 
-      <TagFilter 
-        tags={tags} 
-        selectedTag={tagFilter} 
-        onSelect={(id) => { setTagFilter(id); setPage(1); }} 
+      <TagFilter
+        tags={tags}
+        selectedTag={tagFilter}
+        onSelect={(id) => { setTagFilter(id); setPage(1); }}
       />
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }}>
@@ -46,11 +48,11 @@ export default function LinksPage() {
         )}
       </div>
 
-      <Pagination 
-        total={linksData?.total} 
-        perPage={linksData?.per_page} 
-        currentPage={page} 
-        onPageChange={setPage} 
+      <Pagination
+        total={linksData?.total}
+        perPage={linksData?.per_page}
+        currentPage={page}
+        onPageChange={setPage}
       />
     </section>
   )

@@ -26,7 +26,9 @@ export default function Home() {
         <p style={{ fontSize: '1.3rem', color: 'var(--gh-dark-fg-muted)', maxWidth: '700px', margin: '0 auto' }}>
           Fique por dentro dos meus últimos projetos, artigos e links interessantes.
         </p>
-      </header>
+                  <div style={{ width: '100%', height: '1px', background: 'var(--gh-dark-border-default)', marginTop: '2rem' }}></div>
+
+              </header>
 
       {allLoading && <p style={{color: 'var(--gh-dark-fg-muted)', fontSize: '1.2rem'}}>Carregando novidades...</p>}
       {hasErrors && <p style={{color: '#f85149', fontSize: '1.2rem'}}>Erro ao carregar novidades.</p>}

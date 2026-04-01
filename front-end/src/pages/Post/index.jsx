@@ -23,10 +23,16 @@ export default function Post(){
 
     return(
     <>
-    <section id="conteudo" style={{ marginTop: '4rem' }}>
-        <h2 style={{ fontSize: '2rem', marginBottom: '2.5rem', borderBottom: '2px solid var(--gh-dark-border-default)', paddingBottom: '0.8rem' }}>
-          Blog & Artigos
-        </h2>
+    <section id="conteudo" style={{ maxWidth: '1000px', margin: '0 auto', padding: '4rem 2rem' }}>
+        <header style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <h1 style={{ fontSize: '4.5rem', color: 'var(--title-green-color)', fontStyle: 'italic', fontWeight: 'bold' }}>
+            Blog & Artigos
+          </h1>
+          <p style={{ fontSize: '1.2rem', color: 'var(--gh-dark-fg-muted)', marginTop: '1rem' }}>
+            Explorando tecnologia, desenvolvimento e outras curiosidades.
+          </p>
+          <div style={{ width: '100%', height: '1px', background: 'var(--gh-dark-border-default)', marginTop: '2rem' }}></div>
+        </header>
 
         <SearchBar 
           value={search} 

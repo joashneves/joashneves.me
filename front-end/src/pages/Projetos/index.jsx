@@ -13,10 +13,14 @@ export default function Projetos() {
 
   return (
     <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 2rem' }}>
-      <header style={{ marginBottom: '4rem' }}>
+      <header style={{ textAlign: 'center', marginBottom: '4rem' }}>
         <h1 style={{ fontSize: '4.5rem', color: 'var(--title-green-color)', fontStyle: 'italic', fontWeight: 'bold' }}>
           {'{ Projetos }'}
         </h1>
+        <p style={{ fontSize: '1.2rem', color: 'var(--gh-dark-fg-muted)', marginTop: '1rem' }}>
+          Galeria de projetos autorais e experimentais.
+        </p>
+        <div style={{ width: '100%', height: '1px', background: 'var(--gh-dark-border-default)', marginTop: '2rem' }}></div>
       </header>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '3rem' }}>
