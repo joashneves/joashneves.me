@@ -20,24 +20,24 @@ export default function Home() {
   return (
     <section style={{ padding: '4rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <header style={{ textAlign: 'center', marginBottom: '5rem' }}>
-        <h1 style={{ fontSize: '4.5rem', color: 'var(--title-green-color)', fontStyle: 'italic', fontWeight: 'bold', margin: '0 0 1.5rem 0' }}>
+        <h1 style={{ fontSize: '4.5rem', color: 'var(--title-green-color)', fontWeight: 'bold', margin: '0 0 1.5rem 0' }}>
           Confira as últimas novidades
         </h1>
         <p style={{ fontSize: '1.3rem', color: 'var(--gh-dark-fg-muted)', maxWidth: '700px', margin: '0 auto' }}>
           Fique por dentro dos meus últimos projetos, artigos e links interessantes.
         </p>
-                  <div style={{ width: '100%', height: '1px', background: 'var(--gh-dark-border-default)', marginTop: '2rem' }}></div>
+        <div style={{ width: '100%', height: '1px', background: 'var(--gh-dark-border-default)', marginTop: '2rem' }}></div>
 
-              </header>
+      </header>
 
-      {allLoading && <p style={{color: 'var(--gh-dark-fg-muted)', fontSize: '1.2rem'}}>Carregando novidades...</p>}
-      {hasErrors && <p style={{color: '#f85149', fontSize: '1.2rem'}}>Erro ao carregar novidades.</p>}
+      {allLoading && <p style={{ color: 'var(--gh-dark-fg-muted)', fontSize: '1.2rem' }}>Carregando novidades...</p>}
+      {hasErrors && <p style={{ color: '#f85149', fontSize: '1.2rem' }}>Erro ao carregar novidades.</p>}
 
       {!allLoading && !hasErrors && (
         <div style={{ display: 'flex', gap: '4rem', marginBottom: '6rem', alignItems: 'flex-start', width: '100%', maxWidth: '1200px' }}>
           {/* Coluna da Esquerda: Últimos Links e Último Artigo */}
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '4rem' }}>
-            
+
             {/* Últimos Links */}
             <div>
               <h2 style={{ fontSize: '2rem', color: 'var(--title-green-color)', marginBottom: '2rem' }}>
@@ -64,7 +64,7 @@ export default function Home() {
                 <h2 style={{ fontSize: '2rem', color: 'var(--title-green-color)', marginBottom: '2rem' }}>
                   Confira o último artigo
                 </h2>
-                <PostCard post={latestPost} /> 
+                <PostCard post={latestPost} />
               </div>
             )}
           </div>
@@ -74,11 +74,11 @@ export default function Home() {
             <h2 style={{ fontSize: '2rem', color: 'var(--title-green-color)', marginBottom: '2rem' }}>
               Confira estes últimos projetos
             </h2>
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-              gap: '3rem', 
-              width: '100%' 
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '3rem',
+              width: '100%'
             }}>
               {projects.length > 0 ? projects.map(project => (
                 <ProjectCard key={project.id} project={project} />
