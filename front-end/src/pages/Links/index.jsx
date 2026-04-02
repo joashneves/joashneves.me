@@ -18,8 +18,8 @@ export default function LinksPage() {
   return (
     <section style={{ maxWidth: '900px', margin: '0 auto', padding: '6rem 2rem' }}>
       <header style={{ textAlign: 'center', marginBottom: '4rem' }}>
-        <h1 style={{ fontSize: '3rem', color: 'var(--title-green-color)' }}>Meus Links</h1>
-        <p style={{ fontSize: '1.1rem', color: 'var(--gh-dark-fg-muted)' }}>
+        <h1 >Meus Links</h1>
+        <p>
           Recursos, ferramentas e sites úteis salvos por mim.
         </p>
         <div style={{ width: '100%', height: '1px', background: 'var(--gh-dark-border-default)', marginTop: '2rem' }}></div>

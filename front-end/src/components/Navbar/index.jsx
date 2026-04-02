@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <nav className={styles.sidebar}>
       <div className={styles.topIcon}>
-        <Icon name="home" width="28" height="28" />
+        <Icon name="terminal" width="28" height="28" />
       </div>
 
       <div className={styles.menuItems}>

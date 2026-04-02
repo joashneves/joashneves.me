@@ -25,8 +25,8 @@ export default function Post(){
     <>
     <section id="conteudo" style={{ maxWidth: '1000px', margin: '0 auto', padding: '4rem 2rem' }}>
         <header style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h1 style={{ fontSize: '4.5rem', color: 'var(--title-green-color)', fontStyle: 'italic', fontWeight: 'bold' }}>
-            Blog & Artigos
+          <h1>
+            Artigos
           </h1>
           <p style={{ fontSize: '1.2rem', color: 'var(--gh-dark-fg-muted)', marginTop: '1rem' }}>
             Explorando tecnologia, desenvolvimento e outras curiosidades.

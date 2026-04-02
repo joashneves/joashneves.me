@@ -14,7 +14,7 @@ export default function Projetos() {
   return (
     <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 2rem' }}>
       <header style={{ textAlign: 'center', marginBottom: '4rem' }}>
-        <h1 style={{ fontSize: '4.5rem', color: 'var(--title-green-color)', fontStyle: 'italic', fontWeight: 'bold' }}>
+        <h1 >
           {'{ Projetos }'}
         </h1>
         <p style={{ fontSize: '1.2rem', color: 'var(--gh-dark-fg-muted)', marginTop: '1rem' }}>

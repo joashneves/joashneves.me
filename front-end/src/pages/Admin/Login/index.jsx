@@ -59,7 +59,7 @@ export default function Login() {
         width: '100%',
         maxWidth: '400px'
       }}>
-        <h2 style={{ color: 'var(--title-green-color)', marginBottom: '1.5rem' }}>Acesso Admin</h2>
+        <h1 style={{ color: 'var(--title-green-color)', marginBottom: '1.5rem' }}>Acesso Admin</h1>
         
         {error && <p style={{ color: '#f85149', marginBottom: '1rem', fontSize: '0.9rem' }}>{error}</p>}
 

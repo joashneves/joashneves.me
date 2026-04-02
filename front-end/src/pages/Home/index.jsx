@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <section style={{ padding: '4rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <header style={{ textAlign: 'center', marginBottom: '5rem' }}>
-        <h1 style={{ fontSize: '4.5rem', color: 'var(--title-green-color)', fontWeight: 'bold', margin: '0 0 1.5rem 0' }}>
+        <h1 >
           Confira as últimas novidades
         </h1>
         <p style={{ fontSize: '1.3rem', color: 'var(--gh-dark-fg-muted)', maxWidth: '700px', margin: '0 auto' }}>

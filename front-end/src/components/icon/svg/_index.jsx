@@ -21,3 +21,7 @@ export { default as vscode } from "./vscode.jsx";
 export { default as gml } from "./gml.jsx";
 export { default as itchio } from "./itchio.jsx";
 export { default as steam } from "./steam.jsx";
+export { default as post } from "./post.jsx"
+export { default as home } from "./home.jsx"
+export { default as projetos } from "./projetos.jsx"
+export { default as terminal } from "./terminal.jsx"

@@ -2,10 +2,12 @@
 
 
 :root {
-  --title-green-color: #2cb67d;
+  --title-green-color: #1E9985;
+  --title-purple-color: #8b5eb5;
   --background-grey: #27282c;
   --background-color-dark: #16161a;
-  --efects-purple: #7f5af0;
+  --efects-purple: #8b5eb5;
+  --efects-green: #1E9985;
   --component-background-grey: #94a1b2;
   --font-in-component: #010101;
 
@@ -44,7 +46,7 @@ body {
 h1 {
   font-family: "Play", sans-serif;
   font-size: 64px;
-  color: #2cb67d;
+  color: var(--title-green-color);
 }
 h2 {
   font-family: "Play", sans-serif;
