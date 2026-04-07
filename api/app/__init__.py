@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, redirect, jsonify
+from flask import Flask, send_from_directory, redirect, jsonify, request
 from flask_cors import CORS
 from sqlalchemy import text
 import os
@@ -35,6 +35,45 @@ def create_app():
     app.register_blueprint(upload_bp, url_prefix='/api/upload')
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
 
+    @app.route('/api/setup', methods=['POST'])
+    def setup():
+        """Rota protegida para inicializar o banco e provisionar o MASTER."""
+        setup_token = request.headers.get('X-Setup-Token')
+        master_pass = os.getenv('MASTER_PASSWORD')
+
+        if not setup_token or setup_token != master_pass:
+            return jsonify({"error": "Unauthorized"}), 401
+
+        from .models.tag import db
+        from .models.user import User, Role
+        from .models import link, post, project, tag, user, session
+        
+        try:
+            db.create_all()
+            
+            # Provisionamento do Usuário MASTER
+            master_user = os.getenv('MASTER_USER')
+            master_email = os.getenv('MASTER_EMAIL')
+            
+            if master_user and master_email and master_pass:
+                existing = User.query.filter_by(cargo=Role.MASTER).first()
+                if not existing:
+                    new_master = User(
+                        user=master_user,
+                        email=master_email,
+                        senha=master_pass,
+                        cargo=Role.MASTER
+                    )
+                    db.session.add(new_master)
+                    db.session.commit()
+                    return jsonify({"status": "success", "message": f"Database initialized and MASTER user '{master_user}' created."}), 201
+                else:
+                    return jsonify({"status": "success", "message": "Database checked. MASTER user already exists."}), 200
+            
+            return jsonify({"status": "success", "message": "Database initialized."}), 200
+        except Exception as e:
+            return jsonify({"status": "error", "message": str(e)}), 500
+
     @app.route('/static/uploads/<path:filename>')
     def serve_upload(filename):
         uploads_path = os.path.join(STATIC_DIR, "uploads")
@@ -44,15 +83,13 @@ def create_app():
     def status():
         try:
             from .models.tag import db
-            # Verifica a conexão com o banco de dados
             db.session.execute(text('SELECT 1'))
             return jsonify({
                 "status": "online",
                 "database": "connected",
-                "version": "1.1.0"
+                "version": "1.3.0"
             }), 200
         except Exception as e:
-            # Não expõe detalhes do erro em produção, a menos que seja debug
             error_msg = str(e) if os.getenv('FLASK_ENV') == 'development' else "Database connection failed"
             return jsonify({
                 "status": "online",
@@ -62,7 +99,6 @@ def create_app():
 
     @app.route('/')
     def index():
-        # Redireciona para o site confiável (Front-end)
         return redirect(FRONT_URL)
 
     return app
