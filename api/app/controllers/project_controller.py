@@ -1,26 +1,71 @@
 import os
 import re
 import uuid
+import requests
+import io
 from flask import request, jsonify
 from PIL import Image
 from sqlalchemy import or_
 from app.models.project import Project, db
 
-# Configuração de caminhos (Mantido para o upload funcionar)
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-UPLOAD_FOLDER = os.path.join(BASE_DIR, "static", "uploads")
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+# Configuração do Vercel Blob
+VERCEL_BLOB_API = "https://blob.vercel-storage.com"
+BLOB_TOKEN = os.getenv("BLOB_READ_WRITE_TOKEN")
 
 def is_valid_url(url):
     if not url: return True 
     regex = re.compile(
-        r'^https?://' # Simplificado para focar em http/https
+        r'^https?://' 
         r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'
         r'localhost|'
         r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'
         r'(?::\d+)?'
         r'(?:/?|[/?]\S+)$', re.IGNORECASE)
     return re.match(regex, url) is not None
+
+def upload_to_vercel_blob(file_content, filename):
+    """Realiza o upload do conteúdo binário para o Vercel Blob Storage."""
+    if not BLOB_TOKEN:
+        print("[ERROR] BLOB_READ_WRITE_TOKEN não configurado no .env!")
+        return None
+    
+    url = f"{VERCEL_BLOB_API}/{filename}"
+    headers = {
+        "Authorization": f"Bearer {BLOB_TOKEN}",
+        "x-api-version": "1"
+    }
+    
+    try:
+        response = requests.put(url, data=file_content, headers=headers)
+        if response.status_code == 200:
+            return response.json().get("url")
+        print(f"[ERROR] Vercel Blob API retornou {response.status_code}: {response.text}")
+        return None
+    except Exception as e:
+        print(f"[ERROR] Erro na requisição ao Vercel Blob: {e}")
+        return None
+
+def delete_from_vercel_blob(url):
+    """Remove um arquivo do Vercel Blob Storage via API REST."""
+    if not BLOB_TOKEN or not url or "public.blob.vercel-storage.com" not in url:
+        return
+    
+    headers = {
+        "Authorization": f"Bearer {BLOB_TOKEN}",
+        "Content-Type": "application/json"
+    }
+    
+    payload = {"urls": [url]}
+    
+    try:
+        # A Vercel exige um POST para o endpoint /delete
+        response = requests.post(f"{VERCEL_BLOB_API}/delete", json=payload, headers=headers)
+        if response.status_code == 200:
+            print(f"[SUCCESS] Arquivo deletado do Blob: {url}")
+        else:
+            print(f"[ERROR] Falha ao deletar do Blob ({response.status_code}): {response.text}")
+    except Exception as e:
+        print(f"[ERROR] Exceção ao deletar do Vercel Blob: {e}")
 
 def get_all_projects():
     query_text = request.args.get('q', '').lower()
@@ -64,28 +109,25 @@ def create_project():
         repo_link = request.form.get("repo_link")
         alternative_link = request.form.get("alternative_link", "")
         slug = request.form.get("slug")
-        link_ids = request.form.getlist("link_ids") # Se enviado como múltiplos campos
+        link_ids = request.form.getlist("link_ids")
 
         if not title or not repo_link:
             return jsonify({"error": "Título e Link do Repositório são obrigatórios"}), 400
-
-        if not is_valid_url(repo_link) or (alternative_link and not is_valid_url(alternative_link)):
-            return jsonify({"error": "Um ou mais links informados são inválidos"}), 400
 
         image_url = ""
         if 'file' in request.files:
             file = request.files['file']
             if file.filename != '':
-                unique_filename = f"{uuid.uuid4().hex}.webp"
-                filepath = os.path.join(UPLOAD_FOLDER, unique_filename)
-                
                 img = Image.open(file)
                 if img.mode in ("RGBA", "P"):
                     img = img.convert("RGB")
-                img.save(filepath, "WEBP", quality=80, optimize=True)
                 
-                host = request.host_url.rstrip('/')
-                image_url = f"{host}/static/uploads/{unique_filename}"
+                buffer = io.BytesIO()
+                img.save(buffer, format="WEBP", quality=80, optimize=True)
+                buffer.seek(0)
+                
+                unique_filename = f"projects/{uuid.uuid4().hex}.webp"
+                image_url = upload_to_vercel_blob(buffer.getvalue(), unique_filename) or ""
 
         new_project = Project(
             title=title,
@@ -99,25 +141,12 @@ def create_project():
         
         db.session.add(new_project)
         db.session.commit()
-        
         return jsonify(new_project.to_dict()), 201
 
     except Exception as e:
         db.session.rollback()
-        print(f"Erro no Project Controller: {e}")
+        print(f"Erro no Create Project: {e}")
         return jsonify({"error": "Erro interno ao criar projeto"}), 500
-
-def delete_file_from_url(url):
-    """Remove o arquivo físico do servidor a partir da sua URL estática."""
-    if not url or "static/uploads/" not in url:
-        return
-    try:
-        filename = url.split('/')[-1]
-        filepath = os.path.join(UPLOAD_FOLDER, filename)
-        if os.path.exists(filepath):
-            os.remove(filepath)
-    except Exception as e:
-        print(f"Erro ao deletar arquivo físico ({url}): {e}")
 
 def update_project(identifier):
     try:
@@ -139,20 +168,22 @@ def update_project(identifier):
         if 'file' in request.files:
             file = request.files['file']
             if file.filename != '':
-                # Remove a imagem antiga antes de salvar a nova
-                if project.image_url:
-                    delete_file_from_url(project.image_url)
-
-                unique_filename = f"{uuid.uuid4().hex}.webp"
-                filepath = os.path.join(UPLOAD_FOLDER, unique_filename)
-                
                 img = Image.open(file)
                 if img.mode in ("RGBA", "P"):
                     img = img.convert("RGB")
-                img.save(filepath, "WEBP", quality=80, optimize=True)
                 
-                host = request.host_url.rstrip('/')
-                project.image_url = f"{host}/static/uploads/{unique_filename}"
+                buffer = io.BytesIO()
+                img.save(buffer, format="WEBP", quality=80, optimize=True)
+                buffer.seek(0)
+                
+                unique_filename = f"projects/{uuid.uuid4().hex}.webp"
+                new_url = upload_to_vercel_blob(buffer.getvalue(), unique_filename)
+                
+                if new_url:
+                    # Deleta a imagem antiga do Vercel Blob antes de atualizar
+                    if project.image_url:
+                        delete_from_vercel_blob(project.image_url)
+                    project.image_url = new_url
 
         db.session.commit()
         return jsonify(project.to_dict()), 200
@@ -165,14 +196,13 @@ def update_project(identifier):
 def delete_project(identifier):
     try:
         project_data = get_project_by_slug_or_id(identifier)
-        if not project_data:
-            return False
+        if not project_data: return False
         
         project = Project.query.get(project_data['id'])
         
-        # Remove o arquivo físico da imagem antes de deletar o registro
+        # Deleta a imagem do Vercel Blob antes de remover o registro
         if project.image_url:
-            delete_file_from_url(project.image_url)
+            delete_from_vercel_blob(project.image_url)
 
         db.session.delete(project)
         db.session.commit()
