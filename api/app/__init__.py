@@ -1,5 +1,6 @@
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, redirect, jsonify
 from flask_cors import CORS
+from sqlalchemy import text
 import os
 
 def create_app():
@@ -8,10 +9,13 @@ def create_app():
 
     app = Flask(__name__, static_folder=STATIC_DIR)
     
+    # URL do front-end permitida (CORS) e para redirecionamento
+    FRONT_URL = os.getenv('FRONT_URL', 'http://localhost:5173')
+    
     # Configuração de CORS centralizada e robusta
     CORS(app, 
          supports_credentials=True, 
-         origins=["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:3000"],
+         origins=[FRONT_URL, "http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:3000"],
          allow_headers=["Content-Type", "Authorization", "Accept"],
          methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
 
@@ -36,8 +40,29 @@ def create_app():
         uploads_path = os.path.join(STATIC_DIR, "uploads")
         return send_from_directory(uploads_path, filename)
 
+    @app.route('/api/status')
+    def status():
+        try:
+            from .models.tag import db
+            # Verifica a conexão com o banco de dados
+            db.session.execute(text('SELECT 1'))
+            return jsonify({
+                "status": "online",
+                "database": "connected",
+                "version": "1.1.0"
+            }), 200
+        except Exception as e:
+            # Não expõe detalhes do erro em produção, a menos que seja debug
+            error_msg = str(e) if os.getenv('FLASK_ENV') == 'development' else "Database connection failed"
+            return jsonify({
+                "status": "online",
+                "database": "error",
+                "message": error_msg
+            }), 500
+
     @app.route('/')
     def index():
-        return {"message": "Hello World! API is online and running."}
+        # Redireciona para o site confiável (Front-end)
+        return redirect(FRONT_URL)
 
     return app
