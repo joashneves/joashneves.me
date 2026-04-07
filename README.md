@@ -1,43 +1,37 @@
 # 🚀 Joashneves.me - Blog Pessoal & Portfólio
 
-Este é o repositório do meu blog pessoal e portfólio, desenvolvido para ser uma plataforma centralizada de conteúdo, projetos e links úteis. O sistema conta com uma interface moderna baseada em Sidebar, sistema de gerenciamento de conteúdo (CMS) próprio e autenticação robusta.
+Este é o repositório do meu blog pessoal e portfólio, desenvolvido para ser uma plataforma centralizada de conteúdo, projetos e links úteis. O sistema conta com uma interface moderna inspirada em terminais digitais e uma arquitetura robusta.
 
 ---
 
-## ✨ Funcionalidades Principais
+## ✨ Funcionalidades Incríveis
 
-- **Interface Moderna:** Layout inspirado no GitHub Dark, com barra lateral fixa e estrutura responsiva.
-- **Gestão de Conteúdo (CMS):**
-  - **Posts:** Suporte a Markdown completo com renderização dinâmica.
-  - **Projetos:** Exibição de portfólio com upload de imagens e links externos.
-  - **Links:** Encurtador e agregador de links úteis.
-- **Sistema de Slugs:** URLs amigáveis (ex: `/post/titulo-do-post`) geradas automaticamente.
-- **Segurança & Autenticação:**
-  - Cookies HTTP-only para sessões seguras.
-  - Diferentes níveis de acesso (MASTER, ADMIN, USER).
-  - Provisionamento automático do usuário MASTER via `.env`.
-- **Performance:** Processamento de imagens automático para o formato `.webp` com compressão.
-- **Busca e Filtros:** Pesquisa global por texto e filtragem por Tags em tempo real (utilizando UUIDs).
+### ⌨️ Experiência Digital (Terminal Style)
+- **Efeito de Digitação:** Componente `<EstiloDigital>` que simula um terminal escrevendo letra por letra com cursor piscante.
+- **Saudações Dinâmicas:** Mensagens de boas-vindas que mudam a cada 30 minutos (como *"allons-y alonso"*, *"seja bem vindos"*, *"AAAAAAA!!!!"*) e saudações especiais para datas como Natal, Ano Novo e Páscoa.
+
+### 🛠️ Gestão de Conteúdo (CMS)
+- **Cards Inteligentes:** Componentes de Post, Link e Projeto refatorados com CSS Modules e efeitos de hover sincronizados.
+- **Botões Contextuais:** O componente de botão detecta automaticamente URLs do GitHub para exibir ícones de repositório ou links genéricos.
+- **Limpeza Automática:** O servidor apaga fisicamente as imagens antigas quando você atualiza ou deleta um projeto, mantendo o armazenamento otimizado.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
 ### Back-end (API)
-- **Linguagem:** Python 3.x
-- **Framework:** Flask
+- **Linguagem:** Python 3.x (Flask)
 - **Banco de Dados:** PostgreSQL (SQLAlchemy ORM)
 - **Processamento de Imagem:** Pillow (WebP conversion)
-- **Segurança:** Werkzeug (Hashing de senhas)
+- **Segurança:** Cookies HTTP-only & Werkzeug Hashing
 - **Deploy:** Preparado para Vercel/Docker
 
 ### Front-end
 - **Framework:** React 19 (Vite)
-- **Estilização:** CSS Modules (Variáveis Globais)
-- **Gerenciamento de Estado/Cache:** SWR (Stale-While-Revalidate)
+- **Estilização:** CSS Modules (GitHub Dark Theme)
+- **Gerenciamento de Cache:** SWR (Stale-While-Revalidate)
 - **Roteamento:** React Router Dom
 - **Markdown:** React-markdown, rehype-raw, remark-gfm
-- **Interface:** PrimeIcons e PrimeReact (componentes selecionados)
 
 ---
 
@@ -48,10 +42,10 @@ Este é o repositório do meu blog pessoal e portfólio, desenvolvido para ser u
 ├── api/                # Servidor Flask (Back-end)
 │   ├── app/            # Lógica central (Models, Controllers, Routes)
 │   ├── infra/          # Configurações de Docker/Compose
-│   └── static/uploads/ # Armazenamento de imagens processadas
+│   └── static/uploads/ # Armazenamento de imagens otimizadas (.webp)
 └── front-end/          # Interface React (Vite)
-    ├── src/components/ # Componentes reutilizáveis
-    ├── src/hooks/      # Hooks customizados (Auth, etc)
+    ├── src/components/ # Componentes (DigitalStyle, Card, Button, etc)
+    ├── src/utils/      # Utilitários (Mensagens dinâmicas, etc)
     └── src/pages/      # Páginas da aplicação
 ```
 
@@ -61,7 +55,7 @@ Este é o repositório do meu blog pessoal e portfólio, desenvolvido para ser u
 
 ### 1. Clonar o repositório
 ```bash
-git clone https://github.com/seu-usuario/joashneves.me.git
+git clone https://github.com/joashneves/joashneves.me.git
 cd joashneves.me
 ```
 
@@ -70,11 +64,9 @@ cd joashneves.me
 cd api
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
-# No Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
-- Crie um arquivo `.env` baseado no `.env.development`.
-- O usuário MASTER será criado automaticamente ao iniciar o banco de dados.
+- Configure o `.env` com seu `DATABASE_URL` e credenciais `MASTER_USER`.
 
 ### 3. Configurar o Front-end
 ```bash
@@ -85,18 +77,8 @@ npm run dev
 
 ---
 
-## ⚙️ Variáveis de Ambiente
-
-### API (.env)
-- `DATABASE_URL`: Conexão com o PostgreSQL.
-- `SECRET_KEY`: Chave para assinatura de sessões.
-- `MASTER_USER`: Nome do usuário administrador inicial.
-- `MASTER_PASS`: Senha do usuário administrador inicial.
-
----
-
 ## 📄 Licença
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está sob a licença MIT.
 
 ---
-*Desenvolvido por [Joash Neves](https://github.com/joashneves).*
+*Desenvolvido com ☕ e 🐍 por [Joash Neves](https://github.com/joashneves).*

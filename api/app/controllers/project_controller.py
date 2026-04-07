@@ -107,6 +107,18 @@ def create_project():
         print(f"Erro no Project Controller: {e}")
         return jsonify({"error": "Erro interno ao criar projeto"}), 500
 
+def delete_file_from_url(url):
+    """Remove o arquivo físico do servidor a partir da sua URL estática."""
+    if not url or "static/uploads/" not in url:
+        return
+    try:
+        filename = url.split('/')[-1]
+        filepath = os.path.join(UPLOAD_FOLDER, filename)
+        if os.path.exists(filepath):
+            os.remove(filepath)
+    except Exception as e:
+        print(f"Erro ao deletar arquivo físico ({url}): {e}")
+
 def update_project(identifier):
     try:
         project_data = get_project_by_slug_or_id(identifier)
@@ -127,6 +139,10 @@ def update_project(identifier):
         if 'file' in request.files:
             file = request.files['file']
             if file.filename != '':
+                # Remove a imagem antiga antes de salvar a nova
+                if project.image_url:
+                    delete_file_from_url(project.image_url)
+
                 unique_filename = f"{uuid.uuid4().hex}.webp"
                 filepath = os.path.join(UPLOAD_FOLDER, unique_filename)
                 
@@ -153,6 +169,11 @@ def delete_project(identifier):
             return False
         
         project = Project.query.get(project_data['id'])
+        
+        # Remove o arquivo físico da imagem antes de deletar o registro
+        if project.image_url:
+            delete_file_from_url(project.image_url)
+
         db.session.delete(project)
         db.session.commit()
         return True
