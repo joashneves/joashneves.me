@@ -4,6 +4,7 @@ import SearchBar from '../../components/Public/SearchBar'
 import TagFilter from '../../components/Public/TagFilter'
 import Pagination from '../../components/Public/Pagination'
 import LinkCard from '../../components/Public/LinkCard'
+import EstiloDigital from '../../components/DigitalStyle'
 
 export default function LinksPage() {
   const [search, setSearch] = useState('')
@@ -16,9 +17,9 @@ export default function LinksPage() {
   const links = linksData?.items || []
 
   return (
-    <section style={{ maxWidth: '900px', margin: '0 auto', padding: '6rem 2rem' }}>
+    <section style={{ maxWidth: '900px', margin: '0 auto'}}>
       <header style={{ textAlign: 'center', marginBottom: '4rem' }}>
-        <h1 >Meus Links</h1>
+        <EstiloDigital >Links encontrados por ai...</EstiloDigital>
         <p>
           Recursos, ferramentas e sites úteis salvos por mim.
         </p>

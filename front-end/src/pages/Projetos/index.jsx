@@ -3,6 +3,7 @@ import { useApi } from '../../services/api'
 import SearchBar from '../../components/Public/SearchBar'
 import Pagination from '../../components/Public/Pagination'
 import ProjectCard from '../../components/Public/ProjectCard'
+import EstiloDigital from '../../components/DigitalStyle'
 
 export default function Projetos() {
   const [search, setSearch] = useState('')
@@ -12,13 +13,13 @@ export default function Projetos() {
   const projects = projectsData?.items || []
 
   return (
-    <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 2rem' }}>
+    <section style={{ maxWidth: '1200px', margin: '0 auto'}}>
       <header style={{ textAlign: 'center', marginBottom: '4rem' }}>
-        <h1 >
-          {'{ Projetos }'}
-        </h1>
+        <EstiloDigital >
+          Projetos finalizados
+        </EstiloDigital>
         <p style={{ fontSize: '1.2rem', color: 'var(--gh-dark-fg-muted)', marginTop: '1rem' }}>
-          Galeria de projetos autorais e experimentais.
+          Galeria de projetos autorais e experimentais que ja estão disponiveis para publicos, ou que eu participei ativamente.
         </p>
         <div style={{ width: '100%', height: '1px', background: 'var(--gh-dark-border-default)', marginTop: '2rem' }}></div>
       </header>

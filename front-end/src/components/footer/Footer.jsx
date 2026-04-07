@@ -8,7 +8,7 @@ const socialNetworks = {
   github: "https://github.com/joashneves",
   coffee: "https://www.buymeacoffee.com/joashneves",
   linkedin: "https://www.linkedin.com/in/joashneves/",
-  discord: "https://discord.gg/YfV5mXN"
+  discord: "https://discord.gg/Bep9FfD5FG"
 };
 
 export default function Footer() {

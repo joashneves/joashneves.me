@@ -3,6 +3,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import { useParams } from 'react-router-dom'
 import { useApi } from '../../services/api'
+import EstiloDigital from '../../components/DigitalStyle'
 
 export default function PostContent() {
   const { slug } = useParams()
@@ -12,9 +13,9 @@ export default function PostContent() {
   if (error || !post || post.error) return <div style={{ color: 'white', textAlign: 'center', padding: '5rem' }}>Post não encontrado.</div>
 
   return (
-    <article style={{ padding: '2rem', maxWidth: '800px', margin: '4rem auto'}}>
-      <header style={{ marginBottom: '2rem' }}>
-        <h1 style={{ fontSize: '2.5rem', color: 'var(--title-green-color)', marginBottom: '1rem' }}>{post.title}</h1>
+    <article style={{ padding: '2rem', maxWidth: '800px', margin: 'auto'}}>
+      <header>
+        <EstiloDigital style={{ fontSize: '2.5rem', color: 'var(--title-green-color)'}}>{post.title}</EstiloDigital>
         <div style={{ display: 'flex', gap: '1rem', color: 'var(--gh-dark-fg-muted)' }}>
           <span>{new Date(post.date).toLocaleDateString('pt-BR')}</span>
         </div>

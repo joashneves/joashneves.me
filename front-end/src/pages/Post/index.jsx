@@ -7,6 +7,7 @@ import { useState } from 'react'
 import Button from '../../components/Button'
 import { useApi } from '../../services/api'
 import { Link } from 'react-router-dom'
+import EstiloDigital from "../../components/DigitalStyle";
 
 export default function Post(){
 
@@ -25,9 +26,9 @@ export default function Post(){
     <>
     <section id="conteudo" style={{ maxWidth: '1000px', margin: '0 auto', padding: '4rem 2rem' }}>
         <header style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h1>
-            Artigos
-          </h1>
+          <EstiloDigital>
+            Ideias escritas por mim
+          </EstiloDigital>
           <p style={{ fontSize: '1.2rem', color: 'var(--gh-dark-fg-muted)', marginTop: '1rem' }}>
             Explorando tecnologia, desenvolvimento e outras curiosidades.
           </p>
