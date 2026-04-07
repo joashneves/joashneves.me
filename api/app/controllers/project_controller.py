@@ -58,7 +58,6 @@ def delete_from_vercel_blob(url):
     payload = {"urls": [url]}
     
     try:
-        # A Vercel exige um POST para o endpoint /delete
         response = requests.post(f"{VERCEL_BLOB_API}/delete", json=payload, headers=headers)
         if response.status_code == 200:
             print(f"[SUCCESS] Arquivo deletado do Blob: {url}")
@@ -180,7 +179,6 @@ def update_project(identifier):
                 new_url = upload_to_vercel_blob(buffer.getvalue(), unique_filename)
                 
                 if new_url:
-                    # Deleta a imagem antiga do Vercel Blob antes de atualizar
                     if project.image_url:
                         delete_from_vercel_blob(project.image_url)
                     project.image_url = new_url
@@ -200,7 +198,6 @@ def delete_project(identifier):
         
         project = Project.query.get(project_data['id'])
         
-        # Deleta a imagem do Vercel Blob antes de remover o registro
         if project.image_url:
             delete_from_vercel_blob(project.image_url)
 
