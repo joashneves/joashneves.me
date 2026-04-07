@@ -2,6 +2,7 @@ from flask import Flask, send_from_directory, redirect, jsonify, request
 from flask_cors import CORS
 from sqlalchemy import text
 import os
+import re
 
 def create_app():
     BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -12,10 +13,17 @@ def create_app():
     # URL do front-end permitida (CORS) e para redirecionamento
     FRONT_URL = os.getenv('FRONT_URL', 'http://localhost:5173')
     
-    # Configuração de CORS centralizada e robusta
+    # Configuração de CORS muito mais flexível para Vercel
     CORS(app, 
          supports_credentials=True, 
-         origins=[FRONT_URL, "http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:3000"],
+         origins=[
+             FRONT_URL, 
+             "http://localhost:5173", 
+             "http://127.0.0.1:5173", 
+             "http://localhost:3000",
+             re.compile(r"https://.*\.vercel\.app"), # Permite qualquer subdomínio da Vercel
+             re.compile(r"https://joashneves\.me")    # Domínio principal
+         ],
          allow_headers=["Content-Type", "Authorization", "Accept"],
          methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
 
@@ -87,7 +95,7 @@ def create_app():
             return jsonify({
                 "status": "online",
                 "database": "connected",
-                "version": "1.3.0"
+                "version": "1.3.2"
             }), 200
         except Exception as e:
             error_msg = str(e) if os.getenv('FLASK_ENV') == 'development' else "Database connection failed"
@@ -100,5 +108,11 @@ def create_app():
     @app.route('/')
     def index():
         return redirect(FRONT_URL)
+
+    @app.errorhandler(404)
+    def handle_404(e):
+        if not request.path.startswith('/api/'):
+            return redirect(FRONT_URL)
+        return jsonify({"error": "Resource not found"}), 404
 
     return app
