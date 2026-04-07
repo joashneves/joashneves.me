@@ -1,0 +1,62 @@
+.post_link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.post_card {
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--gh-dark-border-default);
+  background: var(--gh-dark-bg-default);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.post_card:hover {
+  border-color: var(--efects-green);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  font-size: 1.8rem;
+  color: var(--title-green-color);
+  margin: 0 0 0.8rem 0;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: var(--gh-dark-fg-default);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.date {
+  font-size: 0.9rem;
+  color: var(--gh-dark-fg-muted);
+}
+
+.tags_container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tag {
+  font-size: 0.85rem;
+  color: var(--efects-purple);
+  font-weight: bold;
+}

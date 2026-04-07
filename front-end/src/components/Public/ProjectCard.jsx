@@ -16,13 +16,9 @@ export default function ProjectCard({ project }) {
           {project.long_description}
         </p>
         <div style={{ marginTop: 'auto', display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
-          <a href={project.repo_link} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
-            <Button>Repositório</Button>
-          </a>
+          <Button href={project.repo_link}>Repositório</Button>
           {project.alternative_link && (
-            <a href={project.alternative_link} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
-              <Button>Ver Demo / Site</Button>
-            </a>
+            <Button href={project.alternative_link}>Acesso</Button>
           )}
         </div>
       </div>
