@@ -1,8 +1,8 @@
 import useSWR from 'swr'
 
-// No desenvolvimento com Proxy do Vite, usamos o caminho relativo.
-// Isso evita problemas de CORS e Cookies SameSite.
-export const API_BASE_URL = '/api'
+// Usa a variável de ambiente do Vite para definir a URL da API em produção,
+// ou mantém o caminho relativo '/api' para desenvolvimento com proxy.
+export const API_BASE_URL = import.meta.env.VITE_API_URL || '/api'
 
 export const fetcher = (url) => fetch(url, { 
   method: 'GET',

@@ -9,11 +9,20 @@ def login(data):
     user_input = data.get("user")
     senha = data.get("senha")
     
-    # Busca por username ou email
+    print(f"[DEBUG] Tentativa de login: {user_input}")
+    
+    # Busca por username ou email (case-insensitive para e-mail é boa prática)
     user = User.query.filter((User.user == user_input) | (User.email == user_input)).first()
-    print(user)
-    if not user or not user.check_senha(senha):
+    
+    if not user:
+        print(f"[DEBUG] Usuário '{user_input}' não encontrado no banco.")
         return jsonify({"error": "Usuário ou senha inválidos"}), 401
+    
+    if not user.check_senha(senha):
+        print(f"[DEBUG] Senha incorreta para o usuário: {user_input}")
+        return jsonify({"error": "Usuário ou senha inválidos"}), 401
+    
+    print(f"[DEBUG] Login bem-sucedido: {user_input} (Cargo: {user.cargo})")
     
     # Criar token de sessão (96 caracteres aleatórios)
     token = secrets.token_urlsafe(72)
