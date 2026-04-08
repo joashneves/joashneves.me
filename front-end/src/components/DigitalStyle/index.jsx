@@ -5,8 +5,9 @@ import styles from './DigitalStyle.module.css';
  * Componente que simula um efeito de digitação (typewriter) de terminal.
  * @param {string} children - O texto a ser digitado.
  * @param {number} speed - Velocidade em ms entre cada caractere (default: 100).
+ * @param {string} className - Classes CSS adicionais.
  */
-export default function EstiloDigital({ children, speed = 100 }) {
+export default function EstiloDigital({ children, speed = 100, className = '', ...props }) {
   const [displayedText, setDisplayedText] = useState('');
   const textToType = typeof children === 'string' ? children : '';
 
@@ -31,9 +32,9 @@ export default function EstiloDigital({ children, speed = 100 }) {
   }, [textToType, speed]);
 
   return (
-    <h1 className={styles.container}>
+    <h1 className={`${styles.container} ${className}`} {...props}>
       {displayedText}
-      <h1 className={styles.cursor}>_</h1>
+      <span className={styles.cursor}>_</span>
     </h1>
   );
 }

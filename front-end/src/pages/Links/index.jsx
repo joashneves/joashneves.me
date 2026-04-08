@@ -5,6 +5,7 @@ import TagFilter from '../../components/Public/TagFilter'
 import Pagination from '../../components/Public/Pagination'
 import LinkCard from '../../components/Public/LinkCard'
 import EstiloDigital from '../../components/DigitalStyle'
+import styles from './Links.module.css'
 
 export default function LinksPage() {
   const [search, setSearch] = useState('')
@@ -17,20 +18,21 @@ export default function LinksPage() {
   const links = linksData?.items || []
 
   return (
-    <section style={{ maxWidth: '900px', margin: '0 auto'}}>
-      <header style={{ textAlign: 'center', marginBottom: '4rem' }}>
+    <section className={styles.container}>
+      <header className={styles.header}>
         <EstiloDigital >Links encontrados por ai...</EstiloDigital>
-        <p>
+        <p className={styles.description}>
           Recursos, ferramentas e sites úteis salvos por mim.
         </p>
-        <div style={{ width: '100%', height: '1px', background: 'var(--gh-dark-border-default)', marginTop: '2rem' }}></div>
+        <div className={styles.divider}></div>
 
       </header>
 
       <SearchBar
+        className={styles.pesquisaBar}
         value={search}
         onChange={(val) => { setSearch(val); setPage(1); }}
-        placeholder="Pesquisar por título ou descrição..."
+        placeholder="Pesquisar..."
       />
 
       <TagFilter
@@ -39,12 +41,12 @@ export default function LinksPage() {
         onSelect={(id) => { setTagFilter(id); setPage(1); }}
       />
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }}>
+      <div className={styles.grid}>
         {links.length > 0 ? links.map(link => (
           <LinkCard key={link.id} link={link} tags={tags} />
         )) : (
-          <div style={{ textAlign: 'center', padding: '4rem' }}>
-            <p style={{ fontSize: '1.2rem', color: 'var(--gh-dark-fg-muted)' }}>Nenhum link encontrado.</p>
+          <div className={styles.empty}>
+            <p className={styles.emptyText}>Nenhum link encontrado.</p>
           </div>
         )}
       </div>

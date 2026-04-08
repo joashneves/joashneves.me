@@ -1,5 +1,5 @@
 .sidebar {
-  width: 200px; /* Reduced width to match PDF better */
+  width: 200px;
   height: 100vh;
   background: var(--gh-dark-bg-default);
   border-right: 1px solid var(--gh-dark-border-default);
@@ -10,6 +10,7 @@
   top: 0;
   padding: 1rem 0;
   z-index: 1000;
+  transition: all 0.3s ease;
 }
 
 .topIcon {
@@ -29,7 +30,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 1.5rem; /* Reduced padding to fix "links mais pro lado" */
+  padding: 1rem 1.5rem;
   text-decoration: none;
   color: var(--gh-dark-fg-muted);
   transition: all 0.3s ease;
@@ -63,7 +64,7 @@
 .label {
   font-size: 1.1rem;
   font-weight: bold;
-  font-style: italic; /* Conforme o PDF */
+  font-style: italic;
   text-transform: capitalize;
 }
 
@@ -73,4 +74,46 @@
   gap: 1rem;
   justify-content: flex-start;
   opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    top: auto;
+    bottom: 0;
+    border-right: none;
+    border-top: 1px solid var(--gh-dark-border-default);
+    padding: 0;
+  }
+
+  .topIcon {
+    display: none;
+  }
+
+  .menuItems {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .navLink {
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.5rem;
+    border-bottom: none;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .label {
+    font-size: 0.7rem;
+    font-style: normal;
+  }
+
+  .iconWrapper {
+    width: 20px;
+    height: 20px;
+  }
 }

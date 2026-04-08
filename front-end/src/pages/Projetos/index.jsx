@@ -4,6 +4,7 @@ import SearchBar from '../../components/Public/SearchBar'
 import Pagination from '../../components/Public/Pagination'
 import ProjectCard from '../../components/Public/ProjectCard'
 import EstiloDigital from '../../components/DigitalStyle'
+import styles from './Projetos.module.css'
 
 export default function Projetos() {
   const [search, setSearch] = useState('')
@@ -13,23 +14,23 @@ export default function Projetos() {
   const projects = projectsData?.items || []
 
   return (
-    <section style={{ maxWidth: '1200px', margin: '0 auto'}}>
-      <header style={{ textAlign: 'center', marginBottom: '4rem' }}>
-        <EstiloDigital >
+    <section className={styles.container}>
+      <header className={styles.header}>
+        <EstiloDigital>
           Projetos finalizados
         </EstiloDigital>
-        <p style={{ fontSize: '1.2rem', color: 'var(--gh-dark-fg-muted)', marginTop: '1rem' }}>
+        <p className={styles.description}>
           Galeria de projetos autorais e experimentais que ja estão disponiveis para publicos, ou que eu participei ativamente.
         </p>
-        <div style={{ width: '100%', height: '1px', background: 'var(--gh-dark-border-default)', marginTop: '2rem' }}></div>
+        <div className={styles.divider}></div>
       </header>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '3rem' }}>
+      <div className={styles.grid}>
         {projects.length > 0 ? projects.map(project => (
           <ProjectCard key={project.id} project={project} />
         )) : (
-          <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '6rem' }}>
-            <p style={{ color: 'var(--gh-dark-fg-muted)', fontSize: '1.2rem' }}>Nenhum projeto encontrado para esta busca.</p>
+          <div className={styles.empty}>
+            <p className={styles.emptyText}>Nenhum projeto encontrado para esta busca.</p>
           </div>
         )}
       </div>

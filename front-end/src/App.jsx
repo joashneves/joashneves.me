@@ -14,11 +14,11 @@ import ProtectedRoute from './components/Admin/ProtectedRoute'
 function App() {
   return (
     <Router>
-      <div className="App" style={{ display: 'flex', minHeight: '100vh' }}>
+      <div className="appContainer">
         <Navbar /> 
         
-        <div style={{ flex: 1, marginLeft: '200px', display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-          <main style={{ flex: 1, width: '100%', maxWidth: '1400px', margin: '0 auto', padding: '1rem' }}>
+        <div className="mainWrapper">
+          <main className="content">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/projetos" element={<Projetos />} />

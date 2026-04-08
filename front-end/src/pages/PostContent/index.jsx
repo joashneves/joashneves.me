@@ -4,24 +4,25 @@ import rehypeRaw from 'rehype-raw'
 import { useParams } from 'react-router-dom'
 import { useApi } from '../../services/api'
 import EstiloDigital from '../../components/DigitalStyle'
+import styles from './PostContent.module.css'
 
 export default function PostContent() {
   const { slug } = useParams()
   const { data: post, isError: error, isLoading } = useApi(`/posts/${slug}`)
 
-  if (isLoading) return <div style={{ color: 'white', textAlign: 'center', padding: '5rem' }}>Carregando post...</div>
-  if (error || !post || post.error) return <div style={{ color: 'white', textAlign: 'center', padding: '5rem' }}>Post não encontrado.</div>
+  if (isLoading) return <div className={styles.loading}>Carregando post...</div>
+  if (error || !post || post.error) return <div className={styles.error}>Post não encontrado.</div>
 
   return (
-    <article style={{ padding: '2rem', maxWidth: '800px', margin: 'auto'}}>
+    <article className={styles.article}>
       <header>
-        <EstiloDigital style={{ fontSize: '2.5rem', color: 'var(--title-green-color)'}}>{post.title}</EstiloDigital>
-        <div style={{ display: 'flex', gap: '1rem', color: 'var(--gh-dark-fg-muted)' }}>
+        <EstiloDigital className={styles.title}>{post.title}</EstiloDigital>
+        <div className={styles.meta}>
           <span>{new Date(post.date).toLocaleDateString('pt-BR')}</span>
         </div>
       </header>
       
-      <div className="markdown-body" style={{ color: 'var(--gh-dark-fg-default)', lineHeight: '1.8' }}>
+      <div className={`${styles.content} markdown-body`}>
         <ReactMarkdown 
           remarkPlugins={[remarkGfm]} 
           rehypePlugins={[rehypeRaw]}

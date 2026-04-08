@@ -1,0 +1,29 @@
+.container {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  border: 1px solid var(--gh-dark-border-default);
+  background: var(--gh-dark-bg-default);
+  color: white;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: border-color 0.2s ease;
+  box-sizing: border-box; /* Garante que padding não aumente o tamanho total */
+}
+
+.input:focus {
+  border-color: var(--efects-purple);
+}
+
+@media (max-width: 768px) {
+  .input {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+}

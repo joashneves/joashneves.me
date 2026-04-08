@@ -4,15 +4,13 @@ import TagFilter from '../../components/Public/TagFilter'
 import Pagination from '../../components/Public/Pagination'
 import PostCard from '../../components/Public/PostCard'
 import { useState } from 'react'
-import Button from '../../components/Button'
 import { useApi } from '../../services/api'
-import { Link } from 'react-router-dom'
 import EstiloDigital from "../../components/DigitalStyle";
+import styles from './Post.module.css'
 
 export default function Post(){
-
-      const [search, setSearch] = useState('')
-    const [tagFilter, setTagFilter] = useState('')
+  const [search, setSearch] = useState('')
+  const [tagFilter, setTagFilter] = useState('')
   const [page, setPage] = useState(1)
 
   const { data: tags } = useApi('/tags/')
@@ -20,49 +18,46 @@ export default function Post(){
 
   const posts = postsData?.items || []
 
+  return(
+    <section className={styles.container}>
+      <header className={styles.header}>
+        <EstiloDigital>
+          Ideias escritas por mim
+        </EstiloDigital>
+        <p className={styles.description}>
+          Explorando tecnologia, desenvolvimento e outras curiosidades.
+        </p>
+        <div className={styles.divider}></div>
+      </header>
 
+      <SearchBar 
+        value={search} 
+        onChange={(val) => { setSearch(val); setPage(1); }} 
+        placeholder="O que você procura?" 
+      />
 
-    return(
-    <>
-    <section id="conteudo" style={{ maxWidth: '1000px', margin: '0 auto', padding: '4rem 2rem' }}>
-        <header style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <EstiloDigital>
-            Ideias escritas por mim
-          </EstiloDigital>
-          <p style={{ fontSize: '1.2rem', color: 'var(--gh-dark-fg-muted)', marginTop: '1rem' }}>
-            Explorando tecnologia, desenvolvimento e outras curiosidades.
-          </p>
-          <div style={{ width: '100%', height: '1px', background: 'var(--gh-dark-border-default)', marginTop: '2rem' }}></div>
-        </header>
+      <TagFilter 
+        tags={tags} 
+        selectedTag={tagFilter} 
+        onSelect={(id) => { setTagFilter(id); setPage(1); }} 
+      />
 
-        <SearchBar 
-          value={search} 
-          onChange={(val) => { setSearch(val); setPage(1); }} 
-          placeholder="O que você quer ler hoje?" 
-        />
+      <div className={styles.grid}>
+        {posts.length > 0 ? posts.map(post => (
+          <PostCard key={post.id} post={post} tags={tags} />
+        )) : (
+          <div className={styles.empty}>
+            <p className={styles.emptyText}>Nenhum artigo encontrado para esta pesquisa.</p>
+          </div>
+        )}
+      </div>
 
-        <TagFilter 
-          tags={tags} 
-          selectedTag={tagFilter} 
-          onSelect={(id) => { setTagFilter(id); setPage(1); }} 
-        />
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-          {posts.length > 0 ? posts.map(post => (
-            <PostCard key={post.id} post={post} tags={tags} />
-          )) : (
-            <div style={{ textAlign: 'center', padding: '6rem' }}>
-              <p style={{ fontSize: '1.2rem', color: 'var(--gh-dark-fg-muted)' }}>Nenhum artigo encontrado para esta pesquisa.</p>
-            </div>
-          )}
-        </div>
-
-        <Pagination 
-          total={postsData?.total} 
-          perPage={postsData?.per_page} 
-          currentPage={page} 
-          onPageChange={setPage} 
-        />
-      </section>
-      </>)
+      <Pagination 
+        total={postsData?.total} 
+        perPage={postsData?.per_page} 
+        currentPage={page} 
+        onPageChange={setPage} 
+      />
+    </section>
+  )
 }
