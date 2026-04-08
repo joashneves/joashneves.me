@@ -1,23 +1,32 @@
 import os
+import re
+import uuid
 import requests
 import io
-import uuid
 from flask import request, jsonify
 from PIL import Image
+from sqlalchemy import or_
+from app.models.project import Project, db
 
 # Configuração do Vercel Blob
 VERCEL_BLOB_API = "https://blob.vercel-storage.com"
 BLOB_TOKEN = os.getenv("BLOB_READ_WRITE_TOKEN")
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+def is_valid_url(url):
+    if not url: return True 
+    regex = re.compile(
+        r'^https?://' 
+        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'
+        r'localhost|'
+        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'
+        r'(?::\d+)?'
+        r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+    return re.match(regex, url) is not None
 
 def upload_to_vercel_blob(file_content, filename):
     """Realiza o upload do conteúdo binário para o Vercel Blob Storage."""
     if not BLOB_TOKEN:
-        print("[ERROR] BLOB_READ_WRITE_TOKEN não encontrado! Conecte o Blob no painel da Vercel.")
+        print("[ERROR] BLOB_READ_WRITE_TOKEN não encontrado! Verifique se o Blob está conectado no painel da Vercel.")
         return None
     
     url = f"{VERCEL_BLOB_API}/{filename}"
@@ -27,57 +36,48 @@ def upload_to_vercel_blob(file_content, filename):
     }
     
     try:
-        print(f"[DEBUG] Tentando upload: {filename}")
+        print(f"[DEBUG] Iniciando upload para Vercel Blob: {filename}")
         response = requests.put(url, data=file_content, headers=headers)
         if response.status_code == 200:
             blob_url = response.json().get("url")
-            print(f"[SUCCESS] Blob URL: {blob_url}")
+            print(f"[SUCCESS] Upload concluído! URL: {blob_url}")
             return blob_url
-        print(f"[ERROR] Vercel Blob API Status {response.status_code}: {response.text}")
+        print(f"[ERROR] Vercel Blob API retornou {response.status_code}: {response.text}")
         return None
     except Exception as e:
-        print(f"[ERROR] Exceção no upload: {e}")
+        print(f"[ERROR] Erro na requisição ao Vercel Blob: {e}")
         return None
 
-def upload_image():
+def delete_from_vercel_blob(url):
+    """Remove um arquivo do Vercel Blob Storage via API REST."""
+    if not BLOB_TOKEN or not url or "public.blob.vercel-storage.com" not in url:
+        return
+    
+    headers = {
+        "Authorization": f"Bearer {BLOB_TOKEN}",
+        "Content-Type": "application/json"
+    }
+    
+    payload = {"urls": [url]}
+    
     try:
-        if 'file' not in request.files:
-            return jsonify({"error": "Nenhum arquivo enviado"}), 400
-
-        file = request.files['file']
-
-        if file.filename == '':
-            return jsonify({"error": "Nome de arquivo vazio"}), 400
-
-        if file and allowed_file(file.filename):
-            # Processa a imagem em memória com Pillow
-            img = Image.open(file)
-            if img.mode in ("RGBA", "P"):
-                img = img.convert("RGB")
-            
-            # Salva em um buffer (em memória)
-            buffer = io.BytesIO()
-            img.save(buffer, format="WEBP", quality=80, optimize=True)
-            buffer.seek(0)
-            
-            # Gera um nome único e faz o upload
-            unique_filename = f"uploads/{uuid.uuid4().hex}.webp"
-            image_url = upload_to_vercel_blob(buffer.getvalue(), unique_filename)
-
-            if not image_url:
-                return jsonify({"error": "Falha ao realizar upload para o storage remoto"}), 500
-
-            return jsonify({
-                "message": "Upload realizado com sucesso!",
-                "url": image_url
-            }), 201
-
-        return jsonify({"error": "Formato não suportado"}), 400
-
+        response = requests.post(f"{VERCEL_BLOB_API}/delete", json=payload, headers=headers)
+        if response.status_code == 200:
+            print(f"[SUCCESS] Arquivo deletado do Blob: {url}")
+        else:
+            print(f"[ERROR] Falha ao deletar do Blob ({response.status_code}): {response.text}")
     except Exception as e:
-        print(f"Erro no Upload: {str(e)}")
-        return jsonify({"error": str(e)}), 500
-stmt = stmt.filter(
+        print(f"[ERROR] Exceção ao deletar do Vercel Blob: {e}")
+
+def get_all_projects():
+    query_text = request.args.get('q', '').lower()
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', 6, type=int)
+
+    stmt = Project.query
+
+    if query_text:
+        stmt = stmt.filter(
             or_(
                 Project.title.ilike(f"%{query_text}%"),
                 Project.long_description.ilike(f"%{query_text}%")
