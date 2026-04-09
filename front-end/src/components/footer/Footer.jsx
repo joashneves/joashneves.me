@@ -3,11 +3,11 @@ import styles from "./footer.module.css";
 
 // Configuração estática temporária para as redes sociais
 const socialNetworks = {
-  bsky: "https://bsky.app/profile/joashneves.bsky.social",
+  bsky: "https://bsky.app/profile/joashneves.me",
   instagram: "https://www.instagram.com/joashneves/",
   github: "https://github.com/joashneves",
   coffee: "https://www.buymeacoffee.com/joashneves",
-  linkedin: "https://www.linkedin.com/in/joashneves/",
+  linkedin: "https://www.linkedin.com/in/joasneves/",
   discord: "https://discord.gg/Bep9FfD5FG"
 };
 
