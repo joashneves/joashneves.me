@@ -1,0 +1,30 @@
+.wrapper {
+  position: relative;
+  margin: 1rem 0;
+}
+
+.copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 2;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gh-dark-fg-muted);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--gh-dark-border-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.wrapper:hover .copy {
+  opacity: 1;
+}
+
+.copy:hover {
+  color: var(--efects-purple);
+  border-color: var(--efects-purple);
+}

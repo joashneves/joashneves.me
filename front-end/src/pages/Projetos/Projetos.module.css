@@ -27,10 +27,130 @@
   gap: 3rem;
 }
 
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.viewToggle {
+  display: flex;
+  gap: 0.5rem;
+  border: 1px solid var(--gh-dark-border-default);
+  border-radius: var(--radius-pill);
+  padding: 0.25rem;
+  background: var(--gh-dark-bg-muted);
+}
+
+.viewButton {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--gh-dark-fg-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.viewButton:hover {
+  color: var(--gh-dark-fg-default);
+}
+
+.viewActive {
+  background: var(--efects-purple);
+  color: #fff;
+}
+
+.viewActive:hover {
+  color: #fff;
+}
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-left: 2rem;
+  border-left: 2px solid var(--gh-dark-border-default);
+  margin-bottom: 3rem;
+}
+
+.timelineItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.timelineItem::before {
+  content: "";
+  position: absolute;
+  left: -2.45rem;
+  top: 0.3rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--efects-purple);
+  box-shadow: 0 0 0 4px var(--gh-dark-bg-default);
+}
+
+.timelineDate {
+  color: var(--efects-purple);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.timelineCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  border: 1px solid var(--gh-dark-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--gh-dark-bg-default);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.timelineCard:hover {
+  border-color: var(--efects-purple);
+  transform: translateY(-2px);
+}
+
+.timelineTitle {
+  color: var(--title-green-color);
+  font-size: 1.3rem;
+}
+
+.timelineDesc {
+  color: var(--gh-dark-fg-muted);
+  line-height: 1.6;
+}
+
+.timelineLinks {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.timelineLinks a {
+  color: var(--efects-purple);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.timelineLinks a:hover {
+  text-decoration: underline;
+}
+
 .empty {
   grid-column: 1 / -1;
   text-align: center;
-  padding: 6rem;
+  padding: 4rem;
 }
 
 .emptyText {

@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 4rem;
+}
+
+.pageButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--gh-dark-fg-default);
+  border: 1px solid var(--efects-purple);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pageButton:hover {
+  color: var(--efects-purple);
+  transform: translateY(-1px);
+}
+
+.active {
+  background: var(--efects-purple);
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(127, 90, 240, 0.3);
+}

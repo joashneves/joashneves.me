@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 3rem;
+}
+
+.badge {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--gh-dark-border-default);
+  background: var(--gh-dark-bg-muted);
+  color: var(--gh-dark-fg-muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.badge:hover {
+  color: var(--efects-purple);
+  border-color: var(--efects-purple);
+  transform: translateY(-1px);
+}
+
+.active {
+  background: var(--efects-purple);
+  color: #fff;
+  border-color: var(--efects-purple);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(127, 90, 240, 0.3);
+}
+
+.active:hover {
+  color: #fff;
+}

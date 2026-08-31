@@ -7,14 +7,19 @@ import Login from './pages/Admin/Login'
 import Painel from './pages/Admin/Painel'
 import Navbar from './components/Navbar'
 import Footer from './components/footer/Footer'
+import ThemeToggle from './components/ThemeToggle'
+import BackToTop from './components/Public/BackToTop'
+import TwitchBanner from './components/Public/TwitchBanner'
 import './App.css'
 import Post from './pages/Post'
+import Sobre from './pages/Sobre'
 import ProtectedRoute from './components/Admin/ProtectedRoute'
 
 function App() {
   return (
     <Router>
       <div className="appContainer">
+        <TwitchBanner />
         <Navbar /> 
         
         <div className="mainWrapper">
@@ -25,6 +30,7 @@ function App() {
               <Route path="/links" element={<Links />} />
               <Route path='/post' element={<Post />} />
               <Route path="/post/:slug" element={<PostContent />} />
+              <Route path="/sobre" element={<Sobre />} />
               <Route path="/adm/logar" element={<Login />} />
               <Route
                 path="/adm/painel"
@@ -38,6 +44,8 @@ function App() {
           </main>
           <Footer />
         </div>
+        <ThemeToggle />
+        <BackToTop />
       </div>
     </Router>
   )

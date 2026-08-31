@@ -8,7 +8,9 @@ const socialNetworks = {
   github: "https://github.com/joashneves",
   coffee: "https://www.buymeacoffee.com/joashneves",
   linkedin: "https://www.linkedin.com/in/joasneves/",
-  discord: "https://discord.gg/Bep9FfD5FG"
+  discord: "https://discord.com/invite/S2ua5wmUwE",
+  youtube: "https://www.youtube.com/@joashneves",
+  twitch: "https://www.twitch.tv/joashneves"
 };
 
 export default function Footer() {
@@ -48,6 +50,18 @@ export default function Footer() {
         target="_blank"
         link={socialNetworks.discord}
         name="discord"
+        extraClass="custom-class"
+      />
+      <DivSocialFooter
+        target="_blank"
+        link={socialNetworks.youtube}
+        name="youtube"
+        extraClass="custom-class"
+      />
+      <DivSocialFooter
+        target="_blank"
+        link={socialNetworks.twitch}
+        name="twitch"
         extraClass="custom-class"
       />
     </footer>

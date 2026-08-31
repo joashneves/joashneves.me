@@ -5,16 +5,21 @@
 
 .input {
   width: 100%;
-  padding: 1rem;
+  padding: 0.8rem 1rem;
   font-size: 1.1rem;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--gh-dark-border-default);
   background: var(--gh-dark-bg-default);
-  color: white;
+  color: var(--gh-dark-fg-default);
   outline: none;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: border-color 0.2s ease;
-  box-sizing: border-box; /* Garante que padding não aumente o tamanho total */
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: var(--efects-purple);
+  box-shadow: 0 0 0 3px rgba(139, 94, 181, 0.2);
 }
 
 .input:focus {

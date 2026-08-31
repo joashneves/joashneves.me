@@ -1,13 +1,14 @@
 import { Navigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
+import styles from './AdminPanel.module.css'
 
 export default function ProtectedRoute({ children, requiredRole }) {
   const { user, isAuthenticated, isLoading } = useAuth()
 
   if (isLoading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: 'var(--gh-dark-bg-default)' }}>
-        <p style={{ color: 'white' }}>Verificando acesso...</p>
+      <div className={styles.loadingScreen}>
+        <p className={styles.loadingText}>Verificando acesso...</p>
       </div>
     )
   }

@@ -5,6 +5,8 @@ export { default as github } from "./github.jsx";
 export { default as coffee } from "./coffee.jsx";
 export { default as linkedin } from "./linkedin.jsx";
 export { default as discord } from "./discord.jsx";
+export { default as youtube } from "./youtube.jsx";
+export { default as twitch } from "./twitch.jsx";
 export { default as obsidian } from "./obsidian.jsx";
 export { default as cshap } from "./csharp.jsx";
 export { default as javascript } from "./javascript.jsx";
@@ -25,3 +27,4 @@ export { default as post } from "./post.jsx"
 export { default as home } from "./home.jsx"
 export { default as projetos } from "./projetos.jsx"
 export { default as terminal } from "./terminal.jsx"
+export { default as sobre } from "./sobre.jsx"

@@ -51,6 +51,28 @@ def get_post_by_slug_or_id(identifier):
     
     return post.to_dict() if post else None
 
+def increment_view_by_identifier(identifier):
+    post_data = get_post_by_slug_or_id(identifier)
+    if not post_data:
+        return None
+    post = Post.query.get(post_data['id'])
+    post.views = (post.views or 0) + 1
+    db.session.commit()
+    return post.to_dict()
+
+def add_reaction_by_identifier(identifier, emoji):
+    if not emoji:
+        return None
+    post_data = get_post_by_slug_or_id(identifier)
+    if not post_data:
+        return None
+    post = Post.query.get(post_data['id'])
+    reactions = dict(post.reactions or {})
+    reactions[emoji] = reactions.get(emoji, 0) + 1
+    post.reactions = reactions
+    db.session.commit()
+    return post.to_dict()
+
 def create_post(data):
     new_post = Post(
         title=data.get("title"),
