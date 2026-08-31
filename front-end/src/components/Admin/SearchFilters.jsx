@@ -1,31 +1,21 @@
+import styles from './AdminPanel.module.css'
+
 export default function SearchFilters({ search, setSearch, tagFilter, setTagFilter, tags }) {
   return (
     <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
-      <input 
-        placeholder="Pesquisar..." 
-        value={search} 
+      <input
+        placeholder="Pesquisar..."
+        value={search}
         onChange={e => setSearch(e.target.value)}
-        style={{ 
-          padding: '0.5rem', 
-          borderRadius: '4px', 
-          border: '1px solid var(--gh-dark-border-default)', 
-          background: 'var(--gh-dark-bg-default)', 
-          color: 'white',
-          flex: 1,
-          minWidth: '200px'
-        }}
+        className={styles.input}
+        style={{ flex: 1, minWidth: '200px' }}
       />
-      
-      <select 
-        value={tagFilter} 
+
+      <select
+        value={tagFilter}
         onChange={e => setTagFilter(e.target.value)}
-        style={{ 
-          padding: '0.5rem', 
-          borderRadius: '4px', 
-          border: '1px solid var(--gh-dark-border-default)', 
-          background: 'var(--gh-dark-bg-default)', 
-          color: 'white'
-        }}
+        className={styles.input}
+        style={{ flex: '0 0 auto', cursor: 'pointer' }}
       >
         <option value="">Todas as Tags</option>
         {tags?.items?.map(tag => (

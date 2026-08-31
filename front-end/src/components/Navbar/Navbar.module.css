@@ -33,8 +33,9 @@
   padding: 1rem 1.5rem;
   text-decoration: none;
   color: var(--gh-dark-fg-muted);
-  transition: all 0.3s ease;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.25s ease, color 0.2s ease,
+    box-shadow 0.25s ease;
+  border-bottom: 1px solid var(--nav-border);
 }
 
 .iconWrapper {
@@ -52,13 +53,18 @@
 }
 
 .navLink:hover {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--nav-hover-bg);
   color: var(--efects-purple);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.navLink:hover .label {
+  transform: translateX(4px) scale(1.05);
 }
 
 .navLink.active {
   color: var(--title-green-color);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--nav-active-bg);
 }
 
 .label {
@@ -66,6 +72,8 @@
   font-weight: bold;
   font-style: italic;
   text-transform: capitalize;
+  transform-origin: left center;
+  transition: transform 0.25s ease, color 0.2s ease;
 }
 
 .bottomIcons {
@@ -107,7 +115,16 @@
     justify-content: center;
   }
 
+  .navLink:hover {
+    box-shadow: none;
+  }
+
+  .navLink:hover .label {
+    transform: none;
+  }
+
   .label {
+    transform-origin: center;
     font-size: 0.7rem;
     font-style: normal;
   }

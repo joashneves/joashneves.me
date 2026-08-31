@@ -22,6 +22,8 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     tag_ids = db.Column(JSONB) # List of UUID strings
     date = db.Column(db.DateTime, default=datetime.utcnow)
+    reactions = db.Column(JSONB, default=dict)
+    views = db.Column(db.Integer, default=0)
 
     def __init__(self, title, description, content, tag_ids=None, date=None, slug=None):
         self.title = title
@@ -29,6 +31,8 @@ class Post(db.Model):
         self.description = description
         self.content = content
         self.tag_ids = tag_ids or []
+        self.reactions = {}
+        self.views = 0
         if isinstance(date, str):
             self.date = datetime.fromisoformat(date)
         else:
@@ -42,7 +46,9 @@ class Post(db.Model):
             "description": self.description,
             "content": self.content,
             "tag_ids": self.tag_ids,
-            "date": self.date.isoformat() if self.date else None
+            "date": self.date.isoformat() if self.date else None,
+            "reactions": self.reactions or {},
+            "views": self.views or 0
         }
 
     def __repr__(self):

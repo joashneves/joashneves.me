@@ -19,6 +19,45 @@
   --gh-dark-border-default: #3d444d;
   --gh-dark-accent-fg: #4493f8;
   --gh-dark-accent-emphasis: #1f6feb;
+
+  /* Danger / erro */
+  --danger: #f85149;
+  --danger-bg: #3b1d1d;
+  --danger-border: #ff7b72;
+
+  /* Escala de raios */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 5px 0 rgba(0, 0, 0, 0.13);
+  --shadow-md: 0 6px 12px -2px rgba(0, 0, 0, 0.18);
+  --shadow-lg: 0 14px 28px -6px rgba(0, 0, 0, 0.22);
+
+  /* Overlays usados no navbar */
+  --nav-border: rgba(255, 255, 255, 0.05);
+  --nav-hover-bg: rgba(255, 255, 255, 0.02);
+  --nav-active-bg: rgba(255, 255, 255, 0.03);
+}
+
+html[data-theme='light'] {
+  --gh-dark-bg-default: #ffffff;
+  --gh-dark-bg-muted: #f6f8fa;
+  --gh-dark-fg-default: #1f2328;
+  --gh-dark-fg-muted: #59636e;
+  --gh-dark-border-default: #d1d9e0;
+  --gh-dark-accent-fg: #0969da;
+  --gh-dark-accent-emphasis: #0969da;
+  --nav-border: rgba(0, 0, 0, 0.08);
+  --nav-hover-bg: rgba(0, 0, 0, 0.04);
+  --nav-active-bg: rgba(0, 0, 0, 0.06);
+
+  --danger: #cf222e;
+  --danger-bg: #ffebe9;
+  --danger-border: #ffcecb;
 }
 .jersey-25-regular {
   font-family: "Jersey 25", sans-serif;
@@ -40,6 +79,7 @@
 
 body {
   background-color: var(--gh-dark-bg-muted);
+  color: var(--gh-dark-fg-default);
   font-family: "Jersey 25", sans-serif;
 }
 
@@ -52,17 +92,75 @@ h2 {
   font-family: "Play", sans-serif;
   color: var(--title-green-color);
 }
-
-div {
-  color: #94a1b2;
+h3 {
+  font-family: "Play", sans-serif;
+  font-weight: 700;
 }
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  color: var(--gh-dark-fg-default);
+}
+
 button {
-  background-color: #27282c;
+  background-color: var(--gh-dark-bg-muted);
+  border: 1px solid transparent;
 }
-
 button:hover {
   cursor: pointer;
 }
 p {
   font-size: large;
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--gh-dark-accent-fg);
+  outline-offset: 2px;
+}
+
+/* Code blocks (rehype-highlight) — tema claro sobrescreve o github-dark importado */
+html[data-theme='light'] .hljs {
+  color: #1f2328;
+  background: var(--gh-dark-bg-muted);
+}
+html[data-theme='light'] .hljs-comment,
+html[data-theme='light'] .hljs-quote {
+  color: #6e7781;
+}
+html[data-theme='light'] .hljs-keyword,
+html[data-theme='light'] .hljs-selector-tag,
+html[data-theme='light'] .hljs-literal,
+html[data-theme='light'] .hljs-doctag {
+  color: #cf222e;
+}
+html[data-theme='light'] .hljs-string,
+html[data-theme='light'] .hljs-regexp,
+html[data-theme='light'] .hljs-template-variable {
+  color: #0a3069;
+}
+html[data-theme='light'] .hljs-number,
+html[data-theme='light'] .hljs-symbol,
+html[data-theme='light'] .hljs-bullet {
+  color: #0550ae;
+}
+html[data-theme='light'] .hljs-title,
+html[data-theme='light'] .hljs-section,
+html[data-theme='light'] .hljs-function .hljs-title {
+  color: #8250df;
+}
+html[data-theme='light'] .hljs-attr,
+html[data-theme='light'] .hljs-attribute,
+html[data-theme='light'] .hljs-variable,
+html[data-theme='light'] .hljs-property,
+html[data-theme='light'] .hljs-type,
+html[data-theme='light'] .hljs-built_in {
+  color: #953800;
+}
+html[data-theme='light'] .hljs-meta,
+html[data-theme='light'] .hljs-operator,
+html[data-theme='light'] .hljs-punctuation {
+  color: #1f2328;
 }

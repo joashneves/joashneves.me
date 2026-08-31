@@ -5,19 +5,19 @@
 
 .link_card {
   padding: 1.8rem;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--gh-dark-border-default);
   background: var(--gh-dark-bg-default);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-sm);
   margin-bottom: 1rem;
 }
 
 .link_card:hover {
   border-color: var(--efects-green);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
 .header {
@@ -29,6 +29,7 @@
 
 .title {
   color: var(--title-green-color);
+  font-size: 1.3rem;
   margin: 0;
 }
 

@@ -1,0 +1,323 @@
+.page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.topHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--gh-dark-border-default);
+  padding-bottom: 1rem;
+}
+
+.title {
+  color: var(--title-green-color);
+  font-size: 2rem;
+  margin: 0;
+}
+
+.subtitle {
+  color: var(--gh-dark-fg-muted);
+  margin: 0.25rem 0 0;
+}
+
+.logoutBtn {
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.logoutBtn:hover {
+  background: var(--danger);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.errorBanner {
+  background: var(--danger-bg);
+  color: var(--danger);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 2rem;
+  border: 1px solid var(--danger-border);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.tab {
+  background: transparent;
+  color: var(--gh-dark-fg-muted);
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--gh-dark-border-default);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--efects-purple);
+  border-color: var(--efects-purple);
+  transform: translateY(-1px);
+}
+
+.tabActive {
+  background: var(--efects-purple);
+  color: #fff;
+  border-color: var(--efects-purple);
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(127, 90, 240, 0.3);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  margin-top: 2rem;
+  align-items: start;
+}
+
+.panel {
+  padding: 1.5rem;
+  border: 1px solid var(--gh-dark-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--gh-dark-bg-muted);
+  box-shadow: var(--shadow-sm);
+}
+
+.panelTitle {
+  margin: 0 0 1rem;
+  border-bottom: 1px solid var(--gh-dark-border-default);
+  padding-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+/* Campos de formulário */
+.input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gh-dark-border-default);
+  background: var(--gh-dark-bg-default);
+  color: var(--gh-dark-fg-default);
+  outline: none;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+  border-color: var(--efects-purple);
+  box-shadow: 0 0 0 3px rgba(139, 94, 181, 0.2);
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.field {
+  margin-bottom: 1rem;
+}
+
+.fieldLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--gh-dark-fg-muted);
+  font-size: 0.95rem;
+}
+
+.selectorsGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.selector {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--gh-dark-border-default);
+  background: transparent;
+  color: var(--gh-dark-fg-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.selectorActive {
+  background: var(--efects-purple);
+  border-color: var(--efects-purple);
+  color: #fff;
+}
+
+.fileDrop {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px dashed var(--gh-dark-border-default);
+  border-radius: var(--radius-md);
+}
+
+.preview {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.formActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.cancelBtn {
+  background: transparent;
+  color: var(--gh-dark-fg-muted);
+  border: 1px solid var(--gh-dark-border-default);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancelBtn:hover {
+  color: var(--gh-dark-fg-default);
+  border-color: var(--gh-dark-fg-muted);
+  transform: translateY(-1px);
+}
+
+/* Lista de itens */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listItem {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--gh-dark-border-default);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.listItemText {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actionBtn {
+  background: transparent;
+  color: var(--gh-dark-fg-muted);
+  border: 1px solid var(--gh-dark-border-default);
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.editBtn:hover {
+  color: #fff;
+  background: var(--efects-purple);
+  border-color: var(--efects-purple);
+}
+
+.deleteBtn:hover {
+  color: #fff;
+  background: var(--danger);
+  border-color: var(--danger);
+}
+
+.empty {
+  color: var(--gh-dark-fg-muted);
+  margin: 0;
+}
+
+/* Paginação do painel */
+.miniPagination {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.plainBtn {
+  background: transparent;
+  color: var(--gh-dark-fg-default);
+  border: 1px solid var(--efects-purple);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.plainBtn:hover {
+  color: var(--efects-purple);
+  transform: translateY(-1px);
+}
+
+.plainBtnActive {
+  background: var(--efects-purple);
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Tela de carregamento */
+.loadingScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loadingText {
+  color: var(--gh-dark-fg-muted);
+}
+
+/* Login */
+.loginSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 54px);
+  padding: 1rem;
+}
+
+.loginCard {
+  background: var(--gh-dark-bg-muted);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gh-dark-border-default);
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow-md);
+}
+
+.loginError {
+  color: var(--danger);
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+}

@@ -9,7 +9,7 @@ export default function DivSocialFooter(props) {
       <a
         target="_blank"
         href={link}
-        className={`${styles.socialContainer} ${styles.socialSvg} ${styles.containerSeven} ${extraClass}`}
+        className={`${styles.socialContainer} ${styles.socialSvg} ${extraClass}`}
       >
         <Icon name={name} width="52px" height="52px" />
       </a>

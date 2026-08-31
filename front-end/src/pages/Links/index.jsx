@@ -29,7 +29,6 @@ export default function LinksPage() {
       </header>
 
       <SearchBar
-        className={styles.pesquisaBar}
         value={search}
         onChange={(val) => { setSearch(val); setPage(1); }}
         placeholder="Pesquisar..."

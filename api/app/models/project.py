@@ -1,5 +1,6 @@
 import uuid
 import re
+from datetime import datetime
 from .tag import db
 
 def slugify(text):
@@ -20,8 +21,9 @@ class Project(db.Model):
     alternative_link = db.Column(db.String(500), default="")
     image_url = db.Column(db.String(500), default="")
     link_ids = db.Column(db.JSON) # List of UUID strings
+    date = db.Column(db.DateTime, default=datetime.utcnow)
 
-    def __init__(self, title, long_description, repo_link, alternative_link="", link_ids=None, image_url="", slug=None):
+    def __init__(self, title, long_description, repo_link, alternative_link="", link_ids=None, image_url="", slug=None, date=None):
         self.title = title
         self.slug = slug or slugify(title)
         self.long_description = long_description
@@ -29,6 +31,10 @@ class Project(db.Model):
         self.alternative_link = alternative_link
         self.link_ids = link_ids or []
         self.image_url = image_url
+        if isinstance(date, str):
+            self.date = datetime.fromisoformat(date)
+        else:
+            self.date = date or datetime.utcnow()
 
     def to_dict(self):
         return {
@@ -39,7 +45,8 @@ class Project(db.Model):
             "repo_link": self.repo_link,
             "alternative_link": self.alternative_link,
             "link_ids": self.link_ids,
-            "image_url": self.image_url
+            "image_url": self.image_url,
+            "date": self.date.isoformat() if self.date else None
         }
 
     def __repr__(self):

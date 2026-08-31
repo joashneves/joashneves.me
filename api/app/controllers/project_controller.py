@@ -3,6 +3,7 @@ import re
 import uuid
 import requests
 import io
+from datetime import datetime
 from flask import request, jsonify
 from PIL import Image
 from sqlalchemy import or_
@@ -112,6 +113,7 @@ def create_project():
         alternative_link = request.form.get("alternative_link", "")
         slug = request.form.get("slug")
         link_ids = request.form.getlist("link_ids")
+        date = request.form.get("date")
 
         if not title or not repo_link:
             return jsonify({"error": "Título e Link do Repositório são obrigatórios"}), 400
@@ -138,7 +140,8 @@ def create_project():
             alternative_link=alternative_link,
             image_url=image_url,
             slug=slug,
-            link_ids=link_ids
+            link_ids=link_ids,
+            date=date
         )
         
         db.session.add(new_project)
@@ -163,6 +166,9 @@ def update_project(identifier):
         project.repo_link = request.form.get("repo_link", project.repo_link)
         project.alternative_link = request.form.get("alternative_link", project.alternative_link)
         project.slug = request.form.get("slug", project.slug)
+
+        if request.form.get("date"):
+            project.date = datetime.fromisoformat(request.form.get("date"))
         
         if "link_ids" in request.form:
             project.link_ids = request.form.getlist("link_ids")

@@ -34,6 +34,8 @@ def create_app():
     from .routes.project_routes import project_bp
     from .routes.upload_routes import upload_bp
     from .routes.auth_routes import auth_bp
+    from .routes.meta_routes import meta_bp
+    from .routes.social_routes import social_bp
 
     # Register Blueprints
     app.register_blueprint(post_bp, url_prefix='/api/posts')
@@ -42,6 +44,8 @@ def create_app():
     app.register_blueprint(project_bp, url_prefix='/api/projects')
     app.register_blueprint(upload_bp, url_prefix='/api/upload')
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
+    app.register_blueprint(meta_bp)
+    app.register_blueprint(social_bp, url_prefix='/api')
 
     @app.route('/api/setup', methods=['POST'])
     def setup():

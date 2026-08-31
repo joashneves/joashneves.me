@@ -49,6 +49,8 @@ Este é o repositório do meu blog pessoal e portfólio, desenvolvido para ser u
     └── src/pages/      # Páginas da aplicação
 ```
 
+> 📚 Documentação detalhada em [`docs/`](docs/README.md) (sitemap, feed Atom, Twitch, reações, views, migrações e mais).
+
 ---
 
 ## 🚀 Como Rodar Localmente
