@@ -1,0 +1,44 @@
+.toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--gh-dark-border-default);
+  background: var(--gh-dark-bg-default);
+  color: var(--gh-dark-fg-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, opacity 0.3s ease,
+    background-color 0.3s ease, color 0.3s ease;
+}
+
+.toggle:hover {
+  border-color: var(--efects-purple);
+  color: var(--efects-purple);
+}
+
+.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.hidden {
+  transform: translateY(120px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .toggle {
+    bottom: 4rem;
+    right: 1rem;
+    width: 48px;
+    height: 48px;
+  }
+}
