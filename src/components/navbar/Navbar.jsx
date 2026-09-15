@@ -53,7 +53,6 @@ export default function Navbar() {
   const { lang, toggleLang, t } = useLanguage()
   const { theme, toggleTheme } = useTheme()
   const [hidden, setHidden] = useState(false)
-  const [open, setOpen] = useState(false)
 
   useEffect(() => {
     let lastY = window.scrollY
@@ -76,13 +75,12 @@ export default function Navbar() {
 
   const goTo = (e, id) => {
     e.preventDefault()
-    setOpen(false)
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
     <nav
-      className={`${styles.navbar} ${!open && hidden ? styles.hidden : ''} ${open ? styles.open : ''}`}
+      className={`${styles.navbar} ${hidden ? styles.hidden : ''}`}
       aria-label="Navegação principal"
     >
       <a className={styles.brand} href="#home" onClick={(e) => goTo(e, 'home')}>
@@ -94,18 +92,7 @@ export default function Navbar() {
           <li key={item.id}>
             <a className={styles.link} href={`#${item.id}`} onClick={(e) => goTo(e, item.id)}>
               <item.Icon width="15" height="15" fill="currentColor" />
-              {t(item.key)}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <ul className={styles.menu}>
-        {NAV_ITEMS.map((item) => (
-          <li key={item.id}>
-            <a className={styles.link} href={`#${item.id}`} onClick={(e) => goTo(e, item.id)}>
-              <item.Icon width="15" height="15" fill="currentColor" />
-              {t(item.key)}
+              <span className={styles.label}>{t(item.key)}</span>
             </a>
           </li>
         ))}
@@ -123,17 +110,6 @@ export default function Navbar() {
         </button>
         <button type="button" className={`${styles.button} ${styles.lang}`} onClick={toggleLang}>
           {lang === 'pt' ? 'EN' : 'PT'}
-        </button>
-        <button
-          type="button"
-          className={`${styles.button} ${styles.burger}`}
-          onClick={() => setOpen((prev) => !prev)}
-          aria-label={open ? 'Fechar menu' : 'Abrir menu'}
-          aria-expanded={open}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-            {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
-          </svg>
         </button>
       </div>
     </nav>
